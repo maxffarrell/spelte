@@ -103,7 +103,6 @@
 {#if paths.length > 0}
 	<svg
 		bind:this={svgEl}
-		key={paths.length}
 		width={svgWidth}
 		height={height}
 		viewBox="0 0 {svgWidth} {height}"

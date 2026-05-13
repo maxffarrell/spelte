@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { cn } from '$lib/utils';
-	import { animate, inView } from 'motion';
+	import { animate, inView, type DOMKeyframesDefinition } from 'motion';
 
 	interface Props {
 		text: string;
@@ -89,7 +89,8 @@
 		onStart?.();
 		charEls.forEach((el, i) => {
 			if (!el) return;
-			animate(el, { y: ['100%', '0%'] }, {
+			// @ts-ignore — motion overload resolution fails in TS6; runtime behavior is correct
+			animate(el as Element, { y: ['100%', '0%'] }, {
 				type: 'tween',
 				ease: [0.625, 0.05, 0, 1] as unknown as string,
 				duration: 0.5,

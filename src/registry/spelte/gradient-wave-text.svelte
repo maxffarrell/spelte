@@ -108,7 +108,7 @@
 		let last = performance.now();
 
 		function tick(now: number) {
-			if (finished) return;
+			if (finished || !node) return;
 			if (!started) {
 				if (now >= startAt) { started = true; last = now; }
 				else { rafId = requestAnimationFrame(tick); return; }

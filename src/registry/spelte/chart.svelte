@@ -109,6 +109,10 @@
 	const active = $derived(points[Math.min(activeIndex, points.length - 1)] ?? points[0]);
 	const activeXPct = $derived(active ? active.x / VIEWBOX_W : 0);
 	const activeYPct = $derived(active ? active.y / VIEWBOX_H : 0);
+	const cursorPx = $derived(activeXPct * containerWidth);
+	const cursorContainerHeight = $derived((containerWidth * VIEWBOX_H) / VIEWBOX_W);
+	const cursorYpx = $derived(activeYPct * cursorContainerHeight);
+	const tooltipOnLeft = $derived(activeXPct > 0.5);
 
 	const axisVisible = $derived(showXAxis && !!labels && labels.length > 0);
 
@@ -170,11 +174,6 @@
 					<path d={strokePath} stroke="var(--spell-color)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
 				{/if}
 			</svg>
-
-			{@const cursorPx = activeXPct * containerWidth}
-			{@const containerHeight = (containerWidth * VIEWBOX_H) / VIEWBOX_W}
-			{@const cursorYpx = activeYPct * containerHeight}
-			{@const tooltipOnLeft = activeXPct > 0.5}
 
 			<div
 				class="absolute pointer-events-none rounded-full bg-[var(--spell-line)] left-0"

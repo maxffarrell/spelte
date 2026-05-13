@@ -26,7 +26,7 @@
 									class="data-[active=true]:shadow-[0_0_0_1px_rgba(0,0,0,.08),_0px_2px_2px_rgba(0,0,0,.04)] data-[active=true]:not-dark:bg-white transition-all"
 									{isActive}
 									onclick={() => {
-										if (sidebar.isMobile) sidebar.toggleSidebar();
+										if (sidebar.isMobile) sidebar.toggle();
 									}}
 								>
 									{#snippet child({ props })}

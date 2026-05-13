@@ -6,5 +6,5 @@ export function getRegistry(): Registry {
 }
 
 export function getRegistryItem(name: string): RegistryItem | null {
-	return registryData.items.find((item) => item.name === name) ?? null;
+	return (registryData.items.find((item) => item.name === name) as RegistryItem) ?? null;
 }

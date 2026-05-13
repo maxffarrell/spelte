@@ -96,7 +96,7 @@
 		gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
 
 		function render() {
-			if (!canvas) return;
+			if (!canvas || !gl) return;
 			canvas.width = canvas.clientWidth;
 			canvas.height = canvas.clientHeight;
 			gl.viewport(0, 0, canvas.width, canvas.height);
