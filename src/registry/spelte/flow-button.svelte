@@ -61,11 +61,6 @@
 	);
 </script>
 
-<style>
-	@keyframes dash-flow {
-		to { stroke-dashoffset: -10; }
-	}
-</style>
 
 <div class="relative inline-block group pointer-events-none">
 	<div

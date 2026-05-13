@@ -15,11 +15,6 @@
 	const count = $derived(items.length);
 </script>
 
-<style>
-	@keyframes slide-vertical {
-		to { translate: 0 var(--destination); }
-	}
-</style>
 
 <div class={cn('flex relative', className)}>
 	<div class="flex relative overflow-hidden flex-row gap-1 items-center w-min h-min">

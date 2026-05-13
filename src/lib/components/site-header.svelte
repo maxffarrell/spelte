@@ -15,7 +15,9 @@
 		<div class="flex items-center gap-6">
 			<div class="flex items-center gap-3">
 				{#if docSchema}
-					<MobileNav {docSchema} class="md:hidden" />
+					<div class="md:hidden">
+						<MobileNav {docSchema} />
+					</div>
 				{/if}
 				<a href="/" class="flex items-center gap-1.5">
 					<SpelteLogo size={24} />

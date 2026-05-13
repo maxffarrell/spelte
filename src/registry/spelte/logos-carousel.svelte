@@ -50,16 +50,6 @@
 	});
 </script>
 
-<style>
-	@keyframes logos-enter {
-		0% { transform: translateY(40px); filter: blur(4px); opacity: 0; }
-		100% { transform: translateY(0); filter: blur(0px); opacity: 1; }
-	}
-	@keyframes logos-exit {
-		0% { transform: translateY(0); filter: blur(0px); opacity: 1; }
-		100% { transform: translateY(-40px); filter: blur(4px); opacity: 0; }
-	}
-</style>
 
 <div class="max-w-[720px] grid place-items-center w-full">
 	{#each groups as group, groupIndex}

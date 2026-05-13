@@ -19,8 +19,6 @@
 
 	let canvas: HTMLCanvasElement;
 	let animationId: number;
-	let gl: WebGLRenderingContext | null = null;
-	let program: WebGLProgram | null = null;
 	let startTime = Date.now();
 
 	const vert = `
@@ -67,7 +65,7 @@
 	}
 
 	onMount(() => {
-		gl = canvas.getContext('webgl');
+		const gl = canvas.getContext('webgl');
 		if (!gl) return;
 
 		const vs = gl.createShader(gl.VERTEX_SHADER)!;
@@ -78,7 +76,7 @@
 		gl.shaderSource(fs, frag);
 		gl.compileShader(fs);
 
-		program = gl.createProgram()!;
+		const program = gl.createProgram()!;
 		gl.attachShader(program, vs);
 		gl.attachShader(program, fs);
 		gl.linkProgram(program);
@@ -91,27 +89,23 @@
 			new Float32Array([-1, -1, 1, -1, -1, 1, 1, 1]),
 			gl.STATIC_DRAW
 		);
-
 		const pos = gl.getAttribLocation(program, 'a_position');
 		gl.enableVertexAttribArray(pos);
 		gl.vertexAttribPointer(pos, 2, gl.FLOAT, false, 0, 0);
-
 		gl.enable(gl.BLEND);
 		gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
 
 		function render() {
-			if (!gl || !program || !canvas) return;
-			const w = canvas.clientWidth;
-			const h = canvas.clientHeight;
-			canvas.width = w;
-			canvas.height = h;
-			gl.viewport(0, 0, w, h);
+			if (!canvas) return;
+			canvas.width = canvas.clientWidth;
+			canvas.height = canvas.clientHeight;
+			gl.viewport(0, 0, canvas.width, canvas.height);
 			gl.clearColor(0, 0, 0, 0);
 			gl.clear(gl.COLOR_BUFFER_BIT);
 
 			const t = (Date.now() - startTime) / 1000;
 			gl.uniform1f(gl.getUniformLocation(program, 'u_time'), t);
-			gl.uniform2f(gl.getUniformLocation(program, 'u_resolution'), w, h);
+			gl.uniform2f(gl.getUniformLocation(program, 'u_resolution'), canvas.width, canvas.height);
 
 			const c1 =
 				raysColor.mode === 'multi'
@@ -130,7 +124,6 @@
 
 	onDestroy(() => {
 		if (animationId) cancelAnimationFrame(animationId);
-		if (gl && program) gl.deleteProgram(program);
 	});
 </script>
 

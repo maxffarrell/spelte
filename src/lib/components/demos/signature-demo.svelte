@@ -40,10 +40,3 @@
 	</svg>
 </div>
 
-<style>
-	@keyframes draw-sig {
-		to {
-			stroke-dashoffset: 0;
-		}
-	}
-</style>

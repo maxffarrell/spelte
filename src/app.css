@@ -195,3 +195,45 @@ summary {
   background-color: var(--color-primary);
   color: var(--color-background);
 }
+
+/* ── Registry component keyframes (global, referenced from inline styles) ── */
+@keyframes blur-reveal-in {
+  to { opacity: 1; filter: blur(0px); transform: translateY(0); }
+}
+@keyframes marquee-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@keyframes marquee-scroll-reverse {
+  from { transform: translateX(-50%); }
+  to { transform: translateX(0); }
+}
+@keyframes marquee-scroll-y {
+  from { transform: translateY(0); }
+  to { transform: translateY(-50%); }
+}
+@keyframes marquee-scroll-y-reverse {
+  from { transform: translateY(-50%); }
+  to { transform: translateY(0); }
+}
+@keyframes slide-vertical {
+  to { translate: 0 var(--destination); }
+}
+@keyframes logos-enter {
+  0% { transform: translateY(40px); filter: blur(4px); opacity: 0; }
+  100% { transform: translateY(0); filter: blur(0px); opacity: 1; }
+}
+@keyframes logos-exit {
+  0% { transform: translateY(0); filter: blur(0px); opacity: 1; }
+  100% { transform: translateY(-40px); filter: blur(4px); opacity: 0; }
+}
+@keyframes dash-flow {
+  to { stroke-dashoffset: -10; }
+}
+@keyframes draw-sig {
+  to { stroke-dashoffset: 0; }
+}
+@keyframes bars-spin {
+  0% { opacity: 1; }
+  100% { opacity: 0.15; }
+}

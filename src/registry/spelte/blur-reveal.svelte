@@ -79,12 +79,3 @@
 	</svelte:element>
 {/if}
 
-<style>
-	@keyframes blur-reveal-in {
-		to {
-			opacity: 1;
-			filter: blur(0px);
-			transform: translateY(0);
-		}
-	}
-</style>

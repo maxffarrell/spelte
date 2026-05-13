@@ -40,24 +40,6 @@
 	);
 </script>
 
-<style>
-	@keyframes marquee-scroll {
-		from { transform: translateX(0); }
-		to { transform: translateX(-50%); }
-	}
-	@keyframes marquee-scroll-reverse {
-		from { transform: translateX(-50%); }
-		to { transform: translateX(0); }
-	}
-	@keyframes marquee-scroll-y {
-		from { transform: translateY(0); }
-		to { transform: translateY(-50%); }
-	}
-	@keyframes marquee-scroll-y-reverse {
-		from { transform: translateY(-50%); }
-		to { transform: translateY(0); }
-	}
-</style>
 
 <div
 	class={cn('flex w-full overflow-hidden', isVertical && 'flex-col', className)}

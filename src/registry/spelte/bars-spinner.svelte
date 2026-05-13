@@ -61,8 +61,4 @@
 	.bar:nth-child(11) { animation-delay: -0.2s; transform: rotate(300deg) translate(146%); }
 	.bar:nth-child(12) { animation-delay: -0.1s; transform: rotate(330deg) translate(146%); }
 
-	@keyframes bars-spin {
-		0% { opacity: 1; }
-		100% { opacity: 0.15; }
-	}
 </style>
