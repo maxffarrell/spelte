@@ -2,6 +2,8 @@
 	import { ArrowLeft, ArrowRight, ExternalLink } from 'lucide-svelte';
 	import DocsTableOfContents from '$lib/components/toc.svelte';
 	import DocCopySection from '$lib/components/doc-copy-section.svelte';
+	import { Button } from '$lib/components/ui/button/index.js';
+	import * as Breadcrumb from '$lib/components/ui/breadcrumb/index.js';
 	import type { PageData } from './$types';
 
 	let { data }: { data: PageData } = $props();
@@ -27,11 +29,27 @@
 
 		<article class="max-w-4xl prose dark:prose-invert w-full min-w-0">
 			<header class="not-prose mb-8">
-				<nav class="mb-2 flex items-center gap-1 text-sm text-muted-foreground">
-					<a href="/docs/introduction" class="hover:text-foreground transition-colors">Docs</a>
-					<span>/</span>
-					<span class="text-foreground">{data.item.title}</span>
-				</nav>
+				<Breadcrumb.Root class="mb-2">
+					<Breadcrumb.List>
+						<Breadcrumb.Item>
+							<Breadcrumb.Link href="/docs/introduction">Docs</Breadcrumb.Link>
+						</Breadcrumb.Item>
+						<Breadcrumb.Separator />
+						{#if data.isGettingStarted}
+							<Breadcrumb.Item>
+								<Breadcrumb.Page>{data.item.title}</Breadcrumb.Page>
+							</Breadcrumb.Item>
+						{:else}
+							<Breadcrumb.Item>
+								<Breadcrumb.Link href="/docs/components">Components</Breadcrumb.Link>
+							</Breadcrumb.Item>
+							<Breadcrumb.Separator />
+							<Breadcrumb.Item>
+								<Breadcrumb.Page>{data.item.title}</Breadcrumb.Page>
+							</Breadcrumb.Item>
+						{/if}
+					</Breadcrumb.List>
+				</Breadcrumb.Root>
 
 				<div class="flex items-start justify-between">
 					<div class="space-y-2">
@@ -44,22 +62,26 @@
 					</div>
 					<div class="flex items-center gap-2">
 						<DocCopySection content={data.rawContent} url="/docs/{data.id}" />
-						<button
-							class="rounded-full size-8 shadow-none active:scale-[0.97] will-change-transform ease-out duration-150 transition-transform inline-flex items-center justify-center bg-secondary text-secondary-foreground hover:bg-secondary/80 disabled:opacity-50 disabled:pointer-events-none border border-border"
+						<Button
+							variant="secondary"
+							class="rounded-full size-8 shadow-none active:scale-[0.97] will-change-transform ease-out duration-150 transition-transform"
+							size="icon"
 							disabled={!data.prevDoc}
-							onclick={() => data.prevDoc && (window.location.href = `/docs/${data.prevDoc.id}`)}
+							href={data.prevDoc ? `/docs/${data.prevDoc.id}` : undefined}
 							title={data.prevDoc?.title}
 						>
-							<ArrowLeft class="text-muted-foreground size-4" />
-						</button>
-						<button
-							class="rounded-full size-8 shadow-none active:scale-[0.97] will-change-transform ease-out duration-300 transition-colors inline-flex items-center justify-center bg-secondary text-secondary-foreground hover:bg-secondary/80 disabled:opacity-50 disabled:pointer-events-none border border-border"
+							<ArrowLeft class="text-muted-foreground" />
+						</Button>
+						<Button
+							variant="secondary"
+							class="rounded-full size-8 shadow-none active:scale-[0.97] will-change-transform ease-out duration-300 transition-colors"
+							size="icon"
 							disabled={!data.nextDoc}
-							onclick={() => data.nextDoc && (window.location.href = `/docs/${data.nextDoc.id}`)}
+							href={data.nextDoc ? `/docs/${data.nextDoc.id}` : undefined}
 							title={data.nextDoc?.title}
 						>
-							<ArrowRight class="text-muted-foreground size-4" />
-						</button>
+							<ArrowRight class="text-muted-foreground" />
+						</Button>
 					</div>
 				</div>
 

@@ -3,6 +3,7 @@
 	import { cn } from '$lib/utils';
 	import { onMount } from 'svelte';
 	import { SquarePen } from 'lucide-svelte';
+	import { Separator } from '$lib/components/ui/separator/index.js';
 
 	let {
 		toc,
@@ -72,7 +73,7 @@
 				{item.title}
 			</a>
 		{/each}
-		<hr class="my-2 border-border" />
+		<Separator orientation="horizontal" class="my-2" />
 		<div class="flex flex-col gap-2">
 			{#if docId}
 				<a

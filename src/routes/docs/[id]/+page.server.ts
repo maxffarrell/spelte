@@ -1,5 +1,5 @@
 import { error } from '@sveltejs/kit';
-import { allDocItems, getDoc } from '$lib/doc';
+import { allDocItems, getDoc, getDocSchema } from '$lib/doc';
 import { getTableOfContents } from '$lib/toc';
 import { readFile } from 'fs/promises';
 import { join } from 'path';
@@ -29,5 +29,9 @@ export const load: PageServerLoad = async ({ params }) => {
 		// doc file may not exist yet
 	}
 
-	return { item, prevDoc, nextDoc, toc, rawContent, id };
+	const schema = getDocSchema();
+	const gettingStarted = schema.find((s) => s.title === 'Getting Started');
+	const isGettingStarted = gettingStarted?.items.some((i) => i.id === id) ?? false;
+
+	return { item, prevDoc, nextDoc, toc, rawContent, id, isGettingStarted };
 };
