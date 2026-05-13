@@ -1,0 +1,81 @@
+<script lang="ts">
+	import { cn } from '$lib/utils';
+	import type { Snippet } from 'svelte';
+
+	interface Props {
+		tiltLimit?: number;
+		scale?: number;
+		perspective?: number;
+		effect?: 'gravitate' | 'evade';
+		spotlight?: boolean;
+		class?: string;
+		style?: string;
+		children?: Snippet;
+	}
+
+	let {
+		tiltLimit = 15,
+		scale = 1.05,
+		perspective = 1200,
+		effect = 'evade',
+		spotlight = true,
+		class: className,
+		style,
+		children
+	}: Props = $props();
+
+	const dir = $derived(effect === 'evade' ? -1 : 1);
+
+	let transform = $state(`perspective(${perspective}px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`);
+	let spotlightPos = $state({ x: 50, y: 50 });
+	let isHovered = $state(false);
+	let cardEl = $state<HTMLDivElement | null>(null);
+
+	function handlePointerMove(e: PointerEvent) {
+		const el = cardEl;
+		if (!el) return;
+		const rect = el.getBoundingClientRect();
+		const px = (e.clientX - rect.left) / rect.width;
+		const py = (e.clientY - rect.top) / rect.height;
+		const xRot = (py - 0.5) * (tiltLimit * 2) * dir;
+		const yRot = (px - 0.5) * -(tiltLimit * 2) * dir;
+		transform = `perspective(${perspective}px) rotateX(${xRot}deg) rotateY(${yRot}deg) scale3d(${scale}, ${scale}, ${scale})`;
+		if (spotlight) spotlightPos = { x: px * 100, y: py * 100 };
+	}
+
+	function handlePointerEnter() {
+		isHovered = true;
+	}
+
+	function handlePointerLeave() {
+		transform = `perspective(${perspective}px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+		isHovered = false;
+	}
+</script>
+
+<div
+	bind:this={cardEl}
+	onpointerenter={handlePointerEnter}
+	onpointermove={handlePointerMove}
+	onpointerleave={handlePointerLeave}
+	class={cn('will-change-transform relative overflow-hidden', className)}
+	style="{style}; transform: {transform}; transition: transform 0.2s ease-out; transform-style: preserve-3d;"
+>
+	{#if children}{@render children()}{/if}
+	{#if spotlight}
+		<div
+			class="pointer-events-none absolute inset-0 z-10 overflow-hidden"
+			style="opacity: {isHovered ? 1 : 0}; transition: opacity 0.3s;"
+		>
+			<div
+				class="absolute w-[200%] h-[200%] rounded-full opacity-100 dark:opacity-50"
+				style="
+					left: {spotlightPos.x}%;
+					top: {spotlightPos.y}%;
+					transform: translate(-50%, -50%);
+					background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 40%);
+				"
+			></div>
+		</div>
+	{/if}
+</div>

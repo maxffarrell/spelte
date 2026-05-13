@@ -1,0 +1,488 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "spelte",
+  "homepage": "https://spelte.dev",
+  "author": "spelte (https://spelte.dev)",
+  "items": [
+    {
+      "name": "blur-reveal",
+      "type": "registry:component",
+      "title": "Blur Reveal",
+      "description": "Animated text reveal with blur effect.",
+      "files": [
+        {
+          "path": "src/registry/spelte/blur-reveal.svelte",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": ["motion"],
+      "registryDependencies": [],
+      "category": "animation"
+    },
+    {
+      "name": "perspective-book",
+      "type": "registry:component",
+      "title": "Perspective Book",
+      "description": "A 3D book component with hover animation and customizable appearance.",
+      "files": [
+        {
+          "path": "src/registry/spelte/perspective-book.svelte",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [],
+      "registryDependencies": [],
+      "category": "display"
+    },
+    {
+      "name": "badge",
+      "type": "registry:component",
+      "title": "Badge",
+      "description": "A badge component with multiple color variants and sizes.",
+      "files": [
+        {
+          "path": "src/registry/spelte/badge.svelte",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [],
+      "registryDependencies": [],
+      "category": "display"
+    },
+    {
+      "name": "rich-button",
+      "type": "registry:component",
+      "title": "Rich Button",
+      "description": "A button component with rich styling and color variants.",
+      "files": [
+        {
+          "path": "src/registry/spelte/rich-button.svelte",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [],
+      "registryDependencies": [],
+      "category": "button"
+    },
+    {
+      "name": "light-rays",
+      "type": "registry:component",
+      "title": "Light Rays",
+      "description": "Animated light rays effect using WebGL shaders.",
+      "files": [
+        {
+          "path": "src/registry/spelte/light-rays.svelte",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": ["three"],
+      "registryDependencies": [],
+      "category": "background"
+    },
+    {
+      "name": "animated-gradient",
+      "type": "registry:component",
+      "title": "Animated Gradient",
+      "description": "Animated gradient background with presets and customizable swirl effects using WebGL.",
+      "files": [
+        {
+          "path": "src/registry/spelte/animated-gradient.svelte",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [],
+      "registryDependencies": [],
+      "category": "background"
+    },
+    {
+      "name": "spinner",
+      "type": "registry:component",
+      "title": "Spinner",
+      "description": "A loading spinner component with customizable size and color.",
+      "files": [
+        {
+          "path": "src/registry/spelte/spinner.svelte",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [],
+      "registryDependencies": [],
+      "category": "feedback"
+    },
+    {
+      "name": "bars-spinner",
+      "type": "registry:component",
+      "title": "Bars Spinner",
+      "description": "A loading spinner with rotating bars animation.",
+      "files": [
+        {
+          "path": "src/registry/spelte/bars-spinner.svelte",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [],
+      "registryDependencies": [],
+      "category": "feedback"
+    },
+    {
+      "name": "flow-button",
+      "type": "registry:component",
+      "title": "Flow Button",
+      "description": "A button with animated flowing dashed border on hover.",
+      "files": [
+        {
+          "path": "src/registry/spelte/flow-button.svelte",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [],
+      "registryDependencies": [],
+      "category": "button"
+    },
+    {
+      "name": "pop-button",
+      "type": "registry:component",
+      "title": "Pop Button",
+      "description": "A playful 3D-style button with push-down animation effect.",
+      "files": [
+        {
+          "path": "src/registry/spelte/pop-button.svelte",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [],
+      "registryDependencies": [],
+      "category": "button"
+    },
+    {
+      "name": "copy-button",
+      "type": "registry:component",
+      "title": "Copy Button",
+      "description": "A copy-to-clipboard button with blur transition effect.",
+      "files": [
+        {
+          "path": "src/registry/spelte/copy-button.svelte",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [],
+      "registryDependencies": [],
+      "category": "button"
+    },
+    {
+      "name": "animated-checkbox",
+      "type": "registry:component",
+      "title": "Animated Checkbox",
+      "description": "Animated checkbox with spring transitions and strike-through text effect.",
+      "files": [
+        {
+          "path": "src/registry/spelte/animated-checkbox.svelte",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": ["motion"],
+      "registryDependencies": [],
+      "category": "input"
+    },
+    {
+      "name": "exploding-input",
+      "type": "registry:component",
+      "title": "Exploding Input",
+      "description": "Input component that spawns particle effects when typing.",
+      "files": [
+        {
+          "path": "src/registry/spelte/exploding-input.svelte",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [],
+      "registryDependencies": [],
+      "category": "input"
+    },
+    {
+      "name": "label-input",
+      "type": "registry:component",
+      "title": "Label Input",
+      "description": "Input field with floating label and password visibility toggle.",
+      "files": [
+        {
+          "path": "src/registry/spelte/label-input.svelte",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [],
+      "registryDependencies": [],
+      "category": "input"
+    },
+    {
+      "name": "color-selector",
+      "type": "registry:component",
+      "title": "Color Selector",
+      "description": "Interactive color picker component.",
+      "files": [
+        {
+          "path": "src/registry/spelte/color-selector.svelte",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [],
+      "registryDependencies": [],
+      "category": "input"
+    },
+    {
+      "name": "shimmer-text",
+      "type": "registry:component",
+      "title": "Shimmer Text",
+      "description": "Text with animated shimmer highlight effect.",
+      "files": [
+        {
+          "path": "src/registry/spelte/shimmer-text.svelte",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": ["motion"],
+      "registryDependencies": [],
+      "category": "animation"
+    },
+    {
+      "name": "highlighted-text",
+      "type": "registry:component",
+      "title": "Highlighted Text",
+      "description": "Text with sliding background highlight animation using mix-blend-mode.",
+      "files": [
+        {
+          "path": "src/registry/spelte/highlighted-text.svelte",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": ["motion"],
+      "registryDependencies": [],
+      "category": "animation"
+    },
+    {
+      "name": "slide-up-text",
+      "type": "registry:component",
+      "title": "Slide Up Text",
+      "description": "Text animation that slides up from bottom with stagger effect.",
+      "files": [
+        {
+          "path": "src/registry/spelte/slide-up-text.svelte",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": ["motion"],
+      "registryDependencies": [],
+      "category": "animation"
+    },
+    {
+      "name": "words-stagger",
+      "type": "registry:component",
+      "title": "Words Stagger",
+      "description": "Word-by-word text animation with blur, transform, and opacity effects.",
+      "files": [
+        {
+          "path": "src/registry/spelte/words-stagger.svelte",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": ["motion"],
+      "registryDependencies": [],
+      "category": "animation"
+    },
+    {
+      "name": "special-text",
+      "type": "registry:component",
+      "title": "Special Text",
+      "description": "Animated text with scramble effect.",
+      "files": [
+        {
+          "path": "src/registry/spelte/special-text.svelte",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [],
+      "registryDependencies": [],
+      "category": "animation"
+    },
+    {
+      "name": "randomized-text",
+      "type": "registry:component",
+      "title": "Randomized Text",
+      "description": "Text component with randomized character reveal animation.",
+      "files": [
+        {
+          "path": "src/registry/spelte/randomized-text.svelte",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": ["motion"],
+      "registryDependencies": [],
+      "category": "animation"
+    },
+    {
+      "name": "gradient-wave-text",
+      "type": "registry:component",
+      "title": "Gradient Wave Text",
+      "description": "Apple-style animated gradient text with wave effect.",
+      "files": [
+        {
+          "path": "src/registry/spelte/gradient-wave-text.svelte",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [],
+      "registryDependencies": [],
+      "category": "animation"
+    },
+    {
+      "name": "text-marquee",
+      "type": "registry:component",
+      "title": "Text Marquee",
+      "description": "Animated text marquee component with vertical scrolling.",
+      "files": [
+        {
+          "path": "src/registry/spelte/text-marquee.svelte",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [],
+      "registryDependencies": [],
+      "category": "animation"
+    },
+    {
+      "name": "marquee",
+      "type": "registry:component",
+      "title": "Marquee",
+      "description": "Infinite scrolling marquee component with customizable speed and direction.",
+      "files": [
+        {
+          "path": "src/registry/spelte/marquee.svelte",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": ["motion"],
+      "registryDependencies": [],
+      "category": "display"
+    },
+    {
+      "name": "tilt-card",
+      "type": "registry:component",
+      "title": "Tilt Card",
+      "description": "Interactive 3D tilt card with perspective hover effect and spotlight.",
+      "files": [
+        {
+          "path": "src/registry/spelte/tilt-card.svelte",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [],
+      "registryDependencies": [],
+      "category": "interactive"
+    },
+    {
+      "name": "logos-carousel",
+      "type": "registry:component",
+      "title": "Logos Carousel",
+      "description": "Animated carousel component that cycles through sets of logos with staggered animations.",
+      "files": [
+        {
+          "path": "src/registry/spelte/logos-carousel.svelte",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [],
+      "registryDependencies": [],
+      "category": "display"
+    },
+    {
+      "name": "fallback-avatar",
+      "type": "registry:component",
+      "title": "Fallback Avatar",
+      "description": "A unique gradient avatar generated from a name string.",
+      "files": [
+        {
+          "path": "src/registry/spelte/fallback-avatar.svelte",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [],
+      "registryDependencies": [],
+      "category": "display"
+    },
+    {
+      "name": "qr-code",
+      "type": "registry:component",
+      "title": "QR Code",
+      "description": "QR code generator with rounded finder patterns and dot-style data modules.",
+      "files": [
+        {
+          "path": "src/registry/spelte/qr-code.svelte",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": ["qrcode"],
+      "registryDependencies": [],
+      "category": "display"
+    },
+    {
+      "name": "signature",
+      "type": "registry:component",
+      "title": "Signature",
+      "description": "Animated signature component with handwriting effect using custom fonts.",
+      "files": [
+        {
+          "path": "src/registry/spelte/signature.svelte",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": ["motion", "opentype.js"],
+      "registryDependencies": [],
+      "category": "animation"
+    },
+    {
+      "name": "spotify-card",
+      "type": "registry:component",
+      "title": "Spotify Card",
+      "description": "Display Spotify tracks with album art and blurred background.",
+      "files": [
+        {
+          "path": "src/registry/spelte/spotify-card.svelte",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [],
+      "registryDependencies": [],
+      "category": "display"
+    },
+    {
+      "name": "kbd",
+      "type": "registry:component",
+      "title": "Keyboard Shortcuts",
+      "description": "Display keyboard shortcuts with proper key symbols.",
+      "files": [
+        {
+          "path": "src/registry/spelte/kbd.svelte",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [],
+      "registryDependencies": [],
+      "category": "display"
+    },
+    {
+      "name": "chart",
+      "type": "registry:component",
+      "title": "Chart",
+      "description": "Interactive line chart with a cursor-tracked tooltip card, snap-to-point hover, and built-in X-axis labels.",
+      "files": [
+        {
+          "path": "src/registry/spelte/chart.svelte",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [],
+      "registryDependencies": [],
+      "category": "display"
+    }
+  ]
+}
