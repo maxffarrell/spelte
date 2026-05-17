@@ -1,7 +1,7 @@
 ## Installation
 
 ```bash
-pnpm dlx shadcn-svelte@latest add @spelte/blur-reveal
+pnpm dlx shadcn-svelte@latest add https://spelte.dev/r/blur-reveal.json
 ```
 
 ## Usage
@@ -13,6 +13,27 @@ pnpm dlx shadcn-svelte@latest add @spelte/blur-reveal
 
 <BlurReveal text="Hello, World!" />
 ```
+
+## Examples
+
+### Speed
+
+~~~svelte
+<div class="flex flex-col gap-8">
+  <div>
+    <p class="font-mono text-sm text-muted-foreground">SLOW (0.5)</p>
+    <BlurReveal text="You can just ship things." class="text-2xl font-medium tracking-tight" speedReveal={0.5} />
+  </div>
+  <div>
+    <p class="font-mono text-sm text-muted-foreground">DEFAULT (1)</p>
+    <BlurReveal text="You can just ship things." class="text-2xl font-medium tracking-tight" speedReveal={1} />
+  </div>
+  <div>
+    <p class="font-mono text-sm text-muted-foreground">FAST (2)</p>
+    <BlurReveal text="You can just ship things." class="text-2xl font-medium tracking-tight" speedReveal={2} />
+  </div>
+</div>
+~~~
 
 ## Props
 

@@ -1,7 +1,7 @@
 ## Installation
 
 ```bash
-pnpm dlx shadcn-svelte@latest add @spelte/words-stagger
+pnpm dlx shadcn-svelte@latest add https://spelte.dev/r/words-stagger.json
 ```
 
 ## Usage
@@ -13,6 +13,36 @@ pnpm dlx shadcn-svelte@latest add @spelte/words-stagger
 
 <WordsStagger text="Your complete platform for the Design." class="text-3xl font-semibold tracking-tight" />
 ```
+
+## Examples
+
+### Speed
+
+~~~svelte
+<div class="flex flex-col gap-8">
+  <div>
+    <p class="font-mono text-sm text-muted-foreground">SLOW</p>
+    <WordsStagger text="You can just ship things." speed={0.5} class="text-xl font-medium" />
+  </div>
+  <div>
+    <p class="font-mono text-sm text-muted-foreground">DEFAULT</p>
+    <WordsStagger text="You can just ship things." speed={1} class="text-xl font-medium" />
+  </div>
+  <div>
+    <p class="font-mono text-sm text-muted-foreground">FAST</p>
+    <WordsStagger text="You can just ship things." speed={2} class="text-xl font-medium" />
+  </div>
+</div>
+~~~
+
+### Stagger
+
+~~~svelte
+<div class="flex flex-col gap-8">
+  <WordsStagger text="Short stagger animation" stagger={0.05} class="text-xl font-medium" />
+  <WordsStagger text="Longer stagger animation" stagger={0.15} class="text-xl font-medium" />
+</div>
+~~~
 
 ## Props
 

@@ -455,6 +455,21 @@
       "category": "display"
     },
     {
+      "name": "tweet",
+      "type": "registry:component",
+      "title": "Tweet",
+      "description": "Embed Twitter/X posts with custom styling.",
+      "files": [
+        {
+          "path": "src/registry/spelte/tweet.svelte",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": ["lucide-svelte"],
+      "registryDependencies": [],
+      "category": "display"
+    },
+    {
       "name": "kbd",
       "type": "registry:component",
       "title": "Keyboard Shortcuts",

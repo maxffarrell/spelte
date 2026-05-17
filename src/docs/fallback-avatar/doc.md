@@ -1,7 +1,7 @@
 ## Installation
 
 ```bash
-pnpm dlx shadcn-svelte@latest add @spelte/fallback-avatar
+pnpm dlx shadcn-svelte@latest add https://spelte.dev/r/fallback-avatar.json
 ```
 
 ## Usage
@@ -13,6 +13,21 @@ pnpm dlx shadcn-svelte@latest add @spelte/fallback-avatar
 
 <FallbackAvatar name="username" size={32} />
 ```
+
+## Examples
+
+### Sizes
+
+~~~svelte
+<div class="flex items-end gap-3">
+  {#each [20, 28, 36, 44] as size}
+    <div class="flex flex-col items-center gap-1">
+      <FallbackAvatar class="border" name="spelte" {size} />
+      <span class="text-[11px] text-muted-foreground">{size}px</span>
+    </div>
+  {/each}
+</div>
+~~~
 
 ## Props
 

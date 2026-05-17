@@ -1,7 +1,7 @@
 ## Installation
 
 ```bash
-pnpm dlx shadcn-svelte@latest add @spelte/flow-button
+pnpm dlx shadcn-svelte@latest add https://spelte.dev/r/flow-button.json
 ```
 
 ## Usage
@@ -13,6 +13,30 @@ pnpm dlx shadcn-svelte@latest add @spelte/flow-button
 
 <FlowButton>Click me</FlowButton>
 ```
+
+## Examples
+
+### Size
+
+~~~svelte
+<div class="flex items-center gap-4">
+  <FlowButton size="sm">Small</FlowButton>
+  <FlowButton size="default">Default</FlowButton>
+  <FlowButton size="lg">Large</FlowButton>
+</div>
+~~~
+
+### Color
+
+~~~svelte
+<div class="flex flex-wrap gap-4">
+  <FlowButton borderColor="var(--primary)">Primary</FlowButton>
+  <FlowButton borderColor="var(--color-red-500)">Red</FlowButton>
+  <FlowButton borderColor="var(--color-blue-500)">Blue</FlowButton>
+  <FlowButton borderColor="var(--color-purple-500)">Purple</FlowButton>
+  <FlowButton borderColor="var(--color-green-500)">Green</FlowButton>
+</div>
+~~~
 
 ## Props
 

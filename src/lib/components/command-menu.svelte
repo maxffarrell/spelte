@@ -34,7 +34,7 @@
 	const copyPayload = $derived(() => {
 		if (!highlighted?.isComponent) return '';
 		const pm = $config.packageManager;
-		const arg = `@spelte/${highlighted.value}`;
+		const arg = `https://spelte.dev/r/${highlighted.value}.json`;
 		const cmds: Record<string, string> = {
 			pnpm: `pnpm dlx shadcn-svelte@latest add ${arg}`,
 			npm: `npx shadcn-svelte@latest add ${arg}`,

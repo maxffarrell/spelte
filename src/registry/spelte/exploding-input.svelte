@@ -3,6 +3,7 @@
 	type VerticalDirection = 'top' | 'center' | 'bottom';
 
 	interface Props {
+		content?: string[];
 		count?: number;
 		direction?: { horizontal?: HorizontalDirection; vertical?: VerticalDirection };
 		gravity?: number;
@@ -14,6 +15,7 @@
 	}
 
 	let {
+		content = [],
 		count = 1,
 		direction = { horizontal: 'center', vertical: 'top' },
 		gravity = 0.7,
@@ -25,15 +27,14 @@
 	}: Props = $props();
 
 	let containerEl = $state<HTMLDivElement | null>(null);
-	let particleContainerEl = $state<HTMLDivElement | null>(null);
-
 	let particleIdCounter = 0;
-	let particles: Array<{
+	let particles = $state<Array<{
 		id: number; x: number; y: number; vx: number; vy: number;
 		gravity: number; birthTime: number; lifeMs: number;
 		scaleStart: number; scaleEnd: number; rotateStart: number; rotateEnd: number;
-		element: HTMLDivElement; isDead: boolean;
-	}> = [];
+		currentScale: number; currentRotation: number; opacity: number;
+		content: string; isDead: boolean;
+	}>>([]);
 	let rafId: number | null = null;
 	let rand = () => Math.random();
 
@@ -105,16 +106,6 @@
 				endRot = initRot + (rand() * 720 - 360);
 			}
 
-			const el = document.createElement('div');
-			el.style.cssText = 'position:absolute;left:0;top:0;display:flex;align-items:center;justify-content:center;pointer-events:none;will-change:transform,opacity;transform-origin:50% 50%;opacity:1;';
-			el.style.transform = `translate(${x}px,${y}px) translate(-50%,-50%) scale(${safeScale}) rotate(${initRot}deg)`;
-
-			const fallback = document.createElement('div');
-			fallback.style.cssText = 'width:16px;height:16px;border-radius:6px;background-color:#6366f1;';
-			el.appendChild(fallback);
-
-			particleContainerEl?.appendChild(el);
-
 			particleIdCounter++;
 			const p = {
 				id: particleIdCounter, x, y, vx, vy,
@@ -123,13 +114,14 @@
 				lifeMs: duration * 1000,
 				scaleStart: safeScale, scaleEnd: safeScale,
 				rotateStart: initRot, rotateEnd: endRot,
-				element: el, isDead: false
+				currentScale: safeScale, currentRotation: initRot, opacity: 1,
+				content: content.length > 0 ? content[Math.floor(rand() * content.length)] : '',
+				isDead: false
 			};
-			particles.push(p);
+			particles = [...particles, p];
 
 			setTimeout(() => {
 				p.isDead = true;
-				p.element.parentNode?.removeChild(p.element);
 				particles = particles.filter(pp => pp.id !== p.id);
 			}, duration * 1000);
 		}
@@ -153,9 +145,9 @@
 				const r = mapLinear(progress, 0, 1, p.rotateStart, p.rotateEnd);
 				const opacity = progress > 0.7 ? mapLinear(progress, 0.7, 1, 1, 0) : 1;
 				const cs = Math.max(0.1, Math.min(3, s));
-				p.element.style.transform = `translate(${p.x}px,${p.y}px) translate(-50%,-50%) scale(${cs}) rotate(${r}deg)`;
-				p.element.style.opacity = String(opacity);
+				Object.assign(p, { currentScale: cs, currentRotation: r, opacity });
 			}
+			particles = [...particles];
 			rafId = requestAnimationFrame(tick);
 		}
 		rafId = requestAnimationFrame(tick);
@@ -183,7 +175,6 @@
 		return () => {
 			input.removeEventListener('input', handleInput);
 			if (rafId !== null) cancelAnimationFrame(rafId);
-			for (const p of particles) p.element.parentNode?.removeChild(p.element);
 			particles = [];
 		};
 	});
@@ -200,8 +191,21 @@
 	style:background-color="transparent"
 	style:transform="translateZ(0)"
 >
-	<div
-		bind:this={particleContainerEl}
-		style="position:absolute;left:0;top:0;width:100%;height:100%;pointer-events:none;"
-	></div>
+	<div style="position:absolute;left:0;top:0;width:100%;height:100%;pointer-events:none;">
+		{#each particles as particle (particle.id)}
+			<div
+				class="absolute left-0 top-0 flex items-center justify-center pointer-events-none will-change-transform origin-center opacity-100"
+				style="
+					transform: translate({particle.x}px,{particle.y}px) translate(-50%, -50%) scale({particle.currentScale}) rotate({particle.currentRotation}deg);
+					opacity: {particle.opacity};
+				"
+			>
+				{#if particle.content}
+					<span class="text-4xl">{particle.content}</span>
+				{:else}
+					<div class="h-4 w-4 rounded-md bg-indigo-500"></div>
+				{/if}
+			</div>
+		{/each}
+	</div>
 </div>

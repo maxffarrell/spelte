@@ -1,7 +1,7 @@
 ## Installation
 
 ```bash
-pnpm dlx shadcn-svelte@latest add @spelte/spinner
+pnpm dlx shadcn-svelte@latest add https://spelte.dev/r/spinner.json
 ```
 
 ## Usage
@@ -16,22 +16,39 @@ pnpm dlx shadcn-svelte@latest add @spelte/spinner
 
 ## Examples
 
-### Sizes
+### Size
 
-```svelte
-<Spinner size="sm" />
-<Spinner size="default" />
-<Spinner size="md" />
-<Spinner size="lg" />
-```
+~~~svelte
+<div class="flex items-center gap-4">
+  <Spinner size={16} />
+  <Spinner size={24} />
+  <Spinner size={32} />
+  <Spinner size={48} />
+</div>
+~~~
 
 ### Speed
 
-```svelte
-<Spinner speed="slow" />
-<Spinner speed="normal" />
-<Spinner speed="fast" />
-```
+~~~svelte
+<div class="flex items-center gap-4">
+  <Spinner speed={0.5} />
+  <Spinner speed={1} />
+  <Spinner speed={2} />
+</div>
+~~~
+
+### Color
+
+~~~svelte
+<div class="flex items-center gap-4">
+  <Spinner class="text-blue-600" />
+  <Spinner class="text-green-600" />
+  <Spinner class="text-red-600" />
+  <Spinner class="text-purple-600" />
+  <Spinner class="text-orange-600" />
+  <Spinner class="text-pink-600" />
+</div>
+~~~
 
 ## Props
 

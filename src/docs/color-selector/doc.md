@@ -1,7 +1,7 @@
 ## Installation
 
 ```bash
-pnpm dlx shadcn-svelte@latest add @spelte/color-selector
+pnpm dlx shadcn-svelte@latest add https://spelte.dev/r/color-selector.json
 ```
 
 ## Usage
@@ -19,6 +19,46 @@ pnpm dlx shadcn-svelte@latest add @spelte/color-selector
   onColorSelect={(color) => (selected = color)}
 />
 ```
+
+## Examples
+
+### Size
+
+~~~svelte
+<div class="flex flex-col gap-6">
+  <div class="flex flex-col items-start gap-2">
+    <span class="font-mono text-sm text-muted-foreground">SMALL</span>
+    <ColorSelector colors={['red', 'blue', 'green', 'yellow']} defaultValue="red" size="sm" />
+  </div>
+  <div class="flex flex-col items-start gap-2">
+    <span class="font-mono text-sm text-muted-foreground">DEFAULT</span>
+    <ColorSelector colors={['red', 'blue', 'green', 'yellow']} defaultValue="blue" />
+  </div>
+  <div class="flex flex-col items-start gap-2">
+    <span class="font-mono text-sm text-muted-foreground">LARGE</span>
+    <ColorSelector colors={['red', 'blue', 'green', 'yellow']} defaultValue="green" size="lg" />
+  </div>
+</div>
+~~~
+
+### Callback
+
+~~~svelte
+<script>
+  let selectedColor = $state('purple');
+</script>
+
+<div class="flex flex-col items-center gap-4">
+  <ColorSelector
+    colors={['red', 'blue', 'green', 'yellow', 'purple', 'pink', 'orange']}
+    defaultValue={selectedColor}
+    onColorSelect={(color) => (selectedColor = color)}
+  />
+  <p class="text-sm text-muted-foreground">
+    Selected color: <span class="font-semibold">{selectedColor}</span>
+  </p>
+</div>
+~~~
 
 ## Props
 

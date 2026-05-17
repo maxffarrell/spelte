@@ -1,7 +1,7 @@
 ## Installation
 
 ```bash
-pnpm dlx shadcn-svelte@latest add @spelte/tilt-card
+pnpm dlx shadcn-svelte@latest add https://spelte.dev/r/tilt-card.json
 ```
 
 ## Usage

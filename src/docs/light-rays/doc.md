@@ -1,19 +1,44 @@
 ## Installation
 
 ```bash
-pnpm dlx shadcn-svelte@latest add @spelte/light-rays
+pnpm dlx shadcn-svelte@latest add https://spelte.dev/r/light-rays.json
 ```
 
 ## Usage
 
 ```svelte
 <script>
-  import LightRays from '$registry/spelte/light-rays.svelte';
+  import Rays from '$registry/spelte/light-rays.svelte';
 </script>
 
-<div class="relative h-[300px] w-full">
-  <LightRays />
-  <div class="relative z-10">Your content here</div>
+<div class="relative min-h-[500px] w-full md:min-h-[350px] flex items-center justify-center">
+  <Rays backgroundColor="var(--background)" style="z-index: 0;" />
+  <div class="z-10 flex h-full text-primary gap-2">
+    <p class="text-4xl font-semibold tracking-tighter">Beautiful</p>
+    <p class="text-4xl font-medium italic font-serif">Light Rays</p>
+  </div>
+</div>
+```
+
+## Examples
+
+### Multi Color
+
+```svelte
+<script>
+  import Rays from '$registry/spelte/light-rays.svelte';
+</script>
+
+<div class="relative min-h-[500px] w-full md:min-h-[350px] flex items-center justify-center">
+  <Rays
+    backgroundColor="var(--background)"
+    style="z-index: 0;"
+    raysColor={{ mode: 'multi', color1: '#2060DF', color2: '#ffffff' }}
+  />
+  <div class="z-10 flex flex-col items-center h-full gap-2">
+    <p class="text-4xl font-semibold tracking-tighter">Multi Colored</p>
+    <p class="text-4xl font-medium italic font-serif">Light Rays</p>
+  </div>
 </div>
 ```
 
@@ -21,12 +46,7 @@ pnpm dlx shadcn-svelte@latest add @spelte/light-rays
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `intensity` | `number` | `13` | Brightness intensity (0–100) |
-| `rays` | `number` | `32` | Number of light rays |
-| `reach` | `number` | `16` | How far rays extend |
-| `position` | `number` | `50` | Horizontal position of light source (0–100) |
-| `radius` | `string` | `"0px"` | Border radius of container |
-| `backgroundColor` | `string` | `"#000"` | Background color |
-| `animation` | `{ animate: boolean; speed: number }` | `{ animate: true, speed: 10 }` | Animation config |
-| `raysColor` | `object` | `{ mode: "single", color: "#639AFF" }` | Color config: single, multi, or random |
+| `backgroundColor` | `string` | `"var(--background)"` | Background color |
+| `raysColor` | `{ mode: 'single'; color: string } \| { mode: 'multi'; color1: string; color2: string }` | `{ mode: 'single', color: '#ffffff' }` | Color config |
+| `style` | `string` | — | Inline styles for the container |
 | `class` | `string` | — | Additional CSS classes |

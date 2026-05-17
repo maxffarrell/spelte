@@ -1,6 +1,6 @@
 Spelte is a curated collection of reusable components, blocks, and templates designed to help you build captivating landing pages and user-focused marketing materials with ease.
 
-### Philosophy
+## Philosophy
 
 Great design is more than just aesthetics. It's a cornerstone of building trust with your audience. In a digital world, your design is often the first impression a visitor has of your brand. It's the key to answering critical questions in their minds before they commit to engaging with your business, whether that's signing up, making a purchase, or sharing their data.
 
@@ -12,7 +12,9 @@ Visitors might wonder:
 
 Poor design can signal carelessness or lack of attention to detail, leaving users hesitant. Thoughtful, high-quality design communicates confidence, reliability, and care. It suggests that if a team invests in the smallest details of their interface, they likely prioritize excellence in their product and customer experience as well.
 
-Spelte draws heavy inspiration from the elegance and simplicity of shadcn-svelte, reimagining it with a magical twist to help you craft delightful, trust-building user experiences.
+A shining example of this philosophy in action is the landing page for Vercel, which has inspired countless users since its debut. Its clean, intentional design instantly conveys quality, making you trust the product before even trying it.
+
+Spelte draws heavy inspiration from the elegance and simplicity of shadcn/ui, reimagining it with a magical twist to help you craft delightful, trust-building user experiences.
 
 ## Community
 

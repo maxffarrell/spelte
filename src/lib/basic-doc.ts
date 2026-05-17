@@ -8,7 +8,7 @@ export const basicDoc: DocSchema = [
 				title: 'Introduction',
 				id: 'introduction',
 				description:
-					'Build elegant Svelte interfaces with premium, copy-ready Tailwind CSS components.',
+					'Build elegant React interfaces with premium, copy-ready Tailwind CSS components.',
 			},
 			{
 				title: 'Components',

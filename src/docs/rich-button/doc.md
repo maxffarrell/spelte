@@ -1,7 +1,7 @@
 ## Installation
 
 ```bash
-pnpm dlx shadcn-svelte@latest add @spelte/rich-button
+pnpm dlx shadcn-svelte@latest add https://spelte.dev/r/rich-button.json
 ```
 
 ## Usage
@@ -15,6 +15,28 @@ pnpm dlx shadcn-svelte@latest add @spelte/rich-button
 <RichButton color="blue">Blue</RichButton>
 <RichButton size="lg">Large</RichButton>
 ```
+
+## Examples
+
+### Color
+
+~~~svelte
+<div class="relative flex gap-4">
+  <RichButton color="zinc">Button</RichButton>
+  <RichButton color="amber">Button</RichButton>
+  <RichButton color="purple">Button</RichButton>
+</div>
+~~~
+
+### Size
+
+~~~svelte
+<div class="flex flex-wrap items-center gap-4">
+  <RichButton size="sm">Small</RichButton>
+  <RichButton size="default">Default</RichButton>
+  <RichButton size="lg">Large</RichButton>
+</div>
+~~~
 
 ## Props
 

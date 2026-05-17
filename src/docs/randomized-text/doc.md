@@ -1,7 +1,7 @@
 ## Installation
 
 ```bash
-pnpm dlx shadcn-svelte@latest add @spelte/randomized-text
+pnpm dlx shadcn-svelte@latest add https://spelte.dev/r/randomized-text.json
 ```
 
 ## Usage
@@ -13,6 +13,23 @@ pnpm dlx shadcn-svelte@latest add @spelte/randomized-text
 
 <RandomizedText text="You can just ship things." />
 ```
+
+## Examples
+
+### Split By
+
+~~~svelte
+<div class="flex w-[500px] flex-col items-center justify-start gap-4">
+  <div class="flex flex-col items-start gap-1">
+    <span class="font-mono text-sm text-muted-foreground">BY CHARACTERS</span>
+    <RandomizedText split="chars" class="text-base font-medium tracking-tight" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit." />
+  </div>
+  <div class="flex flex-col items-start gap-1">
+    <span class="font-mono text-sm text-muted-foreground">BY WORDS</span>
+    <RandomizedText split="words" class="text-base font-medium tracking-tight" text="You can just ship things." />
+  </div>
+</div>
+~~~
 
 ## Props
 

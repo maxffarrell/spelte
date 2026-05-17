@@ -3,7 +3,11 @@ import { allDocItems, getDoc, getDocSchema } from '$lib/doc';
 import { getTableOfContents } from '$lib/toc';
 import { readFile } from 'fs/promises';
 import { join } from 'path';
-import type { PageServerLoad } from './$types';
+import type { EntryGenerator, PageServerLoad } from './$types';
+
+export const entries: EntryGenerator = () => {
+	return allDocItems().map((item) => ({ id: item.id }));
+};
 
 export const load: PageServerLoad = async ({ params }) => {
 	const { id } = params;

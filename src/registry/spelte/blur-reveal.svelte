@@ -32,29 +32,23 @@
 	const stagger = $derived(0.03 / speedReveal);
 	const baseDuration = $derived(0.3 / speedSegment);
 
-	type Segment = { type: 'char' | 'space'; char: string; delay: number };
+	type WordSegment = { char: string; delay: number };
+	type WordGroup = { chars: WordSegment[]; spaceDelay?: number };
 
-	const segments = $derived((): Segment[] => {
+	const segments = $derived.by((): WordGroup[] => {
 		if (!text) return [];
-		const result: Segment[] = [];
 		let charCount = 0;
 		const words = text.split(' ');
-		for (let wi = 0; wi < words.length; wi++) {
-			const word = words[wi];
-			for (let ci = 0; ci < word.length; ci++) {
-				result.push({
-					type: 'char',
-					char: word[ci],
-					delay: delay + charCount * stagger,
-				});
+		return words.map((word, wordIndex) => {
+			const chars = word.split('').map((char) => {
+				const segment = { char, delay: delay + charCount * stagger };
 				charCount++;
-			}
-			if (wi < words.length - 1) {
-				result.push({ type: 'space', char: ' ', delay: delay + charCount * stagger });
-				charCount++;
-			}
-		}
-		return result;
+				return segment;
+			});
+			const spaceDelay = wordIndex < words.length - 1 ? delay + charCount * stagger : undefined;
+			if (spaceDelay !== undefined) charCount++;
+			return { chars, spaceDelay };
+		});
 	});
 </script>
 
@@ -62,20 +56,17 @@
 	<svelte:element this={Tag} class={cn(className)} {style} aria-label={text}>
 		<span class="sr-only">{text}</span>
 		{#if mounted}
-			{#each segments() as seg, i}
-				<span
-					class="inline-block"
-					style="animation: blur-reveal-in {baseDuration}s ease forwards; animation-delay: {seg.delay}s; opacity: 0; filter: blur(12px); transform: translateY(10px); {letterSpacing
-						? `margin-right: ${letterSpacing};`
-						: ''}"
-					aria-hidden="true"
-				>
-					{seg.char}
-				</span>
-			{/each}
+			{#each segments as word, wordIndex (`word-${wordIndex}`)}<span class="inline-block whitespace-nowrap" aria-hidden="true">{#each word.chars as seg, charIndex (`char-${wordIndex}-${charIndex}`)}<span
+							class="inline-block"
+							style="animation: blur-reveal-in {baseDuration}s ease forwards; animation-delay: {seg.delay}s; opacity: 0; filter: blur(12px); transform: translateY(10px); {letterSpacing
+								? `margin-right: ${letterSpacing};`
+								: ''}"
+						>{seg.char}</span>{/each}{#if word.spaceDelay !== undefined}<span
+							class="inline-block"
+							style="animation: blur-reveal-in {baseDuration}s ease forwards; animation-delay: {word.spaceDelay}s; opacity: 0; filter: blur(12px); transform: translateY(10px);"
+						>&nbsp;</span>{/if}</span>{/each}
 		{:else}
 			<span aria-hidden="true" style="opacity:0">{text}</span>
 		{/if}
 	</svelte:element>
 {/if}
-

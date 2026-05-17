@@ -1,7 +1,7 @@
 ## Installation
 
 ```bash
-pnpm dlx shadcn-svelte@latest add @spelte/signature
+pnpm dlx shadcn-svelte@latest add https://spelte.dev/r/signature.json
 ```
 
 > Place the [LastoriaBoldRegular.otf](https://spell.sh/LastoriaBoldRegular.otf) font file inside your `static` directory (SvelteKit's public directory).
@@ -13,8 +13,22 @@ pnpm dlx shadcn-svelte@latest add @spelte/signature
   import Signature from '$registry/spelte/signature.svelte';
 </script>
 
-<Signature text="Spelte Studio" fontSize={16} color="#000" />
+<div class="flex items-center justify-center">
+  <Signature class="dark:invert-100" text="Spelte Studio" fontSize={16} color="#1D1D1F" />
+</div>
 ```
+
+## Examples
+
+### Color
+
+~~~svelte
+<div class="flex flex-col items-center gap-6">
+  <Signature text="Spelte" color="#ff3e00" />
+  <Signature text="Spelte" color="#3b82f6" />
+  <Signature text="Spelte" color="#22c55e" />
+</div>
+~~~
 
 ## Props
 

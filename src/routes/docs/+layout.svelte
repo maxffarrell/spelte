@@ -8,10 +8,14 @@
 	let { children, data }: { children: Snippet; data: LayoutData } = $props();
 </script>
 
-<SiteHeader docSchema={data.docSchema} />
-<SidebarProvider>
-	<AppSidebar docSchema={data.docSchema} />
-	<SidebarInset class="pt-14 min-w-0">
-		{@render children()}
-	</SidebarInset>
-</SidebarProvider>
+<div class="flex">
+	<SidebarProvider class="flex flex-col">
+		<SiteHeader docSchema={data.docSchema} />
+		<div class="3xl:max-w-screen-2xl mx-auto flex w-full pt-14">
+			<AppSidebar docSchema={data.docSchema} />
+			<SidebarInset>
+				{@render children()}
+			</SidebarInset>
+		</div>
+	</SidebarProvider>
+</div>

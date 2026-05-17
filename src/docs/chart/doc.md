@@ -1,7 +1,7 @@
 ## Installation
 
 ```bash
-pnpm dlx shadcn-svelte@latest add @spelte/chart
+pnpm dlx shadcn-svelte@latest add https://spelte.dev/r/chart.json
 ```
 
 ## Usage
@@ -22,25 +22,59 @@ The chart auto-scales the Y axis to the data range. Hover snaps to the nearest d
 
 ### With Labels
 
-```svelte
+~~~svelte
 <Chart
-  {data}
+  data={[1820, 1884, 1912, 1875, 1930, 2010, 1988]}
   labels={['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']}
   name="Revenue"
 />
-```
+~~~
+
+### Custom Tooltip Format
+
+~~~svelte
+<Chart
+  data={[1820, 1884, 1912, 1875, 1930, 2010, 1988]}
+  labels={['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul']}
+  name="ETH / USD"
+  formatValue={(value) =>
+    value.toLocaleString('en-US', {
+      style: 'currency',
+      currency: 'USD',
+      maximumFractionDigits: 0
+    })}
+/>
+~~~
+
+### Without Animation
+
+~~~svelte
+<Chart
+  data={[1820, 1884, 1912, 1875, 1930, 2010, 1988]}
+  labels={['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul']}
+  name="NVDA"
+  color="#A855F7"
+  animated={false}
+  formatValue={(value) =>
+    value.toLocaleString('en-US', {
+      style: 'currency',
+      currency: 'USD',
+      maximumFractionDigits: 2
+    })}
+/>
+~~~
 
 ### Reveal Effect
 
-```svelte
-<Chart {data} reveal />
-```
+~~~svelte
+<Chart data={[1820, 1884, 1912, 1875, 1930, 2010, 1988]} reveal />
+~~~
 
 ### Custom Color
 
-```svelte
-<Chart {data} color="#ff6b6b" />
-```
+~~~svelte
+<Chart data={[1820, 1884, 1912, 1875, 1930, 2010, 1988]} color="#ff6b6b" />
+~~~
 
 ## Props
 

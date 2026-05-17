@@ -2,24 +2,36 @@
 	import { ArrowLeft, ArrowRight, ExternalLink } from 'lucide-svelte';
 	import DocsTableOfContents from '$lib/components/toc.svelte';
 	import DocCopySection from '$lib/components/doc-copy-section.svelte';
+	import ComponentPreview from '$lib/components/component-preview.svelte';
+	import { absoluteUrl, buildOgUrl, pageTitle } from '$lib/metadata';
 	import { Button } from '$lib/components/ui/button/index.js';
 	import * as Breadcrumb from '$lib/components/ui/breadcrumb/index.js';
 	import type { PageData } from './$types';
 
 	let { data }: { data: PageData } = $props();
 
-	let DocComponent = $state<any>(null);
-
-	$effect(() => {
-		import(`../../../docs/${data.id}/doc.md`)
-			.then((mod) => {
-				DocComponent = mod.default;
-			})
-			.catch(() => {
-				DocComponent = null;
-			});
-	});
+	const docModules = import.meta.glob('../../../docs/*/doc.md', { eager: true });
+	const DocComponent = $derived((docModules[`../../../docs/${data.id}/doc.md`] as any)?.default);
+	const title = $derived(pageTitle(data.item.title));
+	const image = $derived(buildOgUrl({ title: data.item.title, description: data.item.description }));
 </script>
+
+<svelte:head>
+	<title>{title}</title>
+	<meta name="description" content={data.item.description} />
+	<meta property="og:title" content={data.item.title} />
+	<meta property="og:description" content={data.item.description} />
+	<meta property="og:type" content="article" />
+	<meta property="og:url" content={absoluteUrl(`/docs/${data.id}`)} />
+	<meta property="og:image" content={image} />
+	<meta property="og:image:width" content="1200" />
+	<meta property="og:image:height" content="628" />
+	<meta property="og:image:alt" content={data.item.title} />
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:title" content={data.item.title} />
+	<meta name="twitter:description" content={data.item.description} />
+	<meta name="twitter:image" content={image} />
+</svelte:head>
 
 <div class="container py-8 md:py-12">
 	<div
@@ -101,6 +113,10 @@
 					</div>
 				{/if}
 			</header>
+
+			{#if !data.isGettingStarted}
+				<ComponentPreview id={data.id} />
+			{/if}
 
 			{#if DocComponent}
 				<DocComponent />

@@ -1,7 +1,7 @@
 ## Installation
 
 ```bash
-pnpm dlx shadcn-svelte@latest add @spelte/kbd
+pnpm dlx shadcn-svelte@latest add https://spelte.dev/r/kbd.json
 ```
 
 ## Usage
@@ -18,17 +18,28 @@ pnpm dlx shadcn-svelte@latest add @spelte/kbd
 
 ## Examples
 
-### Keyboard Listener
+### Key Symbols
 
-```svelte
-<Kbd keys={['cmd', 'K']} listenToKeyboard />
-```
+~~~svelte
+<div class="flex flex-wrap gap-4">
+  <Kbd keys={['command']} listenToKeyboard />
+  <Kbd keys={['control']} listenToKeyboard />
+  <Kbd keys={['alt']} listenToKeyboard />
+  <Kbd keys={['up']} listenToKeyboard />
+  <Kbd keys={['down']} listenToKeyboard />
+  <Kbd keys={['left']} listenToKeyboard />
+  <Kbd keys={['right']} listenToKeyboard />
+</div>
+~~~
 
-### Forced Active State
+### Custom Display with Keyboard Listener
 
-```svelte
-<Kbd keys={['enter']} active />
-```
+~~~svelte
+<div class="flex flex-col items-center gap-4">
+  <p class="text-sm text-muted-foreground">Press M key to activate</p>
+  <Kbd keys={[{ display: 'HOLD', key: 'M' }]} listenToKeyboard />
+</div>
+~~~
 
 ## Props
 

@@ -19,7 +19,7 @@
 			class="font-medium text-3xl md:text-4xl lg:text-5xl tracking-tight"
 		/>
 		<p class="text-base md:text-lg leading-6 text-muted-foreground">
-			A large collection of high-quality Svelte components that
+			A large collection of high-quality React components that
 			<br />
 			you can copy and paste into any project.
 		</p>

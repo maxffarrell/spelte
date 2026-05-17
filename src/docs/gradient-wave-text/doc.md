@@ -1,7 +1,7 @@
 ## Installation
 
 ```bash
-pnpm dlx shadcn-svelte@latest add @spelte/gradient-wave-text
+pnpm dlx shadcn-svelte@latest add https://spelte.dev/r/gradient-wave-text.json
 ```
 
 ## Usage
@@ -15,6 +15,18 @@ pnpm dlx shadcn-svelte@latest add @spelte/gradient-wave-text
   Just ship things.
 </GradientWaveText>
 ```
+
+## Examples
+
+### Size
+
+~~~svelte
+<div class="flex flex-col gap-4 font-medium">
+  <GradientWaveText class="text-lg">Beautiful gradient text</GradientWaveText>
+  <GradientWaveText class="text-2xl">Beautiful gradient text</GradientWaveText>
+  <GradientWaveText class="text-4xl">Beautiful gradient text</GradientWaveText>
+</div>
+~~~
 
 ## Props
 

@@ -1,7 +1,7 @@
 ## Installation
 
 ```bash
-pnpm dlx shadcn-svelte@latest add @spelte/animated-checkbox
+pnpm dlx shadcn-svelte@latest add https://spelte.dev/r/animated-checkbox.json
 ```
 
 ## Usage

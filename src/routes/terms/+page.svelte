@@ -1,7 +1,23 @@
 <script lang="ts">
 	import SiteHeader from '$lib/components/site-header.svelte';
 	import { siteConfig } from '$lib/config';
+	import { buildOgUrl, pageTitle } from '$lib/metadata';
+
+	const title = pageTitle('Terms of Service');
+	const description = 'Terms of Service for Spelte.';
+	const image = buildOgUrl({ title: 'Terms of Service', description });
 </script>
+
+<svelte:head>
+	<title>{title}</title>
+	<meta name="description" content={description} />
+	<meta property="og:title" content="Terms of Service" />
+	<meta property="og:description" content={description} />
+	<meta property="og:image" content={image} />
+	<meta name="twitter:title" content="Terms of Service" />
+	<meta name="twitter:description" content={description} />
+	<meta name="twitter:image" content={image} />
+</svelte:head>
 
 <div class="relative flex min-h-dvh flex-col pt-14">
 	<SiteHeader />

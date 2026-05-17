@@ -1,9 +1,13 @@
 <script lang="ts">
 	import { cn } from '$lib/utils';
-	import type { Snippet } from 'svelte';
+
+	type Logo = {
+		src: string;
+		alt: string;
+	};
 
 	interface Props {
-		logos: Snippet[];
+		logos: Logo[];
 		stagger?: number;
 		count?: number;
 		class?: string;
@@ -24,7 +28,7 @@
 
 	const logosPerGroup = $derived(count || logos.length);
 	const groups = $derived.by(() => {
-		const result: Snippet[][] = [];
+		const result: Logo[][] = [];
 		for (let i = 0; i < logos.length; i += logosPerGroup) {
 			result.push(logos.slice(i, i + logosPerGroup));
 		}
@@ -52,7 +56,7 @@
 
 
 <div class="max-w-[720px] grid place-items-center w-full">
-	{#each groups as group, groupIndex}
+	{#each groups as group, groupIndex (groupIndex)}
 		{@const isCurrent = groupIndex === currentIndex}
 		{@const isNext = groupIndex === nextIndex && animate}
 		{@const isVisible = isCurrent || isNext}
@@ -60,7 +64,7 @@
 			class={cn('flex w-full justify-center gap-10', className)}
 			style="grid-area: 1 / 1; pointer-events: {isVisible ? 'auto' : 'none'};"
 		>
-			{#each group as logo, logoIndex}
+			{#each group as logo, logoIndex (logo.src)}
 				{@const d = logoIndex * stagger}
 				{@const state = isCurrent ? 'exit' : 'enter'}
 				{@const animName = state === 'enter' ? 'logos-enter' : 'logos-exit'}
@@ -73,7 +77,13 @@
 						opacity: {!animate && state === 'exit' ? 1 : !animate && state === 'enter' ? 0 : undefined};
 					"
 				>
-					{@render logo()}
+					<img
+						src={logo.src}
+						alt={logo.alt}
+						width="96"
+						height="96"
+						class="h-24 w-24 object-contain opacity-70 not-dark:invert-100 pointer-events-none select-none"
+					/>
 				</div>
 			{/each}
 		</div>

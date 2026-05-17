@@ -8,12 +8,13 @@
 
 	type PM = 'pnpm' | 'npm' | 'yarn' | 'bun';
 	let pm = $state<PM>($config.packageManager ?? 'pnpm');
+	const registryUrl = $derived(`https://spelte.dev/r/${item}.json`);
 
 	const commands: Record<PM, string> = $derived({
-		pnpm: `pnpm dlx shadcn-svelte@latest add @spelte/${item}`,
-		npm: `npx shadcn-svelte@latest add @spelte/${item}`,
-		yarn: `yarn dlx shadcn-svelte@latest add @spelte/${item}`,
-		bun: `bunx --bun shadcn-svelte@latest add @spelte/${item}`,
+		pnpm: `pnpm dlx shadcn-svelte@latest add ${registryUrl}`,
+		npm: `npx shadcn-svelte@latest add ${registryUrl}`,
+		yarn: `yarn dlx shadcn-svelte@latest add ${registryUrl}`,
+		bun: `bunx --bun shadcn-svelte@latest add ${registryUrl}`,
 	});
 
 	let copied = $state(false);

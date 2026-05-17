@@ -1,7 +1,7 @@
 ## Installation
 
 ```bash
-pnpm dlx shadcn-svelte@latest add @spelte/shimmer-text
+pnpm dlx shadcn-svelte@latest add https://spelte.dev/r/shimmer-text.json
 ```
 
 ## Usage
@@ -13,6 +13,19 @@ pnpm dlx shadcn-svelte@latest add @spelte/shimmer-text
 
 <ShimmerText>Shimmer Effect</ShimmerText>
 ```
+
+## Examples
+
+### Color
+
+~~~svelte
+<div class="flex flex-col gap-4 font-medium">
+  <ShimmerText variant="blue">Thinking longer for a better answer</ShimmerText>
+  <ShimmerText variant="green">Thinking longer for a better answer</ShimmerText>
+  <ShimmerText variant="purple">Thinking longer for a better answer</ShimmerText>
+  <ShimmerText variant="rose">Thinking longer for a better answer</ShimmerText>
+</div>
+~~~
 
 ## Props
 
