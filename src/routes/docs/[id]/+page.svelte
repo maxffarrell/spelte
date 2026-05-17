@@ -3,8 +3,10 @@
 	import DocsTableOfContents from '$lib/components/toc.svelte';
 	import DocCopySection from '$lib/components/doc-copy-section.svelte';
 	import ComponentPreview from '$lib/components/component-preview.svelte';
+	import InstallationTabs from '$lib/components/installation-tabs.svelte';
 	import { absoluteUrl, buildOgUrl, pageTitle } from '$lib/metadata';
 	import { Button } from '$lib/components/ui/button/index.js';
+	import { siteConfig } from '$lib/config';
 	import * as Breadcrumb from '$lib/components/ui/breadcrumb/index.js';
 	import type { PageData } from './$types';
 
@@ -116,6 +118,16 @@
 
 			{#if !data.isGettingStarted}
 				<ComponentPreview id={data.id} />
+
+				<section class="not-prose mt-8">
+					<h2
+						id="installation"
+						class="mb-4 scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0"
+					>
+						Installation
+					</h2>
+					<InstallationTabs item={data.id} />
+				</section>
 			{/if}
 
 			{#if DocComponent}
@@ -156,6 +168,35 @@
 					<div></div>
 				{/if}
 			</nav>
+
+			<div
+				class="not-prose mt-8 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-muted-foreground"
+			>
+				<a
+					href={`${siteConfig.links.github}/edit/main/src/docs/${data.id}/doc.md`}
+					target="_blank"
+					rel="noreferrer"
+					class="hover:text-foreground transition-colors"
+				>
+					Edit this page
+				</a>
+				<a
+					href="https://x.com/intent/follow?screen_name=tomm_ui"
+					target="_blank"
+					rel="noreferrer"
+					class="hover:text-foreground transition-colors"
+				>
+					X Follow @tomm_ui
+				</a>
+				<a
+					href={siteConfig.links.discord}
+					target="_blank"
+					rel="noreferrer"
+					class="hover:text-foreground transition-colors"
+				>
+					Discord Join community
+				</a>
+			</div>
 		</article>
 
 		<aside class="hidden xl:block sticky top-[90px] h-fit">

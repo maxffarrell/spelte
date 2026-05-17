@@ -77,7 +77,7 @@
 		<div class="flex flex-col gap-2">
 			{#if docId}
 				<a
-					href="{siteConfig.links.github}/edit/main/docs/{docId}/doc.svx"
+					href="{siteConfig.links.github}/edit/main/src/docs/{docId}/doc.md"
 					target="_blank"
 					rel="noopener noreferrer"
 					class="transition-colors hover:text-foreground text-muted-foreground [&_svg]:size-3 flex gap-1.5 items-center"
@@ -95,7 +95,7 @@
 						d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"
 					/>
 				</svg>
-				<span>Follow @spelte_ui</span>
+				<span>Follow @tomm_ui</span>
 			</a>
 			<a
 				href={siteConfig.links.discord}

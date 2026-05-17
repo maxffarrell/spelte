@@ -36,6 +36,7 @@
     "bits-ui": "^2.18.1",
     "mdsx": "^0.0.7",
     "rehype-pretty-code": "^0.14.3",
+    "remark-gfm": "^4.0.1",
     "shiki": "^4.0.2",
     "svelte-check": "^4.4.8",
     "tailwind-variants": "^3.2.2",

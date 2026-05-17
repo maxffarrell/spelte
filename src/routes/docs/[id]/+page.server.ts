@@ -36,6 +36,9 @@ export const load: PageServerLoad = async ({ params }) => {
 	const schema = getDocSchema();
 	const gettingStarted = schema.find((s) => s.title === 'Getting Started');
 	const isGettingStarted = gettingStarted?.items.some((i) => i.id === id) ?? false;
+	if (!isGettingStarted) {
+		toc = [{ title: 'Installation', url: '#installation', depth: 2 }, ...toc];
+	}
 
 	return { item, prevDoc, nextDoc, toc, rawContent, id, isGettingStarted };
 };

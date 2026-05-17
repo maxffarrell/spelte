@@ -42,6 +42,50 @@
 	let tab = $state('preview');
 	const fullBleedPreview = $derived(id === 'light-rays' || id === 'animated-gradient');
 	const previewSource: Record<string, string> = {
+		badge: `<script>
+  import Badge from '$registry/spelte/badge.svelte';
+<\/script>
+
+<div class="flex gap-2">
+  <Badge>Default</Badge>
+  <Badge variant="secondary">Secondary</Badge>
+  <Badge variant="outline">Outline</Badge>
+  <Badge variant="destructive">Destructive</Badge>
+</div>`,
+		'rich-button': `<script>
+  import RichButton from '$registry/spelte/rich-button.svelte';
+<\/script>
+
+<RichButton>Default</RichButton>`,
+		'flow-button': `<script>
+  import FlowButton from '$registry/spelte/flow-button.svelte';
+<\/script>
+
+<FlowButton>Learn more</FlowButton>`,
+		'copy-button': `<script>
+  import CopyButton from '$registry/spelte/copy-button.svelte';
+<\/script>
+
+<CopyButton value="Spell" />`,
+		'exploding-input': `<script>
+  import ExplodingInput from '$registry/spelte/exploding-input.svelte';
+<\/script>
+
+<label class="block">
+  <input
+    type="text"
+    placeholder="try@spell.here"
+    class="w-72 p-0 h-10 text-base border-b bg-background font-medium placeholder:font-medium outline-none"
+  />
+  <ExplodingInput class="z-50" content={['spark', 'pop', 'wow']} />
+</label>`,
+		signature: `<script>
+  import Signature from '$registry/spelte/signature.svelte';
+<\/script>
+
+<div class="flex items-center justify-center">
+  <Signature class="dark:invert-100" text="Spell Studio" fontSize={16} color="#1D1D1F" />
+</div>`,
 		'light-rays': `<script>
   import Rays from '$registry/spelte/light-rays.svelte';
 <\/script>
@@ -83,7 +127,7 @@
   import Tweet from '$registry/spelte/tweet.svelte';
 <\/script>
 
-<Tweet id="1994155465488670828" />`,
+<Tweet id="1668408059125702661" />`,
 		marquee: `<script>
   import Marquee from '$registry/spelte/marquee.svelte';
 

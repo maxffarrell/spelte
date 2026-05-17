@@ -1,9 +1,3 @@
-## Installation
-
-```bash
-pnpm dlx shadcn-svelte@latest add https://spelte.dev/r/light-rays.json
-```
-
 ## Usage
 
 ```svelte

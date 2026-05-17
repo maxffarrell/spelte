@@ -6,6 +6,7 @@
 	let { docSchema }: { docSchema: DocSchema } = $props();
 
 	const sidebar = Sidebar.useSidebar();
+	const currentPath = $derived($page.url.pathname.replace(/\/$/, ''));
 </script>
 
 <Sidebar.Root class="mt-14">
@@ -20,7 +21,7 @@
 				<Sidebar.GroupContent>
 					<Sidebar.Menu>
 						{#each group.items as item}
-							{@const isActive = $page.url.pathname === `/docs/${item.id}`}
+							{@const isActive = currentPath === `/docs/${item.id}`}
 							<Sidebar.MenuItem>
 								<Sidebar.MenuButton
 									class="data-[active=true]:shadow-[0_0_0_1px_rgba(0,0,0,.08),_0px_2px_2px_rgba(0,0,0,.04)] data-[active=true]:not-dark:bg-white transition-all"

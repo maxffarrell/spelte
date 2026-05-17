@@ -1,9 +1,3 @@
-## Installation
-
-```bash
-pnpm dlx shadcn-svelte@latest add https://spelte.dev/r/pop-button.json
-```
-
 ## Font Setup (Optional)
 
 To use the playful DynaPuff font, add it to your app:
@@ -19,16 +13,6 @@ To use the playful DynaPuff font, add it to your app:
 :root {
   --font-pop: 'DynaPuff', cursive;
 }
-```
-
-## Usage
-
-```svelte
-<script>
-  import PopButton from '$registry/spelte/pop-button.svelte';
-</script>
-
-<PopButton color="violet" size="default">Button</PopButton>
 ```
 
 ## Examples
@@ -51,6 +35,16 @@ To use the playful DynaPuff font, add it to your app:
   <PopButton size="default" color="violet">Default</PopButton>
   <PopButton size="lg" color="violet">Large</PopButton>
 </div>
+```
+
+## Usage
+
+```svelte
+<script>
+  import PopButton from '$registry/spelte/pop-button.svelte';
+</script>
+
+<PopButton color="violet" size="default">Button</PopButton>
 ```
 
 ## Props

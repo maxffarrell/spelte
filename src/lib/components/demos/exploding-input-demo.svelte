@@ -5,7 +5,7 @@
 <label class="block">
 	<input
 		type="text"
-		placeholder="try@spelte.here"
+		placeholder="try@spell.here"
 		class="w-72 p-0 h-10 text-base border-b bg-background font-medium placeholder:font-medium outline-none"
 	/>
 	<ExplodingInput

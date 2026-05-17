@@ -24,12 +24,12 @@
 		{
 			key: 'claude',
 			label: 'Open in Claude',
-			href: `https://claude.ai/new?q=${encodeURIComponent(`I'm looking at this spelte documentation: https://spelte.dev${url}.\nHelp me understand how to use it.`)}`,
+			href: `https://claude.ai/new?q=${encodeURIComponent(`I'm looking at this Spell UI documentation: https://spelte.dev${url}.\nHelp me understand how to use it.`)}`,
 		},
 		{
 			key: 'chatgpt',
 			label: 'Open in ChatGPT',
-			href: `https://chatgpt.com?q=${encodeURIComponent(`I'm looking at this spelte documentation: https://spelte.dev${url}.\nHelp me understand how to use it.`)}`,
+			href: `https://chatgpt.com?q=${encodeURIComponent(`I'm looking at this Spell UI documentation: https://spelte.dev${url}.\nHelp me understand how to use it.`)}`,
 		},
 	]);
 </script>

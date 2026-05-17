@@ -1,21 +1,3 @@
-## Installation
-
-```bash
-pnpm dlx shadcn-svelte@latest add https://spelte.dev/r/badge.json
-```
-
-## Usage
-
-```svelte
-<script>
-  import Badge from '$registry/spelte/badge.svelte';
-</script>
-
-<Badge>Default</Badge>
-<Badge variant="blue">Blue</Badge>
-<Badge size="sm">Small</Badge>
-```
-
 ## Examples
 
 ### Color
@@ -50,10 +32,23 @@ pnpm dlx shadcn-svelte@latest add https://spelte.dev/r/badge.json
 </div>
 ~~~
 
+## Usage
+
+```svelte
+<script>
+  import Badge from '$registry/spelte/badge.svelte';
+</script>
+
+<Badge>Default</Badge>
+<Badge variant="blue">Blue</Badge>
+<Badge size="sm">Small</Badge>
+```
+
 ## Props
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
+| `children` | `Snippet` | — | Content to display inside the badge |
 | `variant` | `"default" \| "secondary" \| "outline" \| "destructive" \| "red" \| "blue" \| "green" \| "yellow" \| "purple" \| "pink" \| "orange" \| "cyan" \| "indigo" \| "violet" \| "rose" \| "amber" \| "lime" \| "emerald" \| "sky" \| "slate" \| "fuchsia"` | `"default"` | Color variant |
 | `size` | `"sm" \| "default"` | `"default"` | Size variant |
 | `class` | `string` | — | Additional CSS classes |

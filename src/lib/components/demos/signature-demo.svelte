@@ -3,5 +3,5 @@
 </script>
 
 <div class="flex items-center justify-center">
-	<Signature class="dark:invert-100" text="Spelte Studio" fontSize={16} color="#1D1D1F" />
+	<Signature class="dark:invert-100" text="Spell Studio" fontSize={16} color="#1D1D1F" />
 </div>

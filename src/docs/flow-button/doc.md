@@ -1,9 +1,3 @@
-## Installation
-
-```bash
-pnpm dlx shadcn-svelte@latest add https://spelte.dev/r/flow-button.json
-```
-
 ## Usage
 
 ```svelte

@@ -1,9 +1,3 @@
-## Installation
-
-```bash
-pnpm dlx shadcn-svelte@latest add https://spelte.dev/r/highlighted-text.json
-```
-
 ## Usage
 
 ```svelte

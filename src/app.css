@@ -165,15 +165,56 @@ summary {
 }
 
 .shiki,
-.shiki span {
+.shiki span,
+[data-rehype-pretty-code-figure] pre,
+[data-rehype-pretty-code-figure] span {
   color: var(--shiki-light) !important;
   background-color: var(--shiki-light-bg) !important;
 }
 
 .dark .shiki,
-.dark .shiki span {
+.dark .shiki span,
+.dark [data-rehype-pretty-code-figure] pre,
+.dark [data-rehype-pretty-code-figure] span {
   color: var(--shiki-dark) !important;
   background-color: #0f0f0f !important;
+}
+
+[data-rehype-pretty-code-figure] {
+  @apply my-6;
+}
+
+[data-rehype-pretty-code-figure] pre {
+  @apply max-h-80 overflow-x-auto rounded-sm border px-4 py-3 text-sm;
+}
+
+[data-rehype-pretty-code-figure] code {
+  @apply grid min-w-max bg-transparent p-0 text-sm;
+}
+
+.prose table {
+  @apply my-6 w-full overflow-hidden rounded-lg border border-border text-sm;
+}
+
+.prose thead {
+  @apply border-b border-border bg-muted/30;
+}
+
+.prose th {
+  @apply px-4 py-3 text-left font-medium text-muted-foreground;
+}
+
+.prose td {
+  @apply px-4 py-3 align-top;
+}
+
+.prose tbody tr:not(:last-child) {
+  @apply border-b border-border;
+}
+
+.prose td code,
+.prose th code {
+  @apply rounded-md bg-muted/75 px-2 py-0.5 font-mono text-sm font-normal text-neutral-600 dark:bg-muted/50 dark:text-neutral-300;
 }
 
 .subheading-anchor {

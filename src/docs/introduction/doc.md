@@ -1,4 +1,4 @@
-Spelte is a curated collection of reusable components, blocks, and templates designed to help you build captivating landing pages and user-focused marketing materials with ease.
+Spell UI is a curated collection of reusable components, blocks, and templates designed to help you build captivating landing pages and user-focused marketing materials with ease.
 
 ## Philosophy
 
@@ -14,10 +14,10 @@ Poor design can signal carelessness or lack of attention to detail, leaving user
 
 A shining example of this philosophy in action is the landing page for Vercel, which has inspired countless users since its debut. Its clean, intentional design instantly conveys quality, making you trust the product before even trying it.
 
-Spelte draws heavy inspiration from the elegance and simplicity of shadcn/ui, reimagining it with a magical twist to help you craft delightful, trust-building user experiences.
+Spell UI draws heavy inspiration from the elegance and simplicity of shadcn/ui, reimagining it with a magical twist to help you craft delightful, trust-building user experiences.
 
 ## Community
 
-- [Github Repository](https://github.com/spelte/spelte)
+- [Github Repository](https://github.com/spellui/spellui)
 - [Discord Community](https://discord.gg/CxzqwQ2EAa)
-- [Twitter/X](https://x.com/spelte_ui)
+- [Twitter/X](https://x.com/tomm_ui)

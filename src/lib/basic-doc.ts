@@ -13,7 +13,12 @@ export const basicDoc: DocSchema = [
 			{
 				title: 'Components',
 				id: 'components',
-				description: 'Browse all available components in Spelte.',
+				description: 'Browse all available components in Spell UI.',
+			},
+			{
+				title: 'MCP',
+				id: 'mcp',
+				description: 'Use Spell UI with AI coding tools through MCP.',
 			},
 		],
 	},

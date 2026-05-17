@@ -6,6 +6,8 @@
 		Product: [
 			{ label: 'Docs', href: '/docs/introduction' },
 			{ label: 'Components', href: '/docs/components' },
+			{ label: 'MCP', href: '/docs/mcp' },
+			{ label: 'Sponsor', href: 'https://github.com/sponsors/tomm' },
 		],
 		Social: [
 			{ label: 'GitHub', href: siteConfig.links.github },
@@ -25,7 +27,7 @@
 			<div class="col-span-2 flex flex-col gap-4 md:col-span-1">
 				<a href="/" class="flex items-center gap-1.5">
 					<SpelteLogo size={24} />
-					<span class="font-medium">Spelte</span>
+					<span class="font-medium">Spell UI</span>
 				</a>
 				<p class="text-pretty text-sm leading-relaxed text-muted-foreground/75">
 					Refined UI components for Design Engineers.
@@ -116,8 +118,26 @@
 			{/each}
 		</div>
 
-		<div class="py-6 text-xs text-muted-foreground/60">
-			<span>&copy; {new Date().getFullYear()} Spelte</span>
+		<div class="flex items-center justify-between gap-4 py-6 text-xs text-muted-foreground/60">
+			<span>&copy; 2026 Spell UI</span>
+			<div class="flex items-center gap-3">
+				<a
+					href="https://github.com/sponsors/tomm"
+					target="_blank"
+					rel="noopener noreferrer"
+					class="transition-colors hover:text-foreground"
+				>
+					Sponsors
+				</a>
+				<a
+					href="https://github.com/sponsors/tomm"
+					target="_blank"
+					rel="noopener noreferrer"
+					class="transition-colors hover:text-foreground"
+				>
+					Be here
+				</a>
+			</div>
 		</div>
 	</div>
 </footer>

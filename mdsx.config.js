@@ -1,5 +1,6 @@
 import { defineConfig } from 'mdsx';
 import rehypePrettyCode from 'rehype-pretty-code';
+import remarkGfm from 'remark-gfm';
 
 /** @type {import('rehype-pretty-code').Options} */
 const prettyCodeOptions = {
@@ -63,6 +64,7 @@ function rehypeHeadingIds() {
 
 export const mdsxConfig = defineConfig({
 	extensions: ['.md'],
+	remarkPlugins: [remarkGfm],
 	rehypePlugins: [rehypeHeadingIds, [rehypePrettyCode, prettyCodeOptions]],
 	blueprints: {
 		default: {

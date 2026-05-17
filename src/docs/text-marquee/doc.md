@@ -1,9 +1,3 @@
-## Installation
-
-```bash
-pnpm dlx shadcn-svelte@latest add https://spelte.dev/r/text-marquee.json
-```
-
 ## Usage
 
 The `TextMarquee` component accepts an `items` prop — an array of Svelte snippets.

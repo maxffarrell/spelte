@@ -1,12 +1,4 @@
-## Installation
-
-```bash
-pnpm dlx shadcn-svelte@latest add https://spelte.dev/r/exploding-input.json
-```
-
 ## Usage
-
-Wrap your `<input>` in a `<label>` and add `ExplodingInput` as a sibling. The component automatically finds the nearest input.
 
 ```svelte
 <script>
@@ -16,7 +8,7 @@ Wrap your `<input>` in a `<label>` and add `ExplodingInput` as a sibling. The co
 <label class="block">
   <input
     type="text"
-    placeholder="try@spelte.here"
+    placeholder="try@spell.here"
     class="w-72 p-0 h-10 text-base border-b bg-background font-medium placeholder:font-medium outline-none"
   />
   <ExplodingInput
@@ -45,4 +37,4 @@ Wrap your `<input>` in a `<label>` and add `ExplodingInput` as a sibling. The co
 
 ## Inspiration
 
-Inspired by Ryan Mulligan's [Splode](https://ryanmulligan.dev/blog/splode/).
+- [Lochie on X](https://x.com/lochieaxon)
