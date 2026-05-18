@@ -1,36 +1,59 @@
 <script lang="ts">
+	import { afterNavigate } from '$app/navigation';
 	import { mount } from 'svelte';
 	import { onMount } from 'svelte';
+	import { tick } from 'svelte';
 	import PropDescriptionTooltip from '$lib/components/prop-description-tooltip.svelte';
 
-	onMount(() => {
+	function enhancePropsTables() {
 		for (const table of document.querySelectorAll('article table')) {
+			if (table instanceof HTMLElement && table.dataset.propsTableEnhanced === 'true') continue;
+
 			const headers = [...table.querySelectorAll('thead th')].map((th) =>
 				th.textContent?.trim().toLowerCase()
 			);
-			if (!headers.includes('prop') || !headers.includes('description')) continue;
+			const descriptionIndex = headers.indexOf('description');
+			if (!headers.includes('prop') || descriptionIndex === -1) continue;
+
+			if (table instanceof HTMLElement) table.dataset.propsTableEnhanced = 'true';
+
+			const descriptionHeader = table.querySelector(
+				`thead th:nth-child(${descriptionIndex + 1})`
+			);
+			descriptionHeader?.remove();
+
+			if (!table.parentElement?.dataset.propsTableWrapper) {
+				const wrapper = document.createElement('div');
+				wrapper.dataset.propsTableWrapper = 'true';
+				wrapper.className = 'mt-6 w-full overflow-x-scroll rounded-lg border border-border';
+				table.before(wrapper);
+				wrapper.append(table);
+			}
 
 			table.classList.add(
-				'mt-6',
 				'w-full',
 				'not-prose',
-				'overflow-x-scroll',
-				'rounded-lg',
-				'border',
-				'border-border'
+				'border-collapse',
 			);
 
 			for (const th of table.querySelectorAll('th')) {
 				th.classList.add('px-4', 'py-3', 'text-sm', 'font-medium', 'text-muted-foreground');
 			}
 
-			for (const row of table.querySelectorAll('tbody tr')) {
-				row.classList.add('text-left', 'border-b', 'border-border');
+			const rows = [...table.querySelectorAll('tbody tr')];
+			for (const [index, row] of rows.entries()) {
+				row.classList.add('text-left', 'transition-colors', 'hover:bg-muted/35');
+				if (index !== rows.length - 1) {
+					row.classList.add('border-b', 'border-border');
+				}
+
 				const cells = row.querySelectorAll('td');
-				const description = cells[3]?.textContent?.trim();
-				if (cells[3]) cells[3].remove();
+				const descriptionCell = cells[descriptionIndex];
+				const description = descriptionCell?.textContent?.trim();
+				descriptionCell?.remove();
 
 				for (const cell of cells) {
+					if (cell === descriptionCell) continue;
 					cell.classList.add('px-4', 'py-3');
 					for (const code of cell.querySelectorAll('code')) {
 						code.textContent = code.textContent?.replace(/^`|`$/g, '') ?? '';
@@ -54,7 +77,7 @@
 					while (cells[0].firstChild) content.append(cells[0].firstChild);
 
 					const tooltipMount = document.createElement('span');
-					tooltipMount.className = 'inline-flex items-center align-middle';
+					tooltipMount.className = 'inline-flex items-center align-middle text-muted-foreground';
 					content.append(tooltipMount);
 					mount(PropDescriptionTooltip, {
 						target: tooltipMount,
@@ -64,5 +87,15 @@
 				}
 			}
 		}
+	}
+
+	afterNavigate(async () => {
+		await tick();
+		enhancePropsTables();
+	});
+
+	onMount(async () => {
+		await tick();
+		enhancePropsTables();
 	});
 </script>

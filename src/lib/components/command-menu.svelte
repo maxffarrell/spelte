@@ -50,7 +50,8 @@
 			if (
 				target.isContentEditable ||
 				target instanceof HTMLInputElement ||
-				target instanceof HTMLTextAreaElement
+				target instanceof HTMLTextAreaElement ||
+				target instanceof HTMLSelectElement
 			)
 				return;
 			e.preventDefault();
@@ -80,36 +81,41 @@
 	</kbd>
 </Button>
 
-<Command.Dialog bind:open class="sm:top-[10vh] translate-y-0">
+<Command.Dialog bind:open>
 	<Command.Input placeholder="Type a command or search..." />
-	<Command.List>
-		<Command.Empty>The search results could not be found.</Command.Empty>
-		{#each docSchema as group}
-			<Command.Group heading={group.title}>
-				{#each group.items as item}
-					<Command.Item
-						value={item.id}
-						onmouseenter={() =>
-							(highlighted = {
-								value: item.id,
-								label: item.title,
-								url: `/docs/${item.id}`,
-								isComponent: group.title !== 'Getting Started',
-							})}
-						onSelect={() => {
-							goto(`/docs/${item.id}`);
-							open = false;
-						}}
-					>
-						{item.title}
-					</Command.Item>
-				{/each}
-			</Command.Group>
-			<Command.Separator />
-		{/each}
-	</Command.List>
 	<div
-		class="flex items-center justify-between border-t border-border px-4 py-2 text-xs text-muted-foreground"
+		class="-mx-px min-h-0 flex-1 overflow-hidden rounded-t-[calc(var(--radius-2xl)-1px)] border border-b-0 bg-background bg-clip-padding shadow-xs/5"
+	>
+		<Command.List>
+			<Command.Empty>The search results could not be found.</Command.Empty>
+			{#each docSchema as group}
+				<Command.Group heading={group.title}>
+					{#each group.items as item}
+						{@const pageItem = {
+							value: item.id,
+							label: item.title,
+							url: `/docs/${item.id}`,
+							isComponent: group.title !== 'Getting Started'
+						}}
+						<Command.Item
+							value={item.id}
+							onmouseenter={() => (highlighted = pageItem)}
+							onfocus={() => (highlighted = pageItem)}
+							onSelect={() => {
+								goto(`/docs/${item.id}`);
+								open = false;
+							}}
+						>
+							{item.title}
+						</Command.Item>
+					{/each}
+				</Command.Group>
+				<Command.Separator />
+			{/each}
+		</Command.List>
+	</div>
+	<div
+		class="z-10 flex items-center justify-between gap-3 rounded-b-[calc(var(--radius-2xl)-1px)] border-t px-5 py-3 text-xs text-muted-foreground"
 	>
 		<div class="flex items-center gap-1.5">
 			<span class="whitespace-nowrap">Go to Page</span>

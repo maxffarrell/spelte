@@ -1,6 +1,11 @@
 import { error } from '@sveltejs/kit';
 import { allDocItems, getDoc, getDocSchema } from '$lib/doc';
 import { getRegistryItem } from '$lib/registry';
+import {
+	getExampleSourceHtml,
+	getPreviewSource,
+	highlightSvelte
+} from '$lib/server/preview-source';
 import { getTableOfContents } from '$lib/toc';
 import { readFile } from 'fs/promises';
 import { join } from 'path';
@@ -68,6 +73,10 @@ export const load: PageServerLoad = async ({ params }) => {
 	let toc: { title: string; url: string; depth: number }[] = [];
 	let rawContent = '';
 	let registrySource = '';
+	let registrySourceHtml = '';
+	let previewSource = '';
+	let previewSourceHtml = '';
+	let exampleSourceHtml: Record<string, string> = {};
 
 	try {
 		const docPath = join(process.cwd(), 'src', 'docs', id, 'doc.md');
@@ -84,9 +93,21 @@ export const load: PageServerLoad = async ({ params }) => {
 	if (componentFile) {
 		try {
 			registrySource = await readFile(join(process.cwd(), componentFile.path), 'utf-8');
+			registrySourceHtml = await highlightSvelte(registrySource);
 		} catch {
 			registrySource = '';
+			registrySourceHtml = '';
 		}
+	}
+
+	try {
+		previewSource = await getPreviewSource(id);
+		previewSourceHtml = await highlightSvelte(previewSource);
+		exampleSourceHtml = await getExampleSourceHtml(id);
+	} catch {
+		previewSource = '';
+		previewSourceHtml = '';
+		exampleSourceHtml = {};
 	}
 
 	const schema = getDocSchema();
@@ -96,5 +117,18 @@ export const load: PageServerLoad = async ({ params }) => {
 		toc = [{ title: 'Installation', url: '#installation', depth: 2 }, ...toc];
 	}
 
-	return { item, prevDoc, nextDoc, toc, rawContent, registrySource, id, isGettingStarted };
+	return {
+		item,
+		prevDoc,
+		nextDoc,
+		toc,
+		rawContent,
+		registrySource,
+		registrySourceHtml,
+		previewSource,
+		previewSourceHtml,
+		exampleSourceHtml,
+		id,
+		isGettingStarted
+	};
 };

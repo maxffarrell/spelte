@@ -20,8 +20,13 @@
     import Spinner from "$registry/spelte/spinner.svelte";
     import WordsStagger from "$registry/spelte/words-stagger.svelte";
     import ExampleShell from "$lib/components/example-shell.svelte";
+    import { setContext } from "svelte";
 
-    let { id }: { id: string } = $props();
+    let {
+        id,
+        exampleSourceHtml = {},
+    }: { id: string; exampleSourceHtml?: Record<string, string> } = $props();
+    setContext("exampleSourceHtml", () => exampleSourceHtml);
 
     const animatedGradientPresets = [
         "Lava",

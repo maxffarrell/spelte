@@ -192,6 +192,19 @@ summary {
   @apply grid min-w-max bg-transparent p-0 text-sm;
 }
 
+.prose pre code::before,
+.prose pre code::after,
+.prose pre code span::before,
+.prose pre code span::after,
+[data-rehype-pretty-code-figure] code::before,
+[data-rehype-pretty-code-figure] code::after,
+.shiki code::before,
+.shiki code::after,
+.shiki span::before,
+.shiki span::after {
+  content: none;
+}
+
 .prose table {
   @apply my-6 w-full overflow-hidden rounded-lg border border-border text-sm;
 }

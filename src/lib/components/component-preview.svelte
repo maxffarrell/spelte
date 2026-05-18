@@ -38,133 +38,11 @@
     import { absoluteUrl, cn } from "$lib/utils";
     import { BookOpen } from "@lucide/svelte";
 
-    let { id }: { id: string } = $props();
+    let { id, previewSourceHtml = "" }: { id: string; previewSourceHtml?: string } = $props();
     let tab = $state("preview");
     const fullBleedPreview = $derived(
         id === "light-rays" || id === "animated-gradient",
     );
-    const previewSource: Record<string, string> = {
-        badge: `<script>
-  import Badge from '$registry/spelte/badge.svelte';
-<\/script>
-
-<div class="flex gap-2">
-  <Badge>Default</Badge>
-  <Badge variant="secondary">Secondary</Badge>
-  <Badge variant="outline">Outline</Badge>
-  <Badge variant="destructive">Destructive</Badge>
-</div>`,
-        "rich-button": `<script>
-  import RichButton from '$registry/spelte/rich-button.svelte';
-<\/script>
-
-<RichButton>Default</RichButton>`,
-        "flow-button": `<script>
-  import FlowButton from '$registry/spelte/flow-button.svelte';
-<\/script>
-
-<FlowButton>Learn more</FlowButton>`,
-        "copy-button": `<script>
-  import CopyButton from '$registry/spelte/copy-button.svelte';
-<\/script>
-
-<CopyButton value="Spell" />`,
-        "exploding-input": `<script>
-  import ExplodingInput from '$registry/spelte/exploding-input.svelte';
-<\/script>
-
-<label class="block">
-  <input
-    type="text"
-    placeholder="try@spell.here"
-    class="w-72 p-0 h-10 text-base border-b bg-background font-medium placeholder:font-medium outline-none"
-  />
-  <ExplodingInput class="z-50" content={['spark', 'pop', 'wow']} />
-</label>`,
-        signature: `<script>
-  import Signature from '$registry/spelte/signature.svelte';
-<\/script>
-
-<div class="flex items-center justify-center">
-  <Signature class="dark:invert-100" text="Spell Studio" fontSize={16} color="#1D1D1F" />
-</div>`,
-        "light-rays": `<script>
-  import Rays from '$registry/spelte/light-rays.svelte';
-<\/script>
-
-<div class="relative min-h-[500px] w-full md:min-h-[350px] flex items-center justify-center">
-  <Rays backgroundColor="var(--background)" style="z-index: 0;" />
-  <div class="z-10 flex h-full text-primary gap-2">
-    <p class="text-4xl font-semibold tracking-tighter">Beautiful</p>
-    <p class="text-4xl font-medium italic font-serif">Light Rays</p>
-  </div>
-</div>`,
-        "animated-gradient": `<script>
-  import AnimatedGradient from '$registry/spelte/animated-gradient.svelte';
-<\/script>
-
-<div class="relative min-h-[500px] w-full md:min-h-[350px] flex items-center justify-center">
-  <div class="z-10 flex flex-col items-center text-white gap-1">
-    <p class="text-4xl font-semibold tracking-tighter">Animated</p>
-    <p class="text-4xl font-medium italic font-serif">Gradient</p>
-  </div>
-  <AnimatedGradient style="z-index: 0;" config={{ preset: 'Prism' }} />
-</div>`,
-        "pop-button": `<script>
-  import PopButton from '$registry/spelte/pop-button.svelte';
-<\/script>
-
-<div class="flex items-center justify-center">
-  <PopButton class="font-semibold">Button</PopButton>
-</div>`,
-        "spotify-card": `<script>
-  import SpotifyCard from '$registry/spelte/spotify-card.svelte';
-<\/script>
-
-<SpotifyCard
-  url="https://open.spotify.com/track/0DTSnA1bcVI5niJzoyBPyZ"
-  class="max-w-[325px] max-h-[100px]"
-/>`,
-        tweet: `<script>
-  import Tweet from '$registry/spelte/tweet.svelte';
-<\/script>
-
-<Tweet id="1847682508822913359" />`,
-        marquee: `<script>
-  import Marquee from '$registry/spelte/marquee.svelte';
-
-  const logos = [
-    { src: '/logos/vercel.svg', alt: 'Vercel logo' },
-    { src: '/logos/google.svg', alt: 'Google logo' },
-    { src: '/logos/framer.svg', alt: 'Framer logo' },
-    { src: '/logos/discord.svg', alt: 'Discord logo' },
-    { src: '/logos/openai.svg', alt: 'OpenAI logo' },
-    { src: '/logos/phantom.svg', alt: 'Phantom logo' },
-    { src: '/logos/descript.svg', alt: 'Descript logo' },
-    { src: '/logos/netflix.svg', alt: 'Netflix logo' },
-    { src: '/logos/linear.svg', alt: 'Linear logo' },
-    { src: '/logos/notion.svg', alt: 'Notion logo' },
-    { src: '/logos/shopify.svg', alt: 'Shopify logo' },
-    { src: '/logos/duolingo.svg', alt: 'Duolingo logo' },
-    { src: '/logos/ramp.svg', alt: 'Ramp logo' },
-    { src: '/logos/tesla.svg', alt: 'Tesla logo' },
-    { src: '/logos/opensea.svg', alt: 'OpenSea logo' },
-    { src: '/logos/cursor.svg', alt: 'Cursor logo' }
-  ];
-<\/script>
-
-<Marquee class="flex py-4" duration={40}>
-  {#each logos as logo}
-    <img
-      src={logo.src}
-      alt={logo.alt}
-      width="96"
-      height="96"
-      class="mx-8 h-24 w-24 object-contain opacity-70 not-dark:invert-100 pointer-events-none select-none"
-    />
-  {/each}
-</Marquee>`,
-    };
     let previewKey = $state(0);
     let isRotating = $state(false);
 
@@ -180,57 +58,6 @@
         window.setTimeout(() => {
             isRotating = false;
         }, 500);
-    }
-
-    function escapeHtml(value: string) {
-        return value
-            .replace(/&/g, "&amp;")
-            .replace(/</g, "&lt;")
-            .replace(/>/g, "&gt;")
-            .replace(/"/g, "&quot;");
-    }
-
-    function highlightSvelte(value: string) {
-        const escaped = escapeHtml(value);
-        const pattern =
-            /(&lt;\/?)([A-Za-z][\w:.-]*)([^&]*?)(\/?&gt;)|(&lt;!--[\s\S]*?--&gt;)|(`[^`]*`|'[^']*'|"[^"]*")|\b(import|from|const|let|as|each|if|else|true|false)\b/g;
-
-        return escaped.replace(
-            pattern,
-            (
-                match,
-                tagStart,
-                tagName,
-                attrs = "",
-                tagEnd,
-                comment,
-                stringLiteral,
-                keyword,
-            ) => {
-                if (comment) {
-                    return `<span style="--shiki-light:#6A737D;--shiki-dark:#8B949E">${comment}</span>`;
-                }
-                if (stringLiteral) {
-                    return `<span style="--shiki-light:#032F62;--shiki-dark:#A5D6FF">${stringLiteral}</span>`;
-                }
-                if (keyword) {
-                    return `<span style="--shiki-light:#D73A49;--shiki-dark:#FF7B72">${keyword}</span>`;
-                }
-
-                const highlightedAttrs = attrs.replace(
-                    /([\w:-]+)(=)(&quot;[^&]*&quot;|\{[^}]*\})/g,
-                    (
-                        _match: string,
-                        name: string,
-                        equals: string,
-                        attrValue: string,
-                    ) =>
-                        ` <span style="--shiki-light:#6F42C1;--shiki-dark:#D2A8FF">${name}</span>${equals}<span style="--shiki-light:#032F62;--shiki-dark:#A5D6FF">${attrValue}</span>`,
-                );
-
-                return `<span style="--shiki-light:#24292E;--shiki-dark:#E6EDF3">${tagStart}</span><span style="--shiki-light:#22863A;--shiki-dark:#7EE787">${tagName}</span>${highlightedAttrs}<span style="--shiki-light:#24292E;--shiki-dark:#E6EDF3">${tagEnd}</span>`;
-            },
-        );
     }
 
     const colors = ["red", "blue", "green", "yellow", "purple"];
@@ -622,22 +449,14 @@
                 {/if}
             </div>
         </Tabs.Content>
-        <Tabs.Content value="code" class="not-prose mt-2 [&_pre]:my-0">
-            {#if previewSource[id]}
-                <figure data-rehype-pretty-code-figure class="my-0">
-                    <pre
-                        class="shiki h-64 overflow-auto rounded-sm border bg-background p-4 font-mono text-sm leading-relaxed md:h-80"
-                        data-language="svelte"
-                        style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#0f0f0f"><code
-                            data-language="svelte"
-                            >{@html highlightSvelte(previewSource[id])}</code
-                        ></pre>
-                </figure>
+        <Tabs.Content value="code" class="not-prose mt-2 [&_pre]:my-0 [&_pre]:h-64 [&_pre]:overflow-auto [&_pre]:rounded-sm [&_pre]:border [&_pre]:bg-background [&_pre]:p-4 [&_pre]:font-mono [&_pre]:text-sm [&_pre]:leading-relaxed md:[&_pre]:h-80">
+            {#if previewSourceHtml}
+                {@html previewSourceHtml}
             {:else}
                 <div
                     class="rounded-md border bg-muted/30 p-4 font-mono text-sm text-muted-foreground"
                 >
-                    Preview source is available in the component docs.
+                    Preview source is not available yet.
                 </div>
             {/if}
         </Tabs.Content>

@@ -1,15 +1,15 @@
 <script lang="ts">
 	import * as Tabs from '$lib/components/ui/tabs/index.js';
+	import CodeBlock from '$lib/components/code-block.svelte';
+	import { getContext } from 'svelte';
 	import type { Snippet } from 'svelte';
 
 	let { title, source, children }: { title: string; source: string; children?: Snippet } = $props();
 
 	const triggerClass =
 		'rounded-md cursor-pointer data-[state=active]:bg-white px-2 text-center data-[state=active]:shadow-[0_0_0_1px_rgba(0,0,0,.08),_0px_2px_2px_rgba(0,0,0,.04)] data-[state=active]:dark:bg-[#0B0B09]';
-
-	function escapeHtml(value: string) {
-		return value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-	}
+	const getExampleSourceHtml =
+		getContext<() => Record<string, string>>('exampleSourceHtml') ?? (() => ({}));
 
 	const headingId = $derived(
 		title
@@ -39,12 +39,6 @@
 		</div>
 	</Tabs.Content>
 	<Tabs.Content value="code" class="[&_pre]:my-0">
-		<figure data-rehype-pretty-code-figure class="my-0">
-			<pre
-				class="shiki max-h-80 overflow-x-auto rounded-sm border bg-background p-4 font-mono text-sm"
-				data-language="svelte"
-				style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#0f0f0f"
-			><code data-language="svelte">{@html escapeHtml(source)}</code></pre>
-		</figure>
+		<CodeBlock {source} html={getExampleSourceHtml()[title]} />
 	</Tabs.Content>
 </Tabs.Root>

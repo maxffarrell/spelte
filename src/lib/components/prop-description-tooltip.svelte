@@ -9,18 +9,19 @@
 	<Popover.Trigger>
 		{#snippet child({ props })}
 			<button
-				type="button"
-				class="inline-flex size-6 shrink-0 items-center justify-center rounded-md align-middle text-muted-foreground transition-colors hover:bg-accent hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-				aria-label="More information"
 				{...props}
+				type="button"
+				class="text-foreground/70 hover:text-foreground hover:bg-accent inline-flex shrink-0 items-center justify-center rounded-md p-1 align-middle transition-colors duration-150 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+				aria-label="More info"
 			>
-				<Info class="size-4 text-current" aria-hidden="true" />
+				<Info class="text-muted-foreground size-4" aria-hidden="true" />
 			</button>
 		{/snippet}
 	</Popover.Trigger>
 	<Popover.Content
 		side="top"
-		class="w-auto max-w-96 py-1.5 px-3 text-sm leading-[18px] text-muted-foreground"
+		sideOffset={8}
+		class="border-border bg-card text-foreground w-72 rounded-lg border p-2 text-sm leading-normal shadow-lg"
 	>
 		{description}
 	</Popover.Content>

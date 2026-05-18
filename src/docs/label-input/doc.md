@@ -32,9 +32,12 @@
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `label` | `string` | `""` | Floating label text |
-| `ringColor` | `"muted" \| "primary" \| "secondary" \| "destructive" \| "red" \| "blue" \| ...` | `"muted"` | Focus ring color |
-| `type` | `string` | `"text"` | Input type |
-| `placeholder` | `string` | `""` | Placeholder text |
-| `containerClass` | `string` | — | CSS classes for the container |
-| `class` | `string` | — | CSS classes for the input element |
+| `type` | `"text" \| "email" \| "password" \| "search" \| "tel" \| "url" \| "number" \| "hidden"` | `"text"` | Controls the input type and enables the password visibility toggle when set to `password`. |
+| `label` | `string` | `""` | The floating label text rendered inside the field container. |
+| `ringColor` | `RingColor \| undefined` | `"muted"` | Selects the focus ring color variant for the input. |
+| `value` | `string \| number \| undefined` | `undefined` | Controlled field value. Supports `bind:value`. |
+| `placeholder` | `string \| undefined` | `""` | Hidden by default and revealed during focus to avoid competing with the label. |
+| `containerClassName` | `string \| undefined` | `undefined` | Custom classes applied to the outer wrapper element. |
+| `inputClassName` | `string \| undefined` | `undefined` | Custom classes applied directly to the input element. |
+| `disabled` | `boolean \| undefined` | `false` | Disables typing, focus styles, and the password toggle button. |
+| `class` | `string \| undefined` | `undefined` | Custom classes merged onto the wrapper root. |

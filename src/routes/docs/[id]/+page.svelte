@@ -119,7 +119,7 @@
 			</header>
 
 			{#if !data.isGettingStarted}
-				<ComponentPreview id={data.id} />
+				<ComponentPreview id={data.id} previewSourceHtml={data.previewSourceHtml} />
 
 				<section class="not-prose mt-8">
 					<h2
@@ -128,10 +128,14 @@
 					>
 						Installation
 					</h2>
-					<InstallationTabs item={data.id} source={data.registrySource} />
+					<InstallationTabs
+						item={data.id}
+						source={data.registrySource}
+						sourceHtml={data.registrySourceHtml}
+					/>
 				</section>
 
-				<ComponentExamples id={data.id} />
+				<ComponentExamples id={data.id} exampleSourceHtml={data.exampleSourceHtml} />
 			{/if}
 
 			{#if DocComponent}

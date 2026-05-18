@@ -1,14 +1,16 @@
 <script lang="ts">
 	import { config } from '$lib/stores';
 	import { cn } from '$lib/utils';
+	import CodeBlock from '$lib/components/code-block.svelte';
 	import * as Tabs from '$lib/components/ui/tabs/index.js';
 	import type { Snippet } from 'svelte';
 
 	let {
 		item,
 		source = '',
+		sourceHtml = '',
 		children,
-	}: { item: string; source?: string; children?: Snippet } = $props();
+	}: { item: string; source?: string; sourceHtml?: string; children?: Snippet } = $props();
 
 	type PM = 'pnpm' | 'npm' | 'yarn' | 'bun';
 	let pm = $state<PM>($config.packageManager ?? 'pnpm');
@@ -27,14 +29,6 @@
 		await navigator.clipboard.writeText(commands[pm]);
 		copied = true;
 		setTimeout(() => (copied = false), 2000);
-	}
-
-	function escapeHtml(value: string) {
-		return value
-			.replace(/&/g, '&amp;')
-			.replace(/</g, '&lt;')
-			.replace(/>/g, '&gt;')
-			.replace(/"/g, '&quot;');
 	}
 </script>
 
@@ -135,13 +129,7 @@
 			{#if children}
 				{@render children()}
 			{:else if source}
-				<figure data-rehype-pretty-code-figure class="my-0">
-					<pre
-						class="shiki max-h-80 overflow-x-auto rounded-sm border bg-background p-4 font-mono text-sm"
-						data-language="svelte"
-						style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#0f0f0f"
-					><code data-language="svelte">{@html escapeHtml(source)}</code></pre>
-				</figure>
+				<CodeBlock {source} html={sourceHtml} />
 			{/if}
 		</Tabs.Content>
 	</Tabs.Root>

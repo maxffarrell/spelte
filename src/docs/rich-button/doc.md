@@ -36,7 +36,7 @@
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `color` | `"default" \| "blue" \| "purple" \| "pink" \| "red" \| "orange" \| "green" \| ...` | `"default"` | Color variant (supports all Tailwind colors) |
-| `size` | `"sm" \| "default" \| "lg"` | `"default"` | Size variant |
-| `href` | `string` | — | Renders as `<a>` link when set |
-| `class` | `string` | — | Additional CSS classes |
+| `children` | `Snippet` | `required` | The content of the button. |
+| `color` | `"default" \| "blue" \| "purple" \| "pink" \| "red" \| "orange" \| "yellow" \| "green" \| "teal" \| "cyan" \| "indigo" \| "violet" \| "rose" \| "amber" \| "lime" \| "sky" \| "slate" \| "gray" \| "zinc" \| "neutral" \| "stone" \| "fuchsia" \| "emerald"` | `"default"` | The color of the button - supports all Tailwind colors. |
+| `size` | `"sm" \| "default" \| "lg"` | `"default"` | The size of the button. |
+| `class` | `string \| undefined` | `undefined` | Additional CSS classes to apply. |
