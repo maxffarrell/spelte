@@ -28,7 +28,7 @@
 			if (!table.parentElement?.dataset.propsTableWrapper) {
 				const wrapper = document.createElement('div');
 				wrapper.dataset.propsTableWrapper = 'true';
-				wrapper.className = 'mt-6 w-full overflow-x-scroll rounded-lg border border-border';
+				wrapper.className = 'my-4 w-full overflow-x-scroll rounded-lg border border-border';
 				table.before(wrapper);
 				wrapper.append(table);
 			}

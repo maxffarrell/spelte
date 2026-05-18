@@ -181,7 +181,7 @@ summary {
 }
 
 [data-rehype-pretty-code-figure] {
-  @apply my-6;
+  @apply my-4;
 }
 
 [data-rehype-pretty-code-figure] pre {
@@ -206,7 +206,7 @@ summary {
 }
 
 .prose table {
-  @apply my-6 w-full overflow-hidden rounded-lg border border-border text-sm;
+  @apply my-0 w-full overflow-hidden rounded-lg border border-border text-sm;
 }
 
 .prose thead {

@@ -20,7 +20,7 @@
 		<div class="text-center text-sm text-muted-foreground">No Additional Props</div>
 	</div>
 {:else}
-	<div class="not-prose mt-6 w-full overflow-x-auto rounded-lg border border-border">
+	<div class="not-prose my-4 w-full overflow-x-auto rounded-lg border border-border">
 		<table class="w-full">
 			<thead class="border-b border-border bg-muted/30 text-left">
 				<tr>

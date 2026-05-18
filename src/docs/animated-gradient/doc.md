@@ -6,7 +6,7 @@
 </script>
 
 <div class="relative min-h-[500px] w-full md:min-h-[350px] flex items-center justify-center">
-  <div class="z-10 flex flex-col items-center text-white gap-1">
+  <div class="z-10 flex flex-col items-center gap-1 text-white mix-blend-difference">
     <p class="text-4xl font-semibold tracking-tighter">Animated</p>
     <p class="text-4xl font-medium italic font-serif">Gradient</p>
   </div>
@@ -30,7 +30,7 @@
   <div class="absolute top-4 left-4 z-10 flex gap-2 flex-wrap">
     {#each presets as preset}
       <button
-        class="px-3 py-1 text-sm font-medium tracking-tight cursor-pointer rounded-full transition-colors {activePreset === preset ? 'bg-white text-black' : 'bg-transparent text-white'}"
+        class="px-3 py-1 text-sm font-medium tracking-tight cursor-pointer rounded-full transition-colors {activePreset === preset ? 'bg-foreground text-background' : 'bg-transparent text-white mix-blend-difference'}"
         onclick={() => (activePreset = preset)}
       >
         {preset}
@@ -38,8 +38,8 @@
     {/each}
   </div>
 
-  <div class="z-10 flex flex-col items-center justify-center flex-1 text-white gap-1">
-    <p class="text-4xl font-semibold tracking-tighter text-white mix-blend-exclusion">
+  <div class="z-10 flex flex-col items-center justify-center flex-1 gap-1">
+    <p class="text-4xl font-semibold tracking-tighter text-white mix-blend-difference">
       {activePreset}
     </p>
   </div>

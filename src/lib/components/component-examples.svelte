@@ -350,7 +350,7 @@
   <div class="relative z-10 flex gap-2 p-4 flex-wrap">
     {#each presets as preset}
       <button
-        class="px-3 py-1 text-sm font-medium tracking-tight cursor-pointer rounded-full transition-colors {activePreset === preset ? 'bg-white text-black' : 'bg-transparent text-white'}"
+        class="px-3 py-1 text-sm font-medium tracking-tight cursor-pointer rounded-full transition-colors {activePreset === preset ? 'bg-foreground text-background' : 'bg-transparent text-white mix-blend-difference'}"
         onclick={() => (activePreset = preset)}
       >
         {preset}
@@ -359,7 +359,7 @@
   </div>
 
   <div class="relative z-10 flex-1 flex items-center justify-center">
-    <p class="text-4xl font-semibold tracking-tighter text-white mix-blend-exclusion">
+    <p class="text-4xl font-semibold tracking-tighter text-white mix-blend-difference">
       {activePreset}
     </p>
   </div>
@@ -378,8 +378,8 @@
                             <button
                                 class="px-3 py-1 text-sm font-medium tracking-tight cursor-pointer rounded-full transition-colors {activeAnimatedGradientPreset ===
                                 preset
-                                    ? 'bg-white text-black'
-                                    : 'bg-transparent text-white'}"
+                                    ? 'bg-foreground text-background'
+                                    : 'bg-transparent text-white mix-blend-difference'}"
                                 onclick={() =>
                                     (activeAnimatedGradientPreset = preset)}
                             >
@@ -391,9 +391,7 @@
                     <div
                         class="relative z-10 flex-1 flex items-center justify-center"
                     >
-                        <p
-                            class="text-4xl font-semibold tracking-tighter text-white mix-blend-exclusion"
-                        >
+                        <p class="text-4xl font-semibold tracking-tighter text-white mix-blend-difference">
                             {activeAnimatedGradientPreset}
                         </p>
                     </div>
@@ -418,7 +416,7 @@
                     class="relative min-h-[500px] w-full md:min-h-[350px] flex items-center justify-center"
                 >
                     <div
-                        class="z-10 flex flex-col items-center text-white gap-1"
+                        class="z-10 flex flex-col items-center gap-1 text-white mix-blend-difference"
                     >
                         <p class="text-4xl font-semibold tracking-tighter">
                             Custom

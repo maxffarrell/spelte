@@ -13,7 +13,9 @@
 </script>
 
 {#if html}
-	<div class="[&_pre]:my-0 [&_pre]:max-h-80 [&_pre]:overflow-x-auto [&_pre]:rounded-sm [&_pre]:border [&_pre]:bg-background [&_pre]:p-4 [&_pre]:font-mono [&_pre]:text-sm {className}">
+	<div
+		class="[&_pre]:my-0 [&_pre]:max-h-80 [&_pre]:overflow-x-auto [&_pre]:rounded-sm [&_pre]:border [&_pre]:p-4 [&_pre]:font-mono [&_pre]:text-sm [&_code]:grid [&_code]:min-w-max [&_code]:bg-transparent [&_code]:p-0 [&_code]:text-sm {className}"
+	>
 		{@html html}
 	</div>
 {:else}
