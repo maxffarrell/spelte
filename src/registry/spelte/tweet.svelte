@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { tick } from 'svelte';
 	import { Check, Link2 } from '@lucide/svelte';
 	import { cn } from '$lib/utils';
 
@@ -39,8 +40,6 @@
 		video?: TweetVideo;
 	};
 
-	type TweetFallbackId = keyof typeof fallbackTweets;
-
 	interface Props {
 		id: string;
 		class?: string;
@@ -58,73 +57,47 @@
 	}: Props = $props();
 
 	let tweet = $state<TweetData | null>(null);
+	let embedUrl = $state<string | null>(null);
 	let isLoading = $state(true);
 	let error = $state(false);
 	let isCopied = $state(false);
-
-	const fallbackTweets = {
-		'1668408059125702661': {
-			id_str: '1668408059125702661',
-			url: 'https://x.com/spell_ui/status/1668408059125702661',
-			created_at: '2025-11-27T17:08:00.000Z',
-			favorite_count: 128,
-			user: {
-				name: 'Spell',
-				screen_name: 'spell_ui',
-				profile_image_url_https: '/icon.svg',
-				is_blue_verified: true
-			},
-			entities: [
-				{
-					type: 'text',
-					text: 'Beautiful, animated components for modern interfaces.'
-				}
-			]
-		},
-		'1994155465488670828': {
-			id_str: '1994155465488670828',
-			url: 'https://x.com/spell_ui/status/1994155465488670828',
-			created_at: '2025-11-27T17:08:00.000Z',
-			favorite_count: 128,
-			user: {
-				name: 'Spell',
-				screen_name: 'spell_ui',
-				profile_image_url_https: '/icon.svg',
-				is_blue_verified: true
-			},
-			entities: [
-				{
-					type: 'text',
-					text: 'Beautiful, animated components for modern interfaces.'
-				}
-			]
-		}
-	} satisfies Record<string, TweetData>;
 
 	$effect(() => {
 		let cancelled = false;
 		isLoading = true;
 		error = false;
+		tweet = null;
+		embedUrl = null;
 
-		fetch(`https://cdn.syndication.twimg.com/tweet-result?id=${id}&lang=en`)
+		fetch(`https://react-tweet.vercel.app/api/tweet/${id}`)
 			.then((response) => {
 				if (!response.ok) throw new Error('Failed to fetch tweet');
 				return response.json();
 			})
 			.then((data) => {
 				if (cancelled) return;
-				const normalized = normalizeTweet(data, id);
-				tweet = normalized ?? getFallbackTweet(id);
-				error = !tweet;
+				const normalized = normalizeTweet(data.data ?? data, id);
+				if (normalized) {
+					tweet = normalized;
+					error = false;
+					return;
+				}
+
+				embedUrl = `https://twitter.com/i/status/${id}`;
+				error = false;
 			})
 			.catch(() => {
 				if (!cancelled) {
-					tweet = getFallbackTweet(id);
-					error = !tweet;
+					embedUrl = `https://twitter.com/i/status/${id}`;
+					error = false;
 				}
 			})
-			.finally(() => {
-				if (!cancelled) isLoading = false;
+			.finally(async () => {
+				if (!cancelled) {
+					isLoading = false;
+					await tick();
+					if (embedUrl) renderTweetWidgets();
+				}
 			});
 
 		return () => {
@@ -132,8 +105,24 @@
 		};
 	});
 
-	function getFallbackTweet(tweetId: string): TweetData | null {
-		return fallbackTweets[tweetId as TweetFallbackId] ?? null;
+	function renderTweetWidgets() {
+		const widgets = (window as Window & { twttr?: { widgets?: { load: () => void } } }).twttr
+			?.widgets;
+		if (widgets) {
+			widgets.load();
+			return;
+		}
+
+		const existingScript = document.querySelector<HTMLScriptElement>(
+			'script[src="https://platform.twitter.com/widgets.js"]'
+		);
+		if (existingScript) return;
+
+		const script = document.createElement('script');
+		script.src = 'https://platform.twitter.com/widgets.js';
+		script.async = true;
+		script.charset = 'utf-8';
+		document.body.appendChild(script);
 	}
 
 	function normalizeTweet(data: Record<string, any>, tweetId: string): TweetData | null {
@@ -182,7 +171,40 @@
 			}));
 		}
 
-		return [{ type: 'text', text: data.text ?? '' }];
+		let text = data.text ?? '';
+		const mediaUrls = data.mediaDetails
+			?.map((media: Record<string, string>) => media.url)
+			.filter(Boolean);
+
+		if (Array.isArray(mediaUrls)) {
+			for (const url of mediaUrls) {
+				text = text.replace(url, '').trim();
+			}
+		}
+
+		const urlEntities = data.entities?.urls;
+		if (!Array.isArray(urlEntities) || urlEntities.length === 0) {
+			return [{ type: 'text', text }];
+		}
+
+		const entities: TweetEntity[] = [];
+		let remainingText = text;
+		for (const urlEntity of urlEntities as Array<Record<string, string>>) {
+			const shortUrl = urlEntity.url;
+			if (!shortUrl || !remainingText.includes(shortUrl)) continue;
+
+			const [before, after] = remainingText.split(shortUrl, 2);
+			if (before) entities.push({ type: 'text', text: before });
+			entities.push({
+				type: 'url',
+				text: urlEntity.display_url ?? shortUrl,
+				href: urlEntity.expanded_url ?? shortUrl
+			});
+			remainingText = after ?? '';
+		}
+
+		if (remainingText) entities.push({ type: 'text', text: remainingText });
+		return entities.length > 0 ? entities : [{ type: 'text', text }];
 	}
 
 	function formatNumber(num: number): string {
@@ -254,6 +276,12 @@
 			<div class="h-4 w-full animate-pulse rounded bg-muted"></div>
 			<div class="h-4 w-3/4 animate-pulse rounded bg-muted"></div>
 		</div>
+	</div>
+{:else if embedUrl}
+	<div class={cn('w-full max-w-[590px]', className)}>
+		<blockquote class="twitter-tweet">
+			<a href={embedUrl}>View tweet</a>
+		</blockquote>
 	</div>
 {:else if error || !tweet}
 	<div class={cn('flex w-full max-w-[590px] flex-col items-center justify-center gap-2 rounded-xl p-6 text-muted-foreground dark:border dark:border-muted not-dark:shadow-[0_0_0_1px_rgba(0,0,0,.08),_0px_2px_2px_rgba(0,0,0,.04)]', className)}>
