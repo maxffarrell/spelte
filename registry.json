@@ -15,7 +15,7 @@
           "type": "registry:component"
         }
       ],
-      "dependencies": ["motion"],
+      "dependencies": ["motion-sv"],
       "registryDependencies": [],
       "category": "animation"
     },
@@ -180,7 +180,7 @@
           "type": "registry:component"
         }
       ],
-      "dependencies": ["motion"],
+      "dependencies": ["motion-sv"],
       "registryDependencies": [],
       "category": "input"
     },
@@ -240,7 +240,7 @@
           "type": "registry:component"
         }
       ],
-      "dependencies": ["motion"],
+      "dependencies": ["motion-sv"],
       "registryDependencies": [],
       "category": "animation"
     },
@@ -255,7 +255,7 @@
           "type": "registry:component"
         }
       ],
-      "dependencies": ["motion"],
+      "dependencies": ["motion-sv"],
       "registryDependencies": [],
       "category": "animation"
     },
@@ -270,7 +270,7 @@
           "type": "registry:component"
         }
       ],
-      "dependencies": ["motion"],
+      "dependencies": ["motion-sv"],
       "registryDependencies": [],
       "category": "animation"
     },
@@ -285,7 +285,7 @@
           "type": "registry:component"
         }
       ],
-      "dependencies": ["motion"],
+      "dependencies": ["motion-sv"],
       "registryDependencies": [],
       "category": "animation"
     },
@@ -315,7 +315,7 @@
           "type": "registry:component"
         }
       ],
-      "dependencies": ["motion"],
+      "dependencies": ["motion-sv"],
       "registryDependencies": [],
       "category": "animation"
     },
@@ -360,7 +360,7 @@
           "type": "registry:component"
         }
       ],
-      "dependencies": ["motion"],
+      "dependencies": ["motion-sv"],
       "registryDependencies": [],
       "category": "display"
     },
@@ -435,7 +435,7 @@
           "type": "registry:component"
         }
       ],
-      "dependencies": ["motion", "opentype.js"],
+      "dependencies": ["motion-sv", "opentype.js"],
       "registryDependencies": [],
       "category": "animation"
     },

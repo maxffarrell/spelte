@@ -77,7 +77,7 @@ Built with:
 - [SvelteKit](https://kit.svelte.dev)
 - [shadcn-svelte](https://shadcn-svelte.com)
 - [Tailwind CSS](https://tailwindcss.com)
-- [motion](https://motion.dev)
+- [motion-sv](https://github.com/hanielu/motion-svelte)
 - [mdsx](https://mdsx.dev)
 
 ## License
