@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { inView } from 'motion';
+	import { inView } from 'motion-sv';
 
 	interface Props {
 		text: string;

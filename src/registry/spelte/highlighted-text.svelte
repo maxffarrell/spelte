@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { cn } from '$lib/utils';
-	import { animate, inView } from 'motion';
+	import { animate, inView } from 'motion-sv';
 	import type { Snippet } from 'svelte';
 
 	type From = 'left' | 'right' | 'top' | 'bottom';

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { cn } from '$lib/utils';
-	import { animate, type AnimationPlaybackControls } from 'motion';
+	import { animate, type AnimationPlaybackControls } from 'motion-sv';
 	import type { Snippet } from 'svelte';
 
 	type Variant =

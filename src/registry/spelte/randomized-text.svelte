@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { animate, inView, type DOMKeyframesDefinition } from 'motion';
+	import { animate, inView, type DOMKeyframesDefinition } from 'motion-sv';
 
 	type SplitType = 'words' | 'chars';
 

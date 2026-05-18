@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { tick } from 'svelte';
-	import { animate, inView as motionInView } from 'motion';
+	import { animate, inView as motionInView } from 'motion-sv';
 	import opentype from 'opentype.js';
 	import { lastoriaBoldRegularBase64 } from '$lib/assets/lastoria-bold-regular';
 	import { cn } from '$lib/utils';

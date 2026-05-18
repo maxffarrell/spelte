@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { cn } from '$lib/utils';
-	import { animate, inView, type DOMKeyframesDefinition } from 'motion';
+	import { animate, inView, type DOMKeyframesDefinition } from 'motion-sv';
 
 	interface Props {
 		text: string;

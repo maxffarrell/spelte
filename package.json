@@ -17,7 +17,7 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "mode-watcher": "^1.1.0",
-    "motion": "^12.38.0",
+    "motion-sv": "^0.1.12",
     "opentype.js": "^2.0.0",
     "qrcode": "^1.5.4",
     "svelte": "^5.55.7",
