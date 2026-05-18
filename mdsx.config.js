@@ -1,23 +1,15 @@
 import { defineConfig } from 'mdsx';
-import rehypePrettyCode, { type Options as RehypePrettyCodeOptions } from 'rehype-pretty-code';
+import rehypePrettyCode from 'rehype-pretty-code';
 import remarkGfm from 'remark-gfm';
 
-type HastNode = {
-	type?: string;
-	value?: string;
-	tagName?: string;
-	properties?: Record<string, unknown>;
-	children?: HastNode[];
-};
-
-const prettyCodeOptions: RehypePrettyCodeOptions = {
+const prettyCodeOptions = {
 	theme: {
 		dark: 'github-dark',
 		light: 'github-light',
 	},
 };
 
-function getNodeText(node: HastNode | undefined): string {
+function getNodeText(node) {
 	if (!node) return '';
 	if (node.type === 'text') return node.value ?? '';
 	if (!Array.isArray(node.children)) return '';
@@ -25,7 +17,7 @@ function getNodeText(node: HastNode | undefined): string {
 	return node.children.map(getNodeText).join('');
 }
 
-function slugify(value: string): string {
+function slugify(value) {
 	return value
 		.toLowerCase()
 		.replace(/[^a-z0-9\s-]/g, '')
@@ -35,10 +27,10 @@ function slugify(value: string): string {
 }
 
 function rehypeHeadingIds() {
-	return (tree: HastNode) => {
-		const slugs = new Map<string, number>();
+	return (tree) => {
+		const slugs = new Map();
 
-		function visit(node: HastNode | undefined) {
+		function visit(node) {
 			if (!node || typeof node !== 'object') return;
 
 			if (
@@ -70,8 +62,8 @@ function rehypeHeadingIds() {
 }
 
 function rehypeCodeBlockA11y() {
-	return (tree: HastNode) => {
-		function visit(node: HastNode | undefined) {
+	return (tree) => {
+		function visit(node) {
 			if (!node || typeof node !== 'object') return;
 
 			if (node.type === 'element' && node.tagName === 'pre' && node.properties) {
@@ -113,14 +105,14 @@ function rehypeRemoveExamplesSection() {
 		'copy-button',
 	]);
 
-	return (tree: HastNode, file: { path?: string; history?: string[] }) => {
+	return (tree, file) => {
 		const path = file.path ?? file.history?.[0] ?? '';
 		const match = path.match(/src\/docs\/([^/]+)\/doc\.md$/);
 		if (!match || !supported.has(match[1])) return;
 		if (!Array.isArray(tree.children)) return;
 
 		const children = tree.children;
-		const nextChildren: HastNode[] = [];
+		const nextChildren = [];
 		let skipping = false;
 
 		for (const child of children) {

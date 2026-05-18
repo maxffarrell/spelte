@@ -1,10 +1,9 @@
 import adapter from '@sveltejs/adapter-cloudflare';
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 import { mdsx } from 'mdsx';
-import type { Config } from '@sveltejs/kit';
-import { mdsxConfig } from './mdsx.config.ts';
+import { mdsxConfig } from './mdsx.config.js';
 
-const config: Config = {
+const config = {
 	extensions: ['.svelte', '.md'],
 	preprocess: [mdsx(mdsxConfig), vitePreprocess()],
 	vitePlugin: {
