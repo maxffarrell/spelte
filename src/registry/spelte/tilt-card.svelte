@@ -26,7 +26,11 @@
 
 	const dir = $derived(effect === 'evade' ? -1 : 1);
 
-	let transform = $state(`perspective(${perspective}px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`);
+	const restingTransform = $derived(
+		`perspective(${perspective}px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`
+	);
+	let activeTransform = $state('');
+	const transform = $derived(activeTransform || restingTransform);
 	let spotlightPos = $state({ x: 50, y: 50 });
 	let isHovered = $state(false);
 	let cardEl = $state<HTMLDivElement | null>(null);
@@ -39,7 +43,7 @@
 		const py = (e.clientY - rect.top) / rect.height;
 		const xRot = (py - 0.5) * (tiltLimit * 2) * dir;
 		const yRot = (px - 0.5) * -(tiltLimit * 2) * dir;
-		transform = `perspective(${perspective}px) rotateX(${xRot}deg) rotateY(${yRot}deg) scale3d(${scale}, ${scale}, ${scale})`;
+		activeTransform = `perspective(${perspective}px) rotateX(${xRot}deg) rotateY(${yRot}deg) scale3d(${scale}, ${scale}, ${scale})`;
 		if (spotlight) spotlightPos = { x: px * 100, y: py * 100 };
 	}
 
@@ -48,7 +52,7 @@
 	}
 
 	function handlePointerLeave() {
-		transform = `perspective(${perspective}px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+		activeTransform = '';
 		isHovered = false;
 	}
 </script>
@@ -58,6 +62,7 @@
 	onpointerenter={handlePointerEnter}
 	onpointermove={handlePointerMove}
 	onpointerleave={handlePointerLeave}
+	role="presentation"
 	class={cn('will-change-transform relative overflow-hidden', className)}
 	style="{style}; transform: {transform}; transition: transform 0.2s ease-out; transform-style: preserve-3d;"
 >

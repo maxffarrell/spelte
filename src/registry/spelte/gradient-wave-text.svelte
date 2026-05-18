@@ -56,7 +56,8 @@
 	let started = false;
 	let startAt = 0;
 	let hasPlayed = false;
-	let isInView = $state(!inViewProp);
+	let isInView = $state(false);
+	let initialized = false;
 
 	const cycles = $derived(repeat ? 0 : 1);
 	const resolvedColors = $derived(customColors?.length ? customColors : defaultColors);
@@ -84,6 +85,12 @@
 	const justifyContent = $derived(
 		align === 'left' ? 'flex-start' : align === 'right' ? 'flex-end' : 'center'
 	);
+
+	$effect(() => {
+		if (initialized) return;
+		initialized = true;
+		isInView = !inViewProp;
+	});
 
 	$effect(() => {
 		const node = elRef;

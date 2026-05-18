@@ -1,7 +1,7 @@
 <script module>
-	// Export element overrides for mdsx to use
-	// Add custom components here to override HTML elements, e.g.:
-	// export { default as h1 } from './heading.svelte';
+	export { default as h2 } from './heading-two.svelte';
+	export { default as h3 } from './heading-three.svelte';
+	export { default as pre } from './pre.svelte';
 </script>
 
 <script lang="ts">

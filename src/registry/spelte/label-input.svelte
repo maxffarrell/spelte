@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { cn } from '$lib/utils';
-	import { EyeIcon, EyeOffIcon } from 'lucide-svelte';
+	import { EyeIcon, EyeOffIcon } from '@lucide/svelte';
 
 	type RingColor =
 		| 'muted' | 'primary' | 'secondary' | 'destructive'
@@ -55,6 +55,7 @@
 	};
 
 	const isPasswordType = $derived(type === 'password');
+	const inputId = `label-input-${Math.random().toString(36).slice(2)}`;
 	let isVisible = $state(false);
 	const inputType = $derived(isPasswordType ? (isVisible ? 'text' : 'password') : type);
 </script>
@@ -67,11 +68,12 @@
 			ringColorMap[ringColor]
 		)}
 		{placeholder}
+		id={inputId}
 		type={inputType}
 		bind:value
 		{...rest}
 	/>
-	<label class="absolute block inset-y-0 px-2 bg-white dark:bg-neutral-950 text-sm left-[7px] h-fit text-nowrap my-auto -translate-y-[19px] peer-focus:-translate-y-[19px] text-muted-foreground pointer-events-none transition-transform will duration-200 scale-[.8] origin-top-left peer-placeholder-shown:scale-100 peer-focus:scale-[.8] peer-placeholder-shown:translate-y-0">
+	<label for={inputId} class="absolute block inset-y-0 px-2 bg-white dark:bg-neutral-950 text-sm left-[7px] h-fit text-nowrap my-auto -translate-y-[19px] peer-focus:-translate-y-[19px] text-muted-foreground pointer-events-none transition-transform will duration-200 scale-[.8] origin-top-left peer-placeholder-shown:scale-100 peer-focus:scale-[.8] peer-placeholder-shown:translate-y-0">
 		{label}
 	</label>
 	{#if isPasswordType}

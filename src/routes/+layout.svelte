@@ -26,7 +26,6 @@
 	<meta name="twitter:title" content={siteConfig.name} />
 	<meta name="twitter:description" content={siteConfig.description} />
 	<meta name="twitter:image" content={image} />
-	<link rel="icon" href="/icon.svg" type="image/svg+xml" />
 </svelte:head>
 
 {@render children()}

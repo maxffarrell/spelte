@@ -6,9 +6,9 @@
 
 ~~~svelte
 <div class="flex flex-col items-center gap-6">
-  <Signature text="Spell UI" color="#ff3e00" />
-  <Signature text="Spell UI" color="#3b82f6" />
-  <Signature text="Spell UI" color="#22c55e" />
+  <Signature text="Spelte" color="#ff3e00" />
+  <Signature text="Spelte" color="#3b82f6" />
+  <Signature text="Spelte" color="#22c55e" />
 </div>
 ~~~
 

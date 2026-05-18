@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { cn } from '$lib/utils';
-	import { CheckIcon, CopyIcon } from 'lucide-svelte';
+	import { CheckIcon, CopyIcon } from '@lucide/svelte';
 
 	type SizeVariant = 'sm' | 'default' | 'lg';
 

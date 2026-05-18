@@ -47,11 +47,17 @@
 	const clipId = `clip-${uid}`;
 
 	let rootEl = $state<HTMLDivElement | null>(null);
-	let containerWidth = $state(width);
-	let activeIndex = $state(defaultIndex ?? Math.max(0, data.length - 1));
+	let containerWidth = $state(0);
+	let activeIndex = $state(0);
+	let initialized = false;
 
 	$effect(() => {
 		if (!rootEl) return;
+		if (!initialized) {
+			initialized = true;
+			containerWidth = rootEl.getBoundingClientRect().width || width;
+			activeIndex = defaultIndex ?? Math.max(0, data.length - 1);
+		}
 		const ro = new ResizeObserver((entries) => {
 			const w = entries[0]?.contentRect.width;
 			if (w) containerWidth = w;
@@ -144,6 +150,8 @@
 		<div
 			bind:this={rootEl}
 			onmousemove={onMove}
+			role="img"
+			aria-label={name ? `${name} chart` : 'Chart'}
 			class="relative w-full touch-none"
 			style="aspect-ratio: 640/220;"
 		>

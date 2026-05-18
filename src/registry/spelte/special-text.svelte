@@ -22,12 +22,13 @@
 		return char;
 	}
 
-	let displayText = $state(' '.repeat(text.length));
+	let displayText = $state('');
 	let phase = $state<'phase1' | 'phase2'>('phase1');
 	let animationStep = $state(0);
-	let hasStarted = $state(!inViewProp && delay <= 0);
+	let hasStarted = $state(false);
 	let containerEl = $state<HTMLElement | null>(null);
 	let intervalId: ReturnType<typeof setInterval> | null = null;
+	let initialized = false;
 
 	function startAnimation() {
 		hasStarted = true;
@@ -69,6 +70,13 @@
 			if (intervalId) { clearInterval(intervalId); intervalId = null; }
 		}
 	}
+
+	$effect(() => {
+		if (initialized) return;
+		initialized = true;
+		displayText = ' '.repeat(text.length);
+		hasStarted = !inViewProp && delay <= 0;
+	});
 
 	$effect(() => {
 		if (!hasStarted) return;

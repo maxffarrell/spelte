@@ -1,8 +1,8 @@
-Spell UI exposes its registry through MCP-compatible metadata so AI coding tools can discover components, read installation details, and copy implementation-ready examples.
+Spelte exposes its registry through MCP-compatible metadata so AI coding tools can discover components, read installation details, and copy implementation-ready examples.
 
 ## Usage
 
-Connect your tool to the Spell UI registry endpoint and ask for a component by name.
+Connect your tool to the Spelte registry endpoint and ask for a component by name.
 
 ```json
 {

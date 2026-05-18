@@ -2,7 +2,7 @@
 	import { siteConfig } from '$lib/config';
 	import { cn } from '$lib/utils';
 	import { onMount } from 'svelte';
-	import { SquarePen } from 'lucide-svelte';
+	import { SquarePen } from '@lucide/svelte';
 	import { Separator } from '$lib/components/ui/separator/index.js';
 
 	let {

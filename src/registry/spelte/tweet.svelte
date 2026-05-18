@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Check, Link2 } from 'lucide-svelte';
+	import { Check, Link2 } from '@lucide/svelte';
 	import { cn } from '$lib/utils';
 
 	type TweetEntity = {
@@ -39,6 +39,8 @@
 		video?: TweetVideo;
 	};
 
+	type TweetFallbackId = keyof typeof fallbackTweets;
+
 	interface Props {
 		id: string;
 		class?: string;
@@ -60,7 +62,25 @@
 	let error = $state(false);
 	let isCopied = $state(false);
 
-	const fallbackTweets: Record<string, TweetData> = {
+	const fallbackTweets = {
+		'1668408059125702661': {
+			id_str: '1668408059125702661',
+			url: 'https://x.com/spell_ui/status/1668408059125702661',
+			created_at: '2025-11-27T17:08:00.000Z',
+			favorite_count: 128,
+			user: {
+				name: 'Spell',
+				screen_name: 'spell_ui',
+				profile_image_url_https: '/icon.svg',
+				is_blue_verified: true
+			},
+			entities: [
+				{
+					type: 'text',
+					text: 'Beautiful, animated components for modern interfaces.'
+				}
+			]
+		},
 		'1994155465488670828': {
 			id_str: '1994155465488670828',
 			url: 'https://x.com/spell_ui/status/1994155465488670828',
@@ -79,7 +99,7 @@
 				}
 			]
 		}
-	};
+	} satisfies Record<string, TweetData>;
 
 	$effect(() => {
 		let cancelled = false;
@@ -92,11 +112,14 @@
 				return response.json();
 			})
 			.then((data) => {
-				if (!cancelled) tweet = normalizeTweet(data, id);
+				if (cancelled) return;
+				const normalized = normalizeTweet(data, id);
+				tweet = normalized ?? getFallbackTweet(id);
+				error = !tweet;
 			})
 			.catch(() => {
 				if (!cancelled) {
-					tweet = fallbackTweets[id] ?? null;
+					tweet = getFallbackTweet(id);
 					error = !tweet;
 				}
 			})
@@ -109,7 +132,20 @@
 		};
 	});
 
-	function normalizeTweet(data: Record<string, any>, tweetId: string): TweetData {
+	function getFallbackTweet(tweetId: string): TweetData | null {
+		return fallbackTweets[tweetId as TweetFallbackId] ?? null;
+	}
+
+	function normalizeTweet(data: Record<string, any>, tweetId: string): TweetData | null {
+		if (!data || data.__typename === 'TweetTombstone' || data.tombstone || data.notFound) {
+			return null;
+		}
+
+		const text = data.text ?? '';
+		if (!text && !data.user && !data.photos && !data.video) {
+			return null;
+		}
+
 		const permalink = data.permalink ?? `https://x.com/${data.user?.screen_name}/status/${tweetId}`;
 		return {
 			id_str: tweetId,

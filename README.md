@@ -11,7 +11,7 @@
 
 ## About
 
-Spelte is a SvelteKit port of [Spell UI](https://github.com/xxtomm/spell-ui) by [Tom](https://x.com/tomm_ui) — a collection of beautiful, copy-ready UI components. All credit for the original design and component concepts goes to the Spell UI team.
+Spelte is a Svelte port of [Spell UI](https://github.com/xxtomm/spell-ui) by [Tom](https://x.com/tomm_ui) — a collection of beautiful, copy-ready UI components. All credit for the original design and component concepts goes to the Spell UI team.
 
 **Changes from the original:**
 - Ported from React/Next.js to SvelteKit with Svelte 5 runes

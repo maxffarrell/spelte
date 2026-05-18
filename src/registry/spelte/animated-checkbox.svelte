@@ -16,9 +16,10 @@
 		onCheckedChange
 	}: Props = $props();
 
-	let checked = $state(defaultChecked);
+	let checked = $state(false);
 	let pathEl = $state<SVGPathElement | null>(null);
 	let strikeEl = $state<HTMLDivElement | null>(null);
+	let initialized = false;
 
 	function handleClick() {
 		checked = !checked;
@@ -40,6 +41,9 @@
 	}
 
 	$effect(() => {
+		if (initialized) return;
+		initialized = true;
+		checked = defaultChecked;
 		if (pathEl && defaultChecked) {
 			animate(pathEl, { pathLength: 1, opacity: 1 }, { duration: 0 });
 		}
@@ -49,9 +53,9 @@
 	});
 </script>
 
-<!-- svelte-ignore a11y_click_events_have_key_events a11y_no_static_element_interactions -->
-<div
-	class={cn('flex items-center gap-3 cursor-pointer select-none', className)}
+<button
+	type="button"
+	class={cn('flex items-center gap-3 cursor-pointer select-none text-left', className)}
 	onclick={handleClick}
 >
 	<div
@@ -91,4 +95,4 @@
 			style="width: {defaultChecked ? '100%' : '0'}; opacity: {defaultChecked ? 1 : 0}"
 		></div>
 	</div>
-</div>
+</button>

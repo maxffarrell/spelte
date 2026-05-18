@@ -33,7 +33,8 @@
 		amber: 'var(--color-amber-500)'
 	};
 
-	let selectedColor = $state(defaultValue);
+	let selectedColor = $state('');
+	let initialized = false;
 
 	function handleColorSelect(color: string) {
 		selectedColor = color;
@@ -43,6 +44,12 @@
 	const sizeClass = $derived(
 		size === 'sm' ? 'size-4' : size === 'lg' ? 'size-6' : 'size-5'
 	);
+
+	$effect(() => {
+		if (initialized) return;
+		initialized = true;
+		selectedColor = defaultValue;
+	});
 
 	function getColorValue(color: string): string {
 		return colorMap[color] || color;
@@ -55,16 +62,13 @@
 	{/if}
 	{#each colors as color}
 		{@const colorValue = getColorValue(color)}
-		<!-- svelte-ignore a11y_interactive_supports_focus -->
-		<div
+		<button
+			type="button"
 			class="{sizeClass} rounded-full cursor-pointer transition-transform duration-200 active:scale-90"
 			style="background-color: {colorValue}; {selectedColor === color ? `box-shadow: inset 0 0 0 2px var(--background), 0 0 0 2px ${colorValue};` : ''}"
 			onclick={() => handleColorSelect(color)}
-			onkeydown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handleColorSelect(color); } }}
-			role="button"
-			tabindex="0"
 			aria-label="Select {color} color"
 			aria-pressed={selectedColor === color}
-		></div>
+		></button>
 	{/each}
 </div>

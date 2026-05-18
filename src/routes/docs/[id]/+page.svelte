@@ -1,12 +1,13 @@
 <script lang="ts">
-	import { ArrowLeft, ArrowRight, ExternalLink } from 'lucide-svelte';
+	import { ArrowLeft, ArrowRight, ExternalLink } from '@lucide/svelte';
 	import DocsTableOfContents from '$lib/components/toc.svelte';
+	import DocsEnhancer from '$lib/components/docs-enhancer.svelte';
 	import DocCopySection from '$lib/components/doc-copy-section.svelte';
 	import ComponentPreview from '$lib/components/component-preview.svelte';
+	import ComponentExamples from '$lib/components/component-examples.svelte';
 	import InstallationTabs from '$lib/components/installation-tabs.svelte';
 	import { absoluteUrl, buildOgUrl, pageTitle } from '$lib/metadata';
 	import { Button } from '$lib/components/ui/button/index.js';
-	import { siteConfig } from '$lib/config';
 	import * as Breadcrumb from '$lib/components/ui/breadcrumb/index.js';
 	import type { PageData } from './$types';
 
@@ -36,6 +37,7 @@
 </svelte:head>
 
 <div class="container py-8 md:py-12">
+	<DocsEnhancer />
 	<div
 		class="xl:grid xl:grid-cols-[10px_1fr_200px] lg:grid-cols-[0px_1fr_200px] xl:gap-8 max-w-[1600px] mx-auto"
 	>
@@ -126,8 +128,10 @@
 					>
 						Installation
 					</h2>
-					<InstallationTabs item={data.id} />
+					<InstallationTabs item={data.id} source={data.registrySource} />
 				</section>
+
+				<ComponentExamples id={data.id} />
 			{/if}
 
 			{#if DocComponent}
@@ -168,35 +172,6 @@
 					<div></div>
 				{/if}
 			</nav>
-
-			<div
-				class="not-prose mt-8 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-muted-foreground"
-			>
-				<a
-					href={`${siteConfig.links.github}/edit/main/src/docs/${data.id}/doc.md`}
-					target="_blank"
-					rel="noreferrer"
-					class="hover:text-foreground transition-colors"
-				>
-					Edit this page
-				</a>
-				<a
-					href="https://x.com/intent/follow?screen_name=tomm_ui"
-					target="_blank"
-					rel="noreferrer"
-					class="hover:text-foreground transition-colors"
-				>
-					X Follow @tomm_ui
-				</a>
-				<a
-					href={siteConfig.links.discord}
-					target="_blank"
-					rel="noreferrer"
-					class="hover:text-foreground transition-colors"
-				>
-					Discord Join community
-				</a>
-			</div>
 		</article>
 
 		<aside class="hidden xl:block sticky top-[90px] h-fit">

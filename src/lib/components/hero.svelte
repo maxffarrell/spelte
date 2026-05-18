@@ -8,7 +8,7 @@
 	import SpotifyCardDemo from '$lib/components/demos/spotify-card-demo.svelte';
 	import PopButtonDemo from '$lib/components/demos/pop-button-demo.svelte';
 	import SignatureDemo from '$lib/components/demos/signature-demo.svelte';
-	import { BookOpen } from 'lucide-svelte';
+	import { BookOpen } from '@lucide/svelte';
 </script>
 
 <div class="flex flex-col items-center w-full pt-6 pb-12 md:pt-14 md:pb-24 gap-8 md:gap-16 px-4">
