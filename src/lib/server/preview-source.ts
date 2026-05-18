@@ -10,13 +10,10 @@ const demoSourceFiles: Record<string, string> = {
 	tweet: 'src/lib/components/demos/tweet-demo.svelte'
 };
 
-function stripScript(source: string) {
-	return source.replace(/<script[\s\S]*?<\/script>\s*/g, '').trim();
-}
-
 function dedent(source: string) {
 	const lines = source.replace(/\t/g, '    ').replace(/\s+$/g, '').split('\n');
 	const nonEmpty = lines.filter((line) => line.trim().length > 0);
+	if (nonEmpty.length === 0) return '';
 	const indent = Math.min(
 		...nonEmpty.map((line) => {
 			const match = line.match(/^ */);
@@ -40,11 +37,23 @@ function extractBranch(source: string, id: string) {
 	return dedent(branch);
 }
 
+export function getUsageSource(content: string) {
+	const usageStart = content.search(/^##\s+Usage\s*$/im);
+	if (usageStart === -1) return '';
+
+	const usageContent = content.slice(usageStart);
+	const nextSection = usageContent.slice(1).search(/\n##\s+/);
+	const section = nextSection === -1 ? usageContent : usageContent.slice(0, nextSection + 1);
+	const fence = section.match(/(?:```|~~~)svelte\s*\n([\s\S]*?)\n(?:```|~~~)/i);
+
+	return dedent(fence?.[1] ?? '');
+}
+
 export async function getPreviewSource(id: string) {
 	const demoSourceFile = demoSourceFiles[id];
 	if (demoSourceFile) {
 		const source = await readFile(join(process.cwd(), demoSourceFile), 'utf-8');
-		return stripScript(source);
+		return dedent(source);
 	}
 
 	const previewSource = await readFile(

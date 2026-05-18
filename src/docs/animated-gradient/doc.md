@@ -63,32 +63,3 @@
   }}
 />
 ```
-
-## Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `config` | `{ preset: 'Prism' \| 'Lava' \| 'Plasma' \| 'Pulse' \| 'Vortex' \| 'Mist' \| 'custom' }` | `{ preset: 'Prism' }` | Gradient config — use preset or custom |
-| `noise` | `{ opacity: number; scale?: number }` | — | Noise overlay |
-| `radius` | `string` | `"0px"` | Border radius |
-| `style` | `string` | — | Inline styles for the container |
-| `class` | `string` | — | Additional CSS classes |
-
-### Custom Config Options
-
-| Option | Type | Description |
-|--------|------|-------------|
-| `color1` | `string` | First gradient color |
-| `color2` | `string` | Second gradient color |
-| `color3` | `string` | Third gradient color |
-| `rotation` | `number` | Gradient rotation angle |
-| `proportion` | `number` | Blend proportion between colors |
-| `scale` | `number` | Gradient scale |
-| `speed` | `number` | Animation speed |
-| `distortion` | `number` | Distortion amount |
-| `swirl` | `number` | Swirl intensity |
-| `swirlIterations` | `number` | Number of swirl iterations |
-| `softness` | `number` | Edge softness |
-| `offset` | `number` | Gradient offset |
-| `shape` | `string` | Shape style |
-| `shapeSize` | `number` | Shape size |

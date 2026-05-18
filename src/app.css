@@ -192,8 +192,8 @@ summary {
   @apply grid min-w-max bg-transparent p-0 text-sm;
 }
 
-.prose pre code::before,
-.prose pre code::after,
+.prose code::before,
+.prose code::after,
 .prose pre code span::before,
 .prose pre code span::after,
 [data-rehype-pretty-code-figure] code::before,

@@ -4,6 +4,7 @@ import { getRegistryItem } from '$lib/registry';
 import {
 	getExampleSourceHtml,
 	getPreviewSource,
+	getUsageSource,
 	highlightSvelte
 } from '$lib/server/preview-source';
 import { getTableOfContents } from '$lib/toc';
@@ -101,7 +102,7 @@ export const load: PageServerLoad = async ({ params }) => {
 	}
 
 	try {
-		previewSource = await getPreviewSource(id);
+		previewSource = getUsageSource(rawContent) || (await getPreviewSource(id));
 		previewSourceHtml = await highlightSvelte(previewSource);
 		exampleSourceHtml = await getExampleSourceHtml(id);
 	} catch {
@@ -115,6 +116,13 @@ export const load: PageServerLoad = async ({ params }) => {
 	const isGettingStarted = gettingStarted?.items.some((i) => i.id === id) ?? false;
 	if (!isGettingStarted) {
 		toc = [{ title: 'Installation', url: '#installation', depth: 2 }, ...toc];
+	}
+	if (id === 'animated-gradient') {
+		toc = [
+			...toc,
+			{ title: 'Props', url: '#props', depth: 2 },
+			{ title: 'Custom Config Options', url: '#custom-config-options', depth: 3 }
+		];
 	}
 
 	return {

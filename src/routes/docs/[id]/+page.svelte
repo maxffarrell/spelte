@@ -5,6 +5,7 @@
 	import DocCopySection from '$lib/components/doc-copy-section.svelte';
 	import ComponentPreview from '$lib/components/component-preview.svelte';
 	import ComponentExamples from '$lib/components/component-examples.svelte';
+	import AnimatedGradientApi from '$lib/components/animated-gradient-api.svelte';
 	import InstallationTabs from '$lib/components/installation-tabs.svelte';
 	import { absoluteUrl, buildOgUrl, pageTitle } from '$lib/metadata';
 	import { Button } from '$lib/components/ui/button/index.js';
@@ -119,7 +120,11 @@
 			</header>
 
 			{#if !data.isGettingStarted}
-				<ComponentPreview id={data.id} previewSourceHtml={data.previewSourceHtml} />
+				<ComponentPreview
+					id={data.id}
+					previewSource={data.previewSource}
+					previewSourceHtml={data.previewSourceHtml}
+				/>
 
 				<section class="not-prose mt-8">
 					<h2
@@ -144,6 +149,10 @@
 				<div class="text-muted-foreground text-sm">
 					Documentation for <strong>{data.item.title}</strong> is coming soon.
 				</div>
+			{/if}
+
+			{#if data.id === 'animated-gradient'}
+				<AnimatedGradientApi />
 			{/if}
 
 			<nav class="not-prose flex items-center justify-between mt-12 pt-12 border-t">

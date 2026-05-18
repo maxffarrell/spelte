@@ -12,8 +12,11 @@
 			const headers = [...table.querySelectorAll('thead th')].map((th) =>
 				th.textContent?.trim().toLowerCase()
 			);
+			const labelIndex = headers.findIndex((header) =>
+				header === 'prop' || header === 'option' || header === 'name'
+			);
 			const descriptionIndex = headers.indexOf('description');
-			if (!headers.includes('prop') || descriptionIndex === -1) continue;
+			if (labelIndex === -1 || descriptionIndex === -1) continue;
 
 			if (table instanceof HTMLElement) table.dataset.propsTableEnhanced = 'true';
 
@@ -71,10 +74,10 @@
 					}
 				}
 
-				if (description && cells[0]) {
+				if (description && cells[labelIndex]) {
 					const content = document.createElement('div');
 					content.className = 'inline-flex items-center gap-1 align-middle';
-					while (cells[0].firstChild) content.append(cells[0].firstChild);
+					while (cells[labelIndex].firstChild) content.append(cells[labelIndex].firstChild);
 
 					const tooltipMount = document.createElement('span');
 					tooltipMount.className = 'inline-flex items-center align-middle text-muted-foreground';
@@ -83,7 +86,7 @@
 						target: tooltipMount,
 						props: { description }
 					});
-					cells[0].append(content);
+					cells[labelIndex].append(content);
 				}
 			}
 		}

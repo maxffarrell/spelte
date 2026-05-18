@@ -35,10 +35,15 @@
     import TweetDemo from "$lib/components/demos/tweet-demo.svelte";
     import * as Tabs from "$lib/components/ui/tabs/index.js";
     import { Button } from "$lib/components/ui/button/index.js";
+    import CodeBlock from "$lib/components/code-block.svelte";
     import { absoluteUrl, cn } from "$lib/utils";
     import { BookOpen } from "@lucide/svelte";
 
-    let { id, previewSourceHtml = "" }: { id: string; previewSourceHtml?: string } = $props();
+    let {
+        id,
+        previewSource = "",
+        previewSourceHtml = "",
+    }: { id: string; previewSource?: string; previewSourceHtml?: string } = $props();
     let tab = $state("preview");
     const fullBleedPreview = $derived(
         id === "light-rays" || id === "animated-gradient",
@@ -200,11 +205,11 @@
         <Tabs.Content value="preview" class="mt-2">
             <div
                 class="flex w-full {fullBleedPreview
-                    ? 'p-0'
-                    : 'p-10'} border rounded-sm not-prose preview justify-center items-center {id ===
+                    ? 'min-h-[500px] overflow-hidden p-0 md:min-h-[350px]'
+                    : 'h-64 overflow-hidden p-10 md:h-80'} border rounded-sm not-prose preview justify-center items-center bg-background text-foreground {id ===
                 'tweet'
                     ? 'min-h-[560px] overflow-auto md:min-h-[640px]'
-                    : 'h-64 overflow-hidden md:h-80'}"
+                    : ''}"
             >
                 {#if id === "badge"}
                     <div class="flex gap-2">
@@ -449,9 +454,9 @@
                 {/if}
             </div>
         </Tabs.Content>
-        <Tabs.Content value="code" class="not-prose mt-2 [&_pre]:my-0 [&_pre]:h-64 [&_pre]:overflow-auto [&_pre]:rounded-sm [&_pre]:border [&_pre]:bg-background [&_pre]:p-4 [&_pre]:font-mono [&_pre]:text-sm [&_pre]:leading-relaxed md:[&_pre]:h-80">
-            {#if previewSourceHtml}
-                {@html previewSourceHtml}
+        <Tabs.Content value="code" class="not-prose mt-2 [&_pre]:h-64 md:[&_pre]:h-80">
+            {#if previewSource}
+                <CodeBlock source={previewSource} html={previewSourceHtml} />
             {:else}
                 <div
                     class="rounded-md border bg-muted/30 p-4 font-mono text-sm text-muted-foreground"
