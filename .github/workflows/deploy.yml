@@ -37,6 +37,9 @@ jobs:
       - name: Check
         run: pnpm check
 
+      - name: Build
+        run: pnpm build
+
       - name: Deploy
         run: pnpm deploy
         env:
