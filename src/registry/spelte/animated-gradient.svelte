@@ -4,10 +4,13 @@
 	type PatternShape = 'Checks' | 'Stripes' | 'Edge';
 	type PresetName = 'Prism' | 'Lava' | 'Plasma' | 'Pulse' | 'Vortex' | 'Mist';
 
-	interface PresetParams {
+	interface PresetColors {
 		color1: string;
 		color2: string;
 		color3: string;
+	}
+
+	interface PresetParams extends PresetColors {
 		rotation: number;
 		proportion: number;
 		scale: number;
@@ -19,6 +22,7 @@
 		offset: number;
 		shape: PatternShape;
 		shapeSize: number;
+		lightColors?: PresetColors;
 	}
 
 	type GradientConfig =
@@ -41,6 +45,11 @@
 			color1: '#050505',
 			color2: '#66B3FF',
 			color3: '#FFFFFF',
+			lightColors: {
+				color1: '#FAFAFA',
+				color2: '#66B3FF',
+				color3: '#050505'
+			},
 			rotation: -50,
 			proportion: 1,
 			scale: 0.01,
@@ -57,6 +66,11 @@
 			color1: '#FF9F21',
 			color2: '#FF0303',
 			color3: '#000000',
+			lightColors: {
+				color1: '#FF9F21',
+				color2: '#FF0303',
+				color3: '#FAFAFA'
+			},
 			rotation: 114,
 			proportion: 100,
 			scale: 0.52,
@@ -73,6 +87,11 @@
 			color1: '#B566FF',
 			color2: '#000000',
 			color3: '#000000',
+			lightColors: {
+				color1: '#B566FF',
+				color2: '#FAFAFA',
+				color3: '#FAFAFA'
+			},
 			rotation: 0,
 			proportion: 63,
 			scale: 0.75,
@@ -89,6 +108,11 @@
 			color1: '#66FF85',
 			color2: '#000000',
 			color3: '#000000',
+			lightColors: {
+				color1: '#66FF85',
+				color2: '#FAFAFA',
+				color3: '#FAFAFA'
+			},
 			rotation: -167,
 			proportion: 92,
 			scale: 0,
@@ -105,6 +129,11 @@
 			color1: '#000000',
 			color2: '#FFFFFF',
 			color3: '#000000',
+			lightColors: {
+				color1: '#FAFAFA',
+				color2: '#000000',
+				color3: '#FAFAFA'
+			},
 			rotation: 50,
 			proportion: 41,
 			scale: 0.4,
@@ -121,6 +150,11 @@
 			color1: '#050505',
 			color2: '#FF66B8',
 			color3: '#050505',
+			lightColors: {
+				color1: '#FAFAFA',
+				color2: '#FF66B8',
+				color3: '#FAFAFA'
+			},
 			rotation: 0,
 			proportion: 33,
 			scale: 0.48,
@@ -153,6 +187,7 @@
 	let canvas: HTMLCanvasElement;
 	let animationId: number | undefined;
 	let resizeObserver: ResizeObserver | undefined;
+	let isLightTheme = $state(false);
 
 	const params = $derived.by((): PresetParams => {
 		if (config.preset === 'custom') {
@@ -175,7 +210,11 @@
 		}
 
 		const preset = presets[config.preset ?? 'Prism'];
-		return { ...preset, speed: config.speed ?? preset.speed };
+		return {
+			...preset,
+			...(isLightTheme && preset.lightColors ? preset.lightColors : null),
+			speed: config.speed ?? preset.speed
+		};
 	});
 
 	function resize(gl: WebGL2RenderingContext) {
@@ -190,6 +229,17 @@
 	}
 
 	onMount(() => {
+		const updateTheme = () => {
+			isLightTheme = !document.documentElement.classList.contains('dark');
+		};
+		updateTheme();
+
+		const themeObserver = new MutationObserver(updateTheme);
+		themeObserver.observe(document.documentElement, {
+			attributeFilter: ['class'],
+			attributes: true
+		});
+
 		const gl = canvas.getContext('webgl2', {
 			premultipliedAlpha: true,
 			alpha: true,
@@ -290,6 +340,7 @@
 		return () => {
 			if (animationId !== undefined) cancelAnimationFrame(animationId);
 			resizeObserver?.disconnect();
+			themeObserver.disconnect();
 			context.deleteProgram(program);
 			context.deleteShader(vertexShader);
 			context.deleteShader(fragmentShader);

@@ -30,7 +30,7 @@
   <div class="absolute top-4 left-4 z-10 flex gap-2 flex-wrap">
     {#each presets as preset}
       <button
-        class="px-3 py-1 text-sm font-medium tracking-tight cursor-pointer rounded-full transition-colors {activePreset === preset ? 'bg-foreground text-background' : 'bg-background/60 text-foreground'}"
+        class="px-3 py-1 text-sm font-medium tracking-tight cursor-pointer rounded-full transition-colors {activePreset === preset ? 'bg-foreground text-background' : 'bg-transparent text-foreground'}"
         onclick={() => (activePreset = preset)}
       >
         {preset}
