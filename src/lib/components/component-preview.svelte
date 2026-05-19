@@ -204,12 +204,11 @@
     {#key previewKey}
         <Tabs.Content value="preview" class="mt-2">
             <div
-                class="flex w-full {fullBleedPreview
-                    ? 'min-h-[500px] overflow-hidden p-0 md:min-h-[350px]'
-                    : 'h-64 overflow-hidden p-10 md:h-80'} border rounded-sm not-prose preview justify-center items-center bg-background text-foreground {id ===
-                'tweet'
-                    ? 'min-h-[560px] overflow-auto md:min-h-[640px]'
-                    : ''}"
+                class="flex w-full {id === 'tweet'
+                    ? 'min-h-[720px] overflow-visible p-6 md:min-h-[780px] md:p-10'
+                    : fullBleedPreview
+                      ? 'min-h-[500px] overflow-hidden p-0 md:min-h-[350px]'
+                      : 'h-64 overflow-hidden p-10 md:h-80'} border rounded-sm not-prose preview justify-center items-center bg-background text-foreground"
             >
                 {#if id === "badge"}
                     <div class="flex gap-2">

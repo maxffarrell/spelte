@@ -1,11 +1,62 @@
 <script lang="ts">
-	import { tick } from 'svelte';
-	import { animate, inView as motionInView } from 'motion-sv';
-	import opentype from 'opentype.js';
-	import { lastoriaBoldRegularBase64 } from '$lib/assets/lastoria-bold-regular';
+	import { browser } from '$app/environment';
 	import { cn } from '$lib/utils';
+	import { motion, type AnimationOptions, type Transition } from 'motion-sv';
+	import opentype from 'opentype.js';
+	import type { SVGAttributes } from 'svelte/elements';
 
-	interface Props {
+	type GlyphLike = {
+		advanceWidth?: number;
+		getPath: (
+			x: number,
+			y: number,
+			fontSize: number
+		) => {
+			toPathData: (decimalPlaces?: number) => string;
+		};
+	};
+
+	type FontLike = {
+		unitsPerEm: number;
+		forEachGlyph: (
+			text: string,
+			x: number,
+			y: number,
+			fontSize: number,
+			options: {
+				kerning?: boolean;
+				features?: {
+					liga?: boolean;
+					rlig?: boolean;
+				};
+			},
+			callback: (
+				glyph: GlyphLike,
+				glyphX: number,
+				glyphY: number,
+				glyphFontSize: number
+			) => void
+		) => void;
+		getAdvanceWidth: (
+			text: string,
+			fontSize: number,
+			options: {
+				kerning?: boolean;
+				features?: {
+					liga?: boolean;
+					rlig?: boolean;
+				};
+			}
+		) => number;
+	};
+
+	type SignaturePath = {
+		id: string;
+		d: string;
+		delay: number;
+	};
+
+	interface SignatureProps extends SVGAttributes<SVGSVGElement> {
 		text?: string;
 		color?: string;
 		fontSize?: number;
@@ -13,9 +64,14 @@
 		delay?: number;
 		class?: string;
 		inView?: boolean;
-		inViewProp?: boolean;
 		once?: boolean;
 	}
+
+	let height = 100;
+	let strokeTransition: AnimationOptions = {
+		type: 'tween',
+		ease: 'easeInOut'
+	};
 
 	let {
 		text = 'Signature',
@@ -25,211 +81,142 @@
 		delay = 0,
 		class: className,
 		inView = false,
-		inViewProp,
 		once = true
-	}: Props = $props();
+	}: SignatureProps = $props();
 
-	const height = 100;
-	const horizontalPadding = $derived(fontSize * 0.1);
-	const topMargin = $derived(Math.max(5, (height - fontSize) / 2));
-	const baseline = $derived(Math.min(height - 5, topMargin + fontSize));
-	const shouldAnimateInView = $derived(inViewProp ?? inView);
-	const maskId = `signature-reveal-${Math.random().toString(36).slice(2)}`;
+	let paths = $state<SignaturePath[]>([]);
+	let width = $state(300);
 
-	let paths = $state<string[]>([]);
-	let svgWidth = $state(300);
-	let svgEl: SVGSVGElement | undefined = $state();
-	let animationRun = 0;
-	let cleanupInView: (() => void) | undefined;
-	let pathEls: SVGPathElement[] = [];
-	let maskPathEls: SVGPathElement[] = [];
-
-	function registerPath(el: SVGPathElement) {
-		pathEls.push(el);
-		return {
-			destroy() {
-				pathEls = pathEls.filter((pathEl) => pathEl !== el);
-			}
-		};
-	}
-
-	function registerMaskPath(el: SVGPathElement) {
-		maskPathEls.push(el);
-		return {
-			destroy() {
-				maskPathEls = maskPathEls.filter((pathEl) => pathEl !== el);
-			}
-		};
-	}
-
-	$effect(() => {
-		let cancelled = false;
-
-		async function load() {
-			try {
-				let font: opentype.Font | undefined;
-				const fontPaths = [
-					'/LastoriaBoldRegular.otf',
-					'./LastoriaBoldRegular.otf',
-					`${window.location.origin}/LastoriaBoldRegular.otf`
-				];
-
-				for (const path of fontPaths) {
-					try {
-						font = await opentype.load(path);
-						break;
-					} catch {
-						// Try the next path, matching the upstream component.
-					}
-				}
-
-				if (!font) {
-					const binary = atob(lastoriaBoldRegularBase64);
-					const bytes = Uint8Array.from(binary, (char) => char.charCodeAt(0));
-					font = opentype.parse(bytes.buffer);
-				}
-
-				if (!font) throw new Error('Font could not be loaded from any path');
-
-				let x = horizontalPadding;
-				const nextPaths: string[] = [];
-
-				for (const char of text) {
-					const glyph = font.charToGlyph(char);
-					const path = glyph.getPath(x, baseline, fontSize);
-					nextPaths.push(path.toPathData(3));
-
-					const advanceWidth = glyph.advanceWidth ?? font.unitsPerEm;
-					x += advanceWidth * (fontSize / font.unitsPerEm);
-				}
-
-				if (cancelled) return;
-				pathEls = [];
-				maskPathEls = [];
-				paths = nextPaths;
-				svgWidth = x + horizontalPadding;
-			} catch {
-				if (cancelled) return;
-				pathEls = [];
-				maskPathEls = [];
-				paths = [];
-				svgWidth = text.length * fontSize * 0.6;
-			}
-		}
-
-		load();
-
-		return () => {
-			cancelled = true;
-		};
+	let horizontalPadding = $derived(fontSize * 0.1);
+	let topMargin = $derived(Math.max(5, (height - fontSize) / 2));
+	let baseline = $derived(Math.min(height - 5, topMargin + fontSize));
+	let pathVariants = $derived({
+		hidden: { pathLength: 0, opacity: 1, fillOpacity: 0 },
+		visible: { pathLength: 1, opacity: 1, fillOpacity: 1 }
 	});
 
-	function preparePath(el: SVGPathElement) {
-		const length = el.getTotalLength();
-		el.style.strokeDasharray = `${length}`;
-		el.style.strokeDashoffset = `${length}`;
-		el.style.opacity = '0';
-	}
+	let requestId = 0;
 
-	function runAnimation() {
-		const run = ++animationRun;
-		const animatedPaths = [...maskPathEls, ...pathEls];
+	async function buildPaths() {
+		if (!browser) {
+			return;
+		}
 
-		for (const [i, el] of animatedPaths.entries()) {
-			const idx = i % Math.max(paths.length, 1);
-			preparePath(el);
+		let currentRequest = ++requestId;
 
-			const length = el.getTotalLength();
-			const controls = animate(
-				el,
-				{ strokeDashoffset: [length, 0], opacity: [0, 1] },
-				{
-					delay: delay + idx * 0.2,
-					duration,
-					ease: 'easeInOut',
-					opacity: {
-						delay: delay + idx * 0.2 + 0.01,
-						duration: 0.01
+		try {
+			let response = await fetch('/LastoriaBoldRegular.otf');
+
+			if (!response.ok) {
+				throw new Error(`Failed to load font: ${response.status}`);
+			}
+
+			let font = opentype.parse(await response.arrayBuffer()) as FontLike;
+			let nextPaths: SignaturePath[] = [];
+			let fontOptions = {
+				kerning: true,
+				features: {
+					liga: true,
+					rlig: true
+				}
+			};
+
+			font.forEachGlyph(
+				text,
+				horizontalPadding,
+				baseline,
+				fontSize,
+				fontOptions,
+				(glyph, glyphX, glyphY, glyphFontSize) => {
+					let pathData = glyph
+						.getPath(glyphX, glyphY, glyphFontSize)
+						.toPathData(3)
+						.trim();
+
+					if (pathData) {
+						nextPaths.push({
+							id: `path-${nextPaths.length}`,
+							d: pathData,
+							delay: delay + nextPaths.length * 0.2
+						});
 					}
 				}
 			);
 
-			controls.finished.catch(() => {});
-			controls.finished.then(() => {
-				if (run !== animationRun) return;
-				el.style.strokeDashoffset = '0';
-				el.style.opacity = '1';
-			});
+			if (currentRequest !== requestId) {
+				return;
+			}
+
+			paths = nextPaths;
+			width = Math.max(
+				font.getAdvanceWidth(text, fontSize, fontOptions) + horizontalPadding * 2,
+				fontSize
+			);
+		} catch {
+			if (currentRequest !== requestId) {
+				return;
+			}
+
+			paths = [];
+			width = Math.max(text.length * fontSize * 0.6, fontSize * 2);
 		}
 	}
 
 	$effect(() => {
-		if (!svgEl || paths.length === 0) return;
+		text;
+		fontSize;
+		baseline;
+		horizontalPadding;
+		delay;
 
-		cleanupInView?.();
-		cleanupInView = undefined;
-
-		tick().then(() => {
-			if (!svgEl || paths.length === 0) return;
-
-			if (shouldAnimateInView) {
-				cleanupInView = motionInView(svgEl, () => {
-					runAnimation();
-					if (once) return () => {};
-				});
-			} else {
-				runAnimation();
-			}
-		});
-
-		return () => {
-			cleanupInView?.();
-			cleanupInView = undefined;
-		};
+		buildPaths();
 	});
+
+	function getTransition(pathDelay: number): Transition {
+		return {
+			pathLength: {
+				...strokeTransition,
+				delay: pathDelay,
+				duration
+			},
+			opacity: {
+				type: 'tween',
+				delay: pathDelay,
+				duration: 0.01
+			},
+			fillOpacity: {
+				type: 'tween',
+				delay: pathDelay + duration * 0.65,
+				duration: Math.min(0.25, duration * 0.35)
+			}
+		};
+	}
 </script>
 
-<svg
-	bind:this={svgEl}
-	width={svgWidth}
-	height={height}
-	viewBox="0 0 {svgWidth} {height}"
-	fill="none"
-	class={cn(className)}
->
-	<defs>
-		<mask id={maskId} maskUnits="userSpaceOnUse">
-			{#each paths as d, i}
-				<path
-					use:registerMaskPath
-					{d}
-					stroke="white"
-					stroke-width={fontSize * 0.22}
-					fill="none"
-					vector-effect="non-scaling-stroke"
-					stroke-linecap="round"
-					stroke-linejoin="round"
-				/>
-			{/each}
-		</mask>
-	</defs>
-
-	{#each paths as d, i}
-		<path
-			use:registerPath
-			{d}
-			stroke={color}
-			stroke-width="2"
-			fill="none"
-			vector-effect="non-scaling-stroke"
-			stroke-linecap="butt"
-			stroke-linejoin="round"
-		/>
-	{/each}
-
-	<g mask="url(#{maskId})">
-		{#each paths as d, i}
-			<path {d} fill={color} />
+<div class="pointer-events-none">
+	<motion.svg
+		{width}
+		{height}
+		viewBox={`0 0 ${width} ${height}`}
+		fill="none"
+		class={cn('overflow-visible', className)}
+		initial="hidden"
+		whileInView={inView ? 'visible' : undefined}
+		animate={inView ? undefined : 'visible'}
+		inViewOptions={{ once, amount: 0.35 }}
+	>
+		{#each paths as path (path.id)}
+			<motion.path
+				d={path.d}
+				stroke={color}
+				stroke-width={2}
+				fill={color}
+				variants={pathVariants}
+				transition={getTransition(path.delay)}
+				vector-effect="non-scaling-stroke"
+				stroke-linecap="butt"
+				stroke-linejoin="round"
+			/>
 		{/each}
-	</g>
-</svg>
+	</motion.svg>
+</div>

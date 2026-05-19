@@ -9,9 +9,14 @@
 	}: CommandPrimitive.ListProps = $props();
 </script>
 
-<CommandPrimitive.List
-	bind:ref
-	data-slot="command-list"
-	class={cn("no-scrollbar max-h-[min(25rem,calc(100vh-13rem))] scroll-py-2 overflow-x-hidden overflow-y-auto p-2 outline-none", className)}
-	{...restProps}
-/>
+<div
+	data-slot="scroll-area-viewport"
+	class="no-scrollbar max-h-[min(25rem,calc(100vh-13rem))] overflow-x-hidden overflow-y-auto"
+>
+	<CommandPrimitive.List
+		bind:ref
+		data-slot="command-list"
+		class={cn("not-empty:scroll-py-2 not-empty:p-2", className)}
+		{...restProps}
+	/>
+</div>

@@ -6,7 +6,6 @@
         Product: [
             { label: "Docs", href: "/docs/introduction" },
             { label: "Components", href: "/docs/components" },
-            { label: "MCP", href: "/docs/mcp" },
             { label: "Sponsor", href: "https://github.com/sponsors/tomm" },
         ],
         Social: [

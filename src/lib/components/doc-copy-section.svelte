@@ -1,12 +1,21 @@
 <script lang="ts">
     import { cn } from '$lib/utils';
     import { Check, ChevronDown, Copy } from '@lucide/svelte';
-    import { Button } from '$lib/components/ui/button/index.js';
-    import * as DropdownMenu from '$lib/components/ui/dropdown-menu/index.js';
+    import { DropdownMenu as DropdownMenuPrimitive, Popover as PopoverPrimitive } from 'bits-ui';
 
     let { content, url }: { content: string; url: string } = $props();
 
     let copied = $state(false);
+
+    const buttonBase = "inline-flex shrink-0 cursor-pointer items-center justify-center gap-2 rounded-md text-sm font-medium whitespace-nowrap transition-all outline-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4";
+    const buttonSecondary = "bg-secondary text-secondary-foreground hover:bg-secondary/80";
+    const buttonOutline = "border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground dark:border-input dark:bg-input/30 dark:hover:bg-input/50";
+    const buttonGhost = "hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50";
+    const buttonSm = "h-8 gap-1.5 rounded-md px-3 has-[>svg]:px-2.5";
+    const buttonIcon = "size-9";
+    const dropdownContentClass = "bg-popover text-popover-foreground data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 z-50 max-h-(--radix-dropdown-menu-content-available-height) min-w-[8rem] origin-[--radix-dropdown-menu-content-transform-origin] overflow-x-hidden overflow-y-auto rounded-md border p-1 shadow-md w-48";
+    const dropdownItemClass = "focus:bg-accent focus:text-accent-foreground data-[variant=destructive]:text-destructive data-[variant=destructive]:focus:bg-destructive/10 dark:data-[variant=destructive]:focus:bg-destructive/20 data-[variant=destructive]:focus:text-destructive data-[variant=destructive]:*:[svg]:!text-destructive [&_svg:not([class*='text-'])]:text-muted-foreground relative flex cursor-default items-center gap-2 rounded-sm px-2 py-1.5 text-sm outline-hidden select-none data-[disabled]:pointer-events-none data-[disabled]:opacity-50 data-[inset]:pl-8 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4";
+    const popoverContentClass = "bg-popover text-popover-foreground data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 z-50 origin-[--radix-popover-content-transform-origin] rounded-md border p-4 shadow-md outline-hidden w-52";
 
     async function handleCopy() {
         try {
@@ -38,21 +47,25 @@ Help me understand how to use it. Be ready to explain concepts, give examples, o
             key: "markdown",
             label: "View as Markdown",
             href: `${pathname}.md`,
+            iconClass: "h-4 w-4",
         },
         {
             key: "v0",
             label: "Open in v0",
             href: getPromptUrl("https://v0.dev", url),
+            iconClass: undefined,
         },
         {
             key: "chatgpt",
             label: "Open in ChatGPT",
             href: getPromptUrl("https://chatgpt.com", url),
+            iconClass: undefined,
         },
         {
             key: "claude",
             label: "Open in Claude",
             href: getPromptUrl("https://claude.ai/new", url),
+            iconClass: undefined,
         },
     ]);
 
@@ -85,70 +98,106 @@ Help me understand how to use it. Be ready to explain concepts, give examples, o
     }
 </script>
 
-<div
-    class="mr-2 hidden overflow-hidden rounded-md bg-secondary shadow-none md:inline-flex"
->
-    <Button
-        class="relative cursor-pointer rounded-none border-0 bg-transparent shadow-none hover:bg-secondary/80 focus-visible:z-10"
-        variant="secondary"
-        size="sm"
-        onclick={handleCopy}
-    >
-        <div class="flex items-center gap-2">
-            <div class="relative w-4 h-4">
-                <div
-                    class={cn(
-                        "absolute inset-0 transition-all duration-200 flex items-center justify-center",
-                        copied
-                            ? "scale-100 opacity-100 blur-none"
-                            : "scale-70 opacity-0 blur-[2px]",
-                    )}
-                >
-                    <Check class="h-4 w-4 text-emerald-500" />
+<PopoverPrimitive.Root>
+    <div class="hidden md:inline-flex -space-x-px rounded-full shadow-none rtl:space-x-reverse mr-2">
+        <button
+            class={cn(buttonBase, buttonSecondary, buttonSm, "rounded-none border-r-1 shadow-none first:rounded-s-md last:rounded-e-md focus-visible:z-10 relative cursor-pointer")}
+            onclick={handleCopy}
+        >
+            <div class="flex items-center gap-2">
+                <div class="relative w-4 h-4">
+                    <div
+                        class={cn(
+                            "absolute inset-0 transition-all duration-200 flex items-center justify-center",
+                            copied
+                                ? "scale-100 opacity-100 blur-none"
+                                : "scale-70 opacity-0 blur-[2px]",
+                        )}
+                    >
+                        <Check class="h-4 w-4 text-emerald-500" />
+                    </div>
+                    <div
+                        class={cn(
+                            "absolute inset-0 transition-all duration-200 flex items-center justify-center",
+                            copied
+                                ? "scale-0 opacity-0 blur-[2px]"
+                                : "scale-100 opacity-100 blur-none",
+                        )}
+                    >
+                        <Copy
+                            class="h-4 w-4 text-muted-foreground dark:text-[#b5b5b5]"
+                        />
+                    </div>
                 </div>
-                <div
-                    class={cn(
-                        "absolute inset-0 transition-all duration-200 flex items-center justify-center",
-                        copied
-                            ? "scale-0 opacity-0 blur-[2px]"
-                            : "scale-100 opacity-100 blur-none",
-                    )}
-                >
-                    <Copy
-                        class="h-4 w-4 text-muted-foreground dark:text-[#b5b5b5]"
-                    />
-                </div>
+                <span>Copy this page</span>
             </div>
-            <span>Copy this page</span>
-        </div>
-    </Button>
+        </button>
 
-    <DropdownMenu.Root>
-        <DropdownMenu.Trigger>
+        <DropdownMenuPrimitive.Root>
+            <DropdownMenuPrimitive.Trigger class="hidden sm:flex">
+                {#snippet child({ props })}
+                    <button
+                        {...props}
+                        class={cn(props.class as string, buttonBase, buttonSecondary, buttonIcon, "cursor-pointer rounded-l-none size-8 shadow-none first:rounded-s-md last:rounded-e-md focus-visible:z-10 ")}
+                        aria-label="Open options"
+                    >
+                        <ChevronDown size={16} aria-hidden="true" />
+                    </button>
+                {/snippet}
+            </DropdownMenuPrimitive.Trigger>
+            <DropdownMenuPrimitive.Portal>
+                <DropdownMenuPrimitive.Content align="end" sideOffset={4} class={dropdownContentClass}>
+                    {#each menuItems as item}
+                        {@const icon = iconSvg(item.key)}
+                        <DropdownMenuPrimitive.Item class={dropdownItemClass}>
+                            {#snippet child({ props })}
+                                <a
+                                    {...props}
+                                    href={item.href}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class={cn(props.class as string, "flex items-center gap-2")}
+                                >
+                                    <svg stroke-linejoin="round" viewBox={icon.viewBox} class={item.iconClass} aria-hidden="true">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d={icon.path} fill="currentColor" />
+                                    </svg>
+                                    {item.label}
+                                </a>
+                            {/snippet}
+                        </DropdownMenuPrimitive.Item>
+                    {/each}
+                </DropdownMenuPrimitive.Content>
+            </DropdownMenuPrimitive.Portal>
+        </DropdownMenuPrimitive.Root>
+
+        <PopoverPrimitive.Trigger class="flex sm:hidden">
             {#snippet child({ props })}
-                <Button
-                    class="hidden size-8 cursor-pointer rounded-none border-0 border-l border-border bg-transparent shadow-none hover:bg-secondary/80 focus-visible:z-10 sm:flex"
-                    variant="secondary"
-                    size="icon"
-                    aria-label="Open options"
+                <button
                     {...props}
+                    class={cn(props.class as string, buttonBase, buttonOutline, buttonIcon, "rounded-none size-8 shadow-none first:rounded-s-md last:rounded-e-md focus-visible:z-10")}
+                    aria-label="Open options"
                 >
                     <ChevronDown size={16} aria-hidden="true" />
-                </Button>
+                </button>
             {/snippet}
-        </DropdownMenu.Trigger>
-        <DropdownMenu.Content align="end" class="w-48">
+        </PopoverPrimitive.Trigger>
+    </div>
+    <PopoverPrimitive.Portal>
+        <PopoverPrimitive.Content class={popoverContentClass} align="start" sideOffset={4}>
             {#each menuItems as item}
                 {@const icon = iconSvg(item.key)}
-                <DropdownMenu.Item>
-                    <a href={item.href} target="_blank" rel="noopener noreferrer" class="flex w-full items-center gap-2">
-                        <svg stroke-linejoin="round" viewBox={icon.viewBox} class="h-4 w-4" aria-hidden="true">
-                            <path fill-rule="evenodd" clip-rule="evenodd" d={icon.path} fill="currentColor" />
-                        </svg>
-                        {item.label}
-                    </a>
-                </DropdownMenu.Item>
+                <a
+                    href={item.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class={cn(buttonBase, buttonGhost, buttonSm, "w-full justify-start flex items-center gap-2")}
+                >
+                    <svg stroke-linejoin="round" viewBox={icon.viewBox} class={item.iconClass} aria-hidden="true">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d={icon.path} fill="currentColor" />
+                    </svg>
+                    {item.label}
+                </a>
             {/each}
-        </DropdownMenu.Content>
-    </DropdownMenu.Root>
-</div>
+        </PopoverPrimitive.Content>
+    </PopoverPrimitive.Portal>
+</PopoverPrimitive.Root>

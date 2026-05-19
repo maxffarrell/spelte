@@ -67,13 +67,15 @@ export async function getPreviewSource(id: string) {
 export async function highlightSvelte(source: string) {
 	if (!source) return '';
 
-	return codeToHtml(source, {
+	const html = await codeToHtml(source, {
 		lang: 'svelte',
 		themes: {
 			dark: 'github-dark',
 			light: 'github-light'
 		}
 	});
+
+	return html.replace(/style="color:(#[0-9A-Fa-f]{3,8});/g, 'style="color:$1;--shiki-light:$1;');
 }
 
 function readQuoted(source: string, index: number) {

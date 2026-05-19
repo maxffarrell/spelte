@@ -33,6 +33,6 @@
 | `fontSize` | `number` | `14` | Font size for glyph conversion |
 | `duration` | `number` | `1.5` | Animation duration per character (seconds) |
 | `delay` | `number` | `0` | Delay before first character animates (seconds) |
-| `inViewProp` | `boolean` | `false` | Trigger only when in viewport |
+| `inView` | `boolean` | `false` | Trigger only when in viewport |
 | `once` | `boolean` | `true` | Only animate once |
 | `class` | `string` | — | Additional CSS classes |

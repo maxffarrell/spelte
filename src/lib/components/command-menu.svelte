@@ -84,7 +84,8 @@
 <Command.Dialog bind:open>
 	<Command.Input placeholder="Type a command or search..." />
 	<div
-		class="-mx-px min-h-0 flex-1 overflow-hidden rounded-t-[calc(var(--radius-2xl)-1px)] border border-b-0 bg-background bg-clip-padding shadow-xs/5"
+		data-slot="command-panel"
+		class="-mx-px not-has-[+[data-slot=command-footer]]:-mb-px relative min-h-0 rounded-t-xl not-has-[+[data-slot=command-footer]]:rounded-b-2xl border border-b-0 bg-popover bg-clip-padding shadow-xs/5 [clip-path:inset(0_1px)] not-has-[+[data-slot=command-footer]]:[clip-path:inset(0_1px_1px_1px_round_0_0_calc(var(--radius-2xl)-1px)_calc(var(--radius-2xl)-1px))] before:pointer-events-none before:absolute before:inset-0 before:rounded-t-[calc(var(--radius-xl)-1px)] **:data-[slot=scroll-area-scrollbar]:mt-2"
 	>
 		<Command.List>
 			<Command.Empty>The search results could not be found.</Command.Empty>
@@ -115,7 +116,8 @@
 		</Command.List>
 	</div>
 	<div
-		class="z-10 flex items-center justify-between gap-3 rounded-b-[calc(var(--radius-2xl)-1px)] border-t px-5 py-3 text-xs text-muted-foreground"
+		data-slot="command-footer"
+		class="flex items-center justify-between gap-3 rounded-b-[calc(var(--radius-2xl)-1px)] border-t px-5 py-3 text-muted-foreground text-xs z-10"
 	>
 		<div class="flex items-center gap-1.5">
 			<span class="whitespace-nowrap">Go to Page</span>

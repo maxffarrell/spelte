@@ -15,11 +15,6 @@ export const basicDoc: DocSchema = [
         id: "components",
         description: "Browse all available components in Spelte.",
       },
-      {
-        title: "MCP",
-        id: "mcp",
-        description: "Use Spelte with AI coding tools through MCP.",
-      },
     ],
   },
 ];
