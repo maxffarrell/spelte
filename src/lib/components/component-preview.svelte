@@ -249,10 +249,17 @@
                         <LightRays
                             backgroundColor="var(--background)"
                             style="z-index: 0"
+                            raysColor={{
+                                mode: "multi",
+                                color1: "#2060DF",
+                                color2: "#ffffff",
+                            }}
                         />
-                        <div class="z-10 flex h-full text-primary gap-2">
+                        <div
+                            class="z-10 flex h-full flex-col items-center gap-2 text-primary"
+                        >
                             <p class="text-4xl font-semibold tracking-tighter">
-                                Beautiful
+                                Multi Colored
                             </p>
                             <p class="text-4xl font-medium italic font-serif">
                                 Light Rays
