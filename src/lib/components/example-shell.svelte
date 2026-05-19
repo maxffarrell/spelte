@@ -8,8 +8,9 @@
 		title,
 		source,
 		fullBleed = false,
+		codeOnly = false,
 		children
-	}: { title: string; source: string; fullBleed?: boolean; children?: Snippet } = $props();
+	}: { title: string; source: string; fullBleed?: boolean; codeOnly?: boolean; children?: Snippet } = $props();
 
 	const triggerClass =
 		'rounded-md cursor-pointer data-[state=active]:bg-white px-2 text-center data-[state=active]:shadow-[0_0_0_1px_rgba(0,0,0,.08),_0px_2px_2px_rgba(0,0,0,.04)] data-[state=active]:dark:bg-[#0B0B09]';
@@ -29,6 +30,11 @@
 <h3 id={headingId} class="font-heading mt-8 scroll-m-20 text-xl font-semibold tracking-tight">
 	{title}
 </h3>
+{#if codeOnly}
+	<div class="not-prose mt-4">
+		<CodeBlock {source} html={getExampleSourceHtml()[title]} />
+	</div>
+{:else}
 <Tabs.Root value="preview">
 	<div class="flex items-center justify-between not-prose">
 		<Tabs.List class="bg-transparent">
@@ -47,3 +53,4 @@
 		<CodeBlock {source} html={getExampleSourceHtml()[title]} />
 	</Tabs.Content>
 </Tabs.Root>
+{/if}

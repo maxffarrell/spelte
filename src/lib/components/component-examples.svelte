@@ -350,7 +350,7 @@
   <div class="relative z-10 flex gap-2 p-4 flex-wrap">
     {#each presets as preset}
       <button
-        class="px-3 py-1 text-sm font-medium tracking-tight cursor-pointer rounded-full transition-colors {activePreset === preset ? 'bg-foreground text-background' : 'bg-transparent text-white mix-blend-difference'}"
+        class="px-3 py-1 text-sm font-medium tracking-tight cursor-pointer rounded-full transition-colors {activePreset === preset ? 'bg-foreground text-background' : 'bg-background/60 text-foreground'}"
         onclick={() => (activePreset = preset)}
       >
         {preset}
@@ -359,7 +359,7 @@
   </div>
 
   <div class="relative z-10 flex-1 flex items-center justify-center">
-    <p class="text-4xl font-semibold tracking-tighter text-white mix-blend-difference">
+    <p class="text-4xl font-semibold tracking-tighter text-foreground">
       {activePreset}
     </p>
   </div>
@@ -379,7 +379,7 @@
                                 class="px-3 py-1 text-sm font-medium tracking-tight cursor-pointer rounded-full transition-colors {activeAnimatedGradientPreset ===
                                 preset
                                     ? 'bg-foreground text-background'
-                                    : 'bg-transparent text-white mix-blend-difference'}"
+                                    : 'bg-background/60 text-foreground'}"
                                 onclick={() =>
                                     (activeAnimatedGradientPreset = preset)}
                             >
@@ -391,7 +391,7 @@
                     <div
                         class="relative z-10 flex-1 flex items-center justify-center"
                     >
-                        <p class="text-4xl font-semibold tracking-tighter text-white mix-blend-difference">
+                        <p class="text-4xl font-semibold tracking-tighter text-foreground">
                             {activeAnimatedGradientPreset}
                         </p>
                     </div>
@@ -399,7 +399,7 @@
             </ExampleShell>
             <ExampleShell
                 title="Custom Configuration"
-                fullBleed
+                codeOnly
                 source={`<AnimatedGradient
   config={{
     preset: 'custom',
@@ -411,34 +411,7 @@
     swirl: 60,
   }}
 />`}
-            >
-                <div
-                    class="relative min-h-[500px] w-full md:min-h-[350px] flex items-center justify-center"
-                >
-                    <div
-                        class="z-10 flex flex-col items-center gap-1 text-white mix-blend-difference"
-                    >
-                        <p class="text-4xl font-semibold tracking-tighter">
-                            Custom
-                        </p>
-                        <p class="text-4xl font-medium italic font-serif">
-                            Configuration
-                        </p>
-                    </div>
-                    <AnimatedGradient
-                        style="z-index: 0;"
-                        config={{
-                            preset: "custom",
-                            color1: "#1a1a2e",
-                            color2: "#16213e",
-                            color3: "#0f3460",
-                            rotation: 45,
-                            speed: 25,
-                            swirl: 60,
-                        }}
-                    />
-                </div>
-            </ExampleShell>
+            />
         {/if}
     </section>
 {/if}

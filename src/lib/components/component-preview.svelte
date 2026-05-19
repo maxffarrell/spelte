@@ -264,7 +264,7 @@
                         class="relative min-h-[500px] w-full md:min-h-[350px] flex items-center justify-center"
                     >
                         <div
-                            class="z-10 flex flex-col items-center gap-1 text-white mix-blend-difference"
+                            class="z-10 flex flex-col items-center gap-1 text-foreground"
                         >
                             <p class="text-4xl font-semibold tracking-tighter">
                                 Animated
