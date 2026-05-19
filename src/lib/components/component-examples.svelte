@@ -260,19 +260,29 @@
         {:else if id === "rich-button"}
             <ExampleShell
                 title="Color"
-                source={'<RichButton class="bg-blue-600">Blue</RichButton>'}
+                source={`<div class="relative flex gap-4">
+  <RichButton color="zinc">Button</RichButton>
+  <RichButton color="amber">Button</RichButton>
+  <RichButton color="purple">Button</RichButton>
+</div>`}
             >
-                <RichButton class="bg-blue-600 text-white hover:bg-blue-600/90"
-                    >Blue</RichButton
-                >
+                <div class="relative flex gap-4">
+                    <RichButton color="zinc">Button</RichButton>
+                    <RichButton color="amber">Button</RichButton>
+                    <RichButton color="purple">Button</RichButton>
+                </div>
             </ExampleShell>
             <ExampleShell
                 title="Size"
-                source={'<RichButton size="lg">Large</RichButton>'}
+                source={`<div class="flex flex-wrap items-center gap-4">
+  <RichButton size="sm">Small</RichButton>
+  <RichButton size="default">Default</RichButton>
+  <RichButton size="lg">Large</RichButton>
+</div>`}
             >
-                <div class="flex items-center gap-3">
+                <div class="flex flex-wrap items-center gap-4">
                     <RichButton size="sm">Small</RichButton>
-                    <RichButton>Default</RichButton>
+                    <RichButton size="default">Default</RichButton>
                     <RichButton size="lg">Large</RichButton>
                 </div>
             </ExampleShell>
