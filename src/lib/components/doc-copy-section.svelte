@@ -27,13 +27,17 @@
         }
     }
 
-    function getPathname(value: string) {
-        try {
-            return new URL(value).pathname;
-        } catch {
-            return value || '/docs';
-        }
-    }
+	function getPathname(value: string) {
+		try {
+			return new URL(value).pathname;
+		} catch {
+			return value || '/docs';
+		}
+	}
+
+	function getMarkdownUrl(value: string) {
+		return `${value.replace(/\/$/, '')}.md`;
+	}
 
     function getPromptUrl(baseUrl: string, value: string) {
         return `${baseUrl}?q=${encodeURIComponent(`I'm looking at this spelte documentation: https://spelte.dev${value}.
@@ -43,12 +47,12 @@ Help me understand how to use it. Be ready to explain concepts, give examples, o
     const pathname = $derived(getPathname(url));
 
     const menuItems = $derived([
-        {
-            key: "markdown",
-            label: "View as Markdown",
-            href: `${pathname}.md`,
-            iconClass: "h-4 w-4",
-        },
+		{
+			key: "markdown",
+			label: "View as Markdown",
+			href: getMarkdownUrl(pathname),
+			iconClass: "h-4 w-4",
+		},
         {
             key: "v0",
             label: "Open in v0",
