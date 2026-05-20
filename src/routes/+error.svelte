@@ -36,7 +36,7 @@
 	});
 </script>
 
-<div class="flex h-svh flex-col items-center justify-center gap-6">
+<div class="flex h-svh flex-col items-center justify-center gap-6 bg-background text-foreground">
 	<div class="flex flex-col items-start justify-center gap-8 px-6">
 		<div class="flex max-w-[400px] flex-col gap-12">
 			<div
