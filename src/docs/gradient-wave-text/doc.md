@@ -1,27 +1,3 @@
-## Usage
-
-```svelte
-<script>
-  import GradientWaveText from '$registry/spelte/gradient-wave-text.svelte';
-</script>
-
-<GradientWaveText class="text-3xl md:text-5xl font-medium tracking-[-.03em]">
-  Just ship things.
-</GradientWaveText>
-```
-
-## Examples
-
-### Size
-
-~~~svelte
-<div class="flex flex-col gap-4 font-medium">
-  <GradientWaveText class="text-lg">Beautiful gradient text</GradientWaveText>
-  <GradientWaveText class="text-2xl">Beautiful gradient text</GradientWaveText>
-  <GradientWaveText class="text-4xl">Beautiful gradient text</GradientWaveText>
-</div>
-~~~
-
 ## Props
 
 | Prop | Type | Default | Description |

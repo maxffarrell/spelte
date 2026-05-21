@@ -1,24 +1,15 @@
-## Usage
-
-```svelte
 <script>
-  import CopyButton from '$registry/spelte/copy-button.svelte';
+	import ExampleShell from '$lib/components/example-shell.svelte';
+	import CopyButtonSizeExample from '$lib/components/examples/copy-button/size.svelte';
 </script>
-
-<CopyButton value="Text to copy" />
-```
 
 ## Examples
 
-### Size
-
-~~~svelte
-<div class="flex items-center gap-4">
-  <CopyButton value="Small" size="sm" />
-  <CopyButton value="Default" />
-  <CopyButton value="Large" size="lg" />
-</div>
-~~~
+<ExampleShell title="Size" name="copy-button/size">
+	{#snippet preview()}
+		<CopyButtonSizeExample />
+	{/snippet}
+</ExampleShell>
 
 ## Props
 

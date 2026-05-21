@@ -3,11 +3,39 @@ import { readFile } from 'fs/promises';
 import { join } from 'path';
 
 const demoSourceFiles: Record<string, string> = {
+	'animated-checkbox': 'src/lib/components/demos/animated-checkbox-demo.svelte',
+	'animated-gradient': 'src/lib/components/demos/animated-gradient-demo.svelte',
+	badge: 'src/lib/components/demos/badge-demo.svelte',
+	'bars-spinner': 'src/lib/components/demos/bars-spinner-demo.svelte',
+	'blur-reveal': 'src/lib/components/demos/blur-reveal-demo.svelte',
+	chart: 'src/lib/components/demos/chart-demo.svelte',
+	'color-selector': 'src/lib/components/demos/color-selector-demo.svelte',
+	'copy-button': 'src/lib/components/demos/copy-button-demo.svelte',
 	'exploding-input': 'src/lib/components/demos/exploding-input-demo.svelte',
+	'fallback-avatar': 'src/lib/components/demos/fallback-avatar-demo.svelte',
+	'flow-button': 'src/lib/components/demos/flow-button-demo.svelte',
+	'gradient-wave-text': 'src/lib/components/demos/gradient-wave-text-demo.svelte',
+	'highlighted-text': 'src/lib/components/demos/highlighted-text-demo.svelte',
+	kbd: 'src/lib/components/demos/kbd-demo.svelte',
+	'label-input': 'src/lib/components/demos/label-input-demo.svelte',
+	'light-rays': 'src/lib/components/demos/light-rays-demo.svelte',
+	'logos-carousel': 'src/lib/components/demos/logos-carousel-demo.svelte',
+	marquee: 'src/lib/components/demos/marquee-demo.svelte',
+	'perspective-book': 'src/lib/components/demos/perspective-book-demo.svelte',
 	'pop-button': 'src/lib/components/demos/pop-button-demo.svelte',
+	'qr-code': 'src/lib/components/demos/qr-code-demo.svelte',
+	'randomized-text': 'src/lib/components/demos/randomized-text-demo.svelte',
+	'rich-button': 'src/lib/components/demos/rich-button-demo.svelte',
+	'shimmer-text': 'src/lib/components/demos/shimmer-text-demo.svelte',
 	signature: 'src/lib/components/demos/signature-demo.svelte',
+	'slide-up-text': 'src/lib/components/demos/slide-up-text-demo.svelte',
+	'special-text': 'src/lib/components/demos/special-text-demo.svelte',
+	spinner: 'src/lib/components/demos/spinner-demo.svelte',
 	'spotify-card': 'src/lib/components/demos/spotify-card-demo.svelte',
-	tweet: 'src/lib/components/demos/tweet-demo.svelte'
+	'text-marquee': 'src/lib/components/demos/text-marquee-demo.svelte',
+	'tilt-card': 'src/lib/components/demos/tilt-card-demo.svelte',
+	tweet: 'src/lib/components/demos/tweet-demo.svelte',
+	'words-stagger': 'src/lib/components/demos/words-stagger-demo.svelte'
 };
 
 function dedent(source: string) {
@@ -22,19 +50,6 @@ function dedent(source: string) {
 	);
 
 	return lines.map((line) => line.slice(indent)).join('\n').trim();
-}
-
-function extractBranch(source: string, id: string) {
-	const branchStart = new RegExp(`\\{(?:(?:#if)|(?::else if)) id === "${id}"\\}`);
-	const match = branchStart.exec(source);
-	if (!match) return '';
-
-	const start = match.index + match[0].length;
-	const rest = source.slice(start);
-	const nextBranch = rest.search(/\n\s*\{:(?:else if|else)\b|\n\s*\{\/if\}/);
-	const branch = nextBranch === -1 ? rest : rest.slice(0, nextBranch);
-
-	return dedent(branch);
 }
 
 export function getUsageSource(content: string) {
@@ -56,12 +71,7 @@ export async function getPreviewSource(id: string) {
 		return dedent(source);
 	}
 
-	const previewSource = await readFile(
-		join(process.cwd(), 'src/lib/components/component-preview.svelte'),
-		'utf-8'
-	);
-
-	return extractBranch(previewSource, id);
+	return '';
 }
 
 export async function highlightSvelte(source: string) {
@@ -76,129 +86,4 @@ export async function highlightSvelte(source: string) {
 	});
 
 	return html.replace(/style="color:(#[0-9A-Fa-f]{3,8});/g, 'style="color:$1;--shiki-light:$1;');
-}
-
-function readQuoted(source: string, index: number) {
-	const quote = source[index];
-	let value = '';
-
-	for (let i = index + 1; i < source.length; i += 1) {
-		const char = source[i];
-		if (char === '\\') {
-			value += char + (source[i + 1] ?? '');
-			i += 1;
-			continue;
-		}
-		if (char === quote) {
-			return { value, end: i + 1 };
-		}
-		value += char;
-	}
-
-	return null;
-}
-
-function readBalanced(source: string, index: number) {
-	let depth = 0;
-	let value = '';
-
-	for (let i = index; i < source.length; i += 1) {
-		const char = source[i];
-
-		if (char === '"' || char === "'" || char === '`') {
-			const quoted = readQuoted(source, i);
-			if (!quoted) return null;
-			value += source.slice(i, quoted.end);
-			i = quoted.end - 1;
-			continue;
-		}
-
-		if (char === '{') {
-			if (depth > 0) value += char;
-			depth += 1;
-			continue;
-		}
-
-		if (char === '}') {
-			depth -= 1;
-			if (depth === 0) {
-				return { value, end: i + 1 };
-			}
-			value += char;
-			continue;
-		}
-
-		value += char;
-	}
-
-	return null;
-}
-
-function parseAttribute(tag: string, name: string) {
-	const match = new RegExp(`${name}=([{"'\`])`).exec(tag);
-	if (!match) return '';
-
-	const start = match.index + match[0].length - 1;
-	if (tag[start] === '{') {
-		const balanced = readBalanced(tag, start);
-		if (!balanced) return '';
-		const expression = balanced.value.trim();
-		try {
-			return Function(`"use strict"; return (${expression});`)();
-		} catch {
-			return '';
-		}
-	}
-
-	const quoted = readQuoted(tag, start);
-	return quoted?.value ?? '';
-}
-
-function decodeSource(value: string) {
-	return value.replace(/<\\\/script>/g, '</script>');
-}
-
-function findTagEnd(source: string, index: number) {
-	for (let i = index; i < source.length; i += 1) {
-		const char = source[i];
-		if (char === '"' || char === "'" || char === '`') {
-			const quoted = readQuoted(source, i);
-			if (!quoted) return -1;
-			i = quoted.end - 1;
-			continue;
-		}
-		if (char === '{') {
-			const balanced = readBalanced(source, i);
-			if (!balanced) return -1;
-			i = balanced.end - 1;
-			continue;
-		}
-		if (char === '>') return i;
-	}
-
-	return -1;
-}
-
-export async function getExampleSourceHtml(id: string) {
-	const source = await readFile(
-		join(process.cwd(), 'src/lib/components/component-examples.svelte'),
-		'utf-8'
-	);
-	const branch = extractBranch(source, id);
-	const snippets = new Map<string, string>();
-
-	for (const match of branch.matchAll(/<ExampleShell\b/g)) {
-		const tagStart = match.index ?? 0;
-		const tagEnd = findTagEnd(branch, tagStart);
-		if (tagEnd === -1) continue;
-
-		const tag = branch.slice(tagStart, tagEnd + 1);
-		const title = parseAttribute(tag, 'title');
-		const exampleSource = decodeSource(parseAttribute(tag, 'source'));
-		if (!title || !exampleSource) continue;
-
-		snippets.set(title, await highlightSvelte(exampleSource));
-	}
-
-	return Object.fromEntries(snippets);
 }

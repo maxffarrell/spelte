@@ -1,74 +1,22 @@
-## Usage
-
-```svelte
 <script>
-  import Chart from '$registry/spelte/chart.svelte';
-
-  const data = [12, 18, 15, 24, 22, 30, 28, 35, 42, 38, 48, 56];
+	import ExampleShell from '$lib/components/example-shell.svelte';
+	import ChartWithLabelsExample from '$lib/components/examples/chart/with-labels.svelte';
+	import ChartCustomColorExample from '$lib/components/examples/chart/custom-color.svelte';
 </script>
-
-<Chart {data} />
-```
-
-The chart auto-scales the Y axis to the data range. Hover snaps to the nearest data point.
 
 ## Examples
 
-### With Labels
+<ExampleShell title="With Labels" name="chart/with-labels">
+	{#snippet preview()}
+		<ChartWithLabelsExample />
+	{/snippet}
+</ExampleShell>
 
-~~~svelte
-<Chart
-  data={[1820, 1884, 1912, 1875, 1930, 2010, 1988]}
-  labels={['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']}
-  name="Revenue"
-/>
-~~~
-
-### Custom Tooltip Format
-
-~~~svelte
-<Chart
-  data={[1820, 1884, 1912, 1875, 1930, 2010, 1988]}
-  labels={['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul']}
-  name="ETH / USD"
-  formatValue={(value) =>
-    value.toLocaleString('en-US', {
-      style: 'currency',
-      currency: 'USD',
-      maximumFractionDigits: 0
-    })}
-/>
-~~~
-
-### Without Animation
-
-~~~svelte
-<Chart
-  data={[1820, 1884, 1912, 1875, 1930, 2010, 1988]}
-  labels={['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul']}
-  name="NVDA"
-  color="#A855F7"
-  animated={false}
-  formatValue={(value) =>
-    value.toLocaleString('en-US', {
-      style: 'currency',
-      currency: 'USD',
-      maximumFractionDigits: 2
-    })}
-/>
-~~~
-
-### Reveal Effect
-
-~~~svelte
-<Chart data={[1820, 1884, 1912, 1875, 1930, 2010, 1988]} reveal />
-~~~
-
-### Custom Color
-
-~~~svelte
-<Chart data={[1820, 1884, 1912, 1875, 1930, 2010, 1988]} color="#ff6b6b" />
-~~~
+<ExampleShell title="Custom Color" name="chart/custom-color">
+	{#snippet preview()}
+		<ChartCustomColorExample />
+	{/snippet}
+</ExampleShell>
 
 ## Props
 

@@ -1,32 +1,22 @@
-## Usage
-
-```svelte
 <script>
-  import LabelInput from '$registry/spelte/label-input.svelte';
+	import ExampleShell from '$lib/components/example-shell.svelte';
+	import LabelInputPasswordInputExample from '$lib/components/examples/label-input/password-input.svelte';
+	import LabelInputRingColorExample from '$lib/components/examples/label-input/ring-color.svelte';
 </script>
-
-<LabelInput label="Email" type="email" />
-<LabelInput label="Password" type="password" />
-<LabelInput label="Name" ringColor="blue" />
-```
 
 ## Examples
 
-### Password Input
+<ExampleShell title="Password Input" name="label-input/password-input">
+	{#snippet preview()}
+		<LabelInputPasswordInputExample />
+	{/snippet}
+</ExampleShell>
 
-~~~svelte
-<LabelInput label="Password" type="password" ringColor="blue" class="max-w-72" />
-~~~
-
-### Ring Color
-
-~~~svelte
-<div class="flex gap-4 max-md:flex-col">
-  <LabelInput label="Primary" ringColor="primary" class="max-w-40" />
-  <LabelInput label="Orange" ringColor="orange" class="max-w-40" />
-  <LabelInput label="Blue" ringColor="blue" class="max-w-40" />
-</div>
-~~~
+<ExampleShell title="Ring Color" name="label-input/ring-color">
+	{#snippet preview()}
+		<LabelInputRingColorExample />
+	{/snippet}
+</ExampleShell>
 
 ## Props
 

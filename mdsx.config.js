@@ -1,3 +1,5 @@
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
 import { defineConfig } from 'mdsx';
 import rehypePrettyCode from 'rehype-pretty-code';
 import remarkGfm from 'remark-gfm';
@@ -82,56 +84,50 @@ function rehypeCodeBlockA11y() {
 	};
 }
 
-function rehypeRemoveExamplesSection() {
-	const supported = new Set([
-		'badge',
-		'flow-button',
-		'color-selector',
-		'spinner',
-		'blur-reveal',
-		'highlighted-text',
-		'kbd',
-		'label-input',
-		'marquee',
-		'fallback-avatar',
-		'qr-code',
-		'randomized-text',
-		'rich-button',
-		'shimmer-text',
-		'slide-up-text',
-		'special-text',
-		'words-stagger',
-		'chart',
-		'copy-button',
-	]);
+function rehypeComponentExample() {
+	return (tree) => {
+		function visit(node) {
+			if (!node || typeof node !== 'object') return;
 
-	return (tree, file) => {
-		const path = file.path ?? file.history?.[0] ?? '';
-		const match = path.match(/src\/docs\/([^/]+)\/doc\.md$/);
-		if (!match || !supported.has(match[1])) return;
-		if (!Array.isArray(tree.children)) return;
+			if (node.type === 'raw' && /^<ExampleShell\b/.test(node.value)) {
+				const name = node.value.match(/\sname="([^"]+)"/)?.[1];
+				if (!name || /\ssource=/.test(node.value)) return;
 
-		const children = tree.children;
-		const nextChildren = [];
-		let skipping = false;
+				const source = readExampleSource(name);
+				if (!source) return;
 
-		for (const child of children) {
-			if (child.type === 'element' && child.tagName === 'h2') {
-				const text = getNodeText(child).trim().toLowerCase();
-				if (text === 'examples') {
-					skipping = true;
-					continue;
-				}
-				skipping = false;
+				node.value = node.value.replace(
+					/^(<ExampleShell\b[^>]*)(>)/,
+					`$1 source={${JSON.stringify(escapeSvelteSource(source))}}$2`,
+				);
 			}
 
-			if (!skipping) {
-				nextChildren.push(child);
+			if (Array.isArray(node.children)) {
+				for (let childIndex = 0; childIndex < node.children.length; childIndex += 1) {
+					visit(node.children[childIndex]);
+				}
 			}
 		}
 
-		tree.children = nextChildren;
+		visit(tree);
 	};
+}
+
+function escapeSvelteSource(source) {
+	return source.replaceAll('</script>', '<\\/script>');
+}
+
+function readExampleSource(name) {
+	if (!/^[a-z0-9-]+\/[a-z0-9-]+$/.test(name)) return '';
+
+	try {
+		return readFileSync(
+			join(process.cwd(), 'src/lib/components/examples', `${name}.svelte`),
+			'utf-8',
+		).trim();
+	} catch {
+		return '';
+	}
 }
 
 export const mdsxConfig = defineConfig({
@@ -139,7 +135,7 @@ export const mdsxConfig = defineConfig({
 	svelteConfigPath: false,
 	remarkPlugins: [remarkGfm],
 	rehypePlugins: [
-		rehypeRemoveExamplesSection,
+		rehypeComponentExample,
 		rehypeHeadingIds,
 		[rehypePrettyCode, prettyCodeOptions],
 		rehypeCodeBlockA11y,

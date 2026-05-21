@@ -1,36 +1,22 @@
-## Usage
-
-```svelte
 <script>
-  import FlowButton from '$registry/spelte/flow-button.svelte';
+	import ExampleShell from '$lib/components/example-shell.svelte';
+	import FlowButtonSizeExample from '$lib/components/examples/flow-button/size.svelte';
+	import FlowButtonColorExample from '$lib/components/examples/flow-button/color.svelte';
 </script>
-
-<FlowButton>Click me</FlowButton>
-```
 
 ## Examples
 
-### Size
+<ExampleShell title="Size" name="flow-button/size">
+	{#snippet preview()}
+		<FlowButtonSizeExample />
+	{/snippet}
+</ExampleShell>
 
-~~~svelte
-<div class="flex items-center gap-4">
-  <FlowButton size="sm">Small</FlowButton>
-  <FlowButton size="default">Default</FlowButton>
-  <FlowButton size="lg">Large</FlowButton>
-</div>
-~~~
-
-### Color
-
-~~~svelte
-<div class="flex flex-wrap gap-4">
-  <FlowButton borderColor="var(--primary)">Primary</FlowButton>
-  <FlowButton borderColor="var(--color-red-500)">Red</FlowButton>
-  <FlowButton borderColor="var(--color-blue-500)">Blue</FlowButton>
-  <FlowButton borderColor="var(--color-purple-500)">Purple</FlowButton>
-  <FlowButton borderColor="var(--color-green-500)">Green</FlowButton>
-</div>
-~~~
+<ExampleShell title="Color" name="flow-button/color">
+	{#snippet preview()}
+		<FlowButtonColorExample />
+	{/snippet}
+</ExampleShell>
 
 ## Props
 

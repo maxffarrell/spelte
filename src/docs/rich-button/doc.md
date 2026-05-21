@@ -1,36 +1,22 @@
-## Usage
-
-```svelte
 <script>
-  import RichButton from '$registry/spelte/rich-button.svelte';
+	import ExampleShell from '$lib/components/example-shell.svelte';
+	import RichButtonColorExample from '$lib/components/examples/rich-button/color.svelte';
+	import RichButtonSizeExample from '$lib/components/examples/rich-button/size.svelte';
 </script>
-
-<RichButton>Default</RichButton>
-<RichButton color="blue">Blue</RichButton>
-<RichButton size="lg">Large</RichButton>
-```
 
 ## Examples
 
-### Color
+<ExampleShell title="Color" name="rich-button/color">
+	{#snippet preview()}
+		<RichButtonColorExample />
+	{/snippet}
+</ExampleShell>
 
-~~~svelte
-<div class="relative flex gap-4">
-  <RichButton color="zinc">Button</RichButton>
-  <RichButton color="amber">Button</RichButton>
-  <RichButton color="purple">Button</RichButton>
-</div>
-~~~
-
-### Size
-
-~~~svelte
-<div class="flex flex-wrap items-center gap-4">
-  <RichButton size="sm">Small</RichButton>
-  <RichButton size="default">Default</RichButton>
-  <RichButton size="lg">Large</RichButton>
-</div>
-~~~
+<ExampleShell title="Size" name="rich-button/size">
+	{#snippet preview()}
+		<RichButtonSizeExample />
+	{/snippet}
+</ExampleShell>
 
 ## Props
 

@@ -1,48 +1,22 @@
-## Examples
-
-### Color
-
-~~~svelte
-<div class="flex flex-wrap gap-2">
-  <Badge variant="red">Red</Badge>
-  <Badge variant="blue">Blue</Badge>
-  <Badge variant="green">Green</Badge>
-  <Badge variant="yellow">Yellow</Badge>
-  <Badge variant="purple">Purple</Badge>
-  <Badge variant="pink">Pink</Badge>
-  <Badge variant="orange">Orange</Badge>
-  <Badge variant="cyan">Cyan</Badge>
-  <Badge variant="indigo">Indigo</Badge>
-  <Badge variant="violet">Violet</Badge>
-  <Badge variant="rose">Rose</Badge>
-  <Badge variant="amber">Amber</Badge>
-  <Badge variant="lime">Lime</Badge>
-  <Badge variant="emerald">Emerald</Badge>
-  <Badge variant="sky">Sky</Badge>
-  <Badge variant="fuchsia">Fuchsia</Badge>
-</div>
-~~~
-
-### Size
-
-~~~svelte
-<div class="flex items-center gap-4">
-  <Badge size="sm">Small</Badge>
-  <Badge size="default">Default</Badge>
-</div>
-~~~
-
-## Usage
-
-```svelte
 <script>
-  import Badge from '$registry/spelte/badge.svelte';
+	import ExampleShell from '$lib/components/example-shell.svelte';
+	import BadgeColorExample from '$lib/components/examples/badge/color.svelte';
+	import BadgeSizeExample from '$lib/components/examples/badge/size.svelte';
 </script>
 
-<Badge>Default</Badge>
-<Badge variant="blue">Blue</Badge>
-<Badge size="sm">Small</Badge>
-```
+## Examples
+
+<ExampleShell title="Color" name="badge/color">
+	{#snippet preview()}
+		<BadgeColorExample />
+	{/snippet}
+</ExampleShell>
+
+<ExampleShell title="Size" name="badge/size">
+	{#snippet preview()}
+		<BadgeSizeExample />
+	{/snippet}
+</ExampleShell>
 
 ## Props
 

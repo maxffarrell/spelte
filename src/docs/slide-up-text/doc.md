@@ -1,48 +1,15 @@
-## Usage
-
-```svelte
 <script>
-  import SlideUpText from '$registry/spelte/slide-up-text.svelte';
+	import ExampleShell from '$lib/components/example-shell.svelte';
+	import SlideUpTextSplitByExample from '$lib/components/examples/slide-up-text/split-by.svelte';
 </script>
-
-<SlideUpText text="Your text here" />
-```
 
 ## Examples
 
-### Split By
-
-~~~svelte
-<div class="flex flex-col gap-8">
-  <div>
-    <span class="mb-2 font-mono text-sm text-muted-foreground">BY WORDS</span>
-    <SlideUpText text="Beautiful animated text" split="words" class="text-xl font-medium" />
-  </div>
-  <div>
-    <span class="mb-2 font-mono text-sm text-muted-foreground">BY CHARACTERS</span>
-    <SlideUpText text="You just can ship things." split="characters" stagger={0.02} class="text-xl font-medium" />
-  </div>
-</div>
-~~~
-
-### From
-
-~~~svelte
-<div class="flex flex-col gap-8">
-  <div>
-    <span class="mb-2 font-mono text-sm text-muted-foreground">FROM FIRST</span>
-    <SlideUpText text="Animation from first word" from="first" class="text-xl font-medium" />
-  </div>
-  <div>
-    <span class="mb-2 font-mono text-sm text-muted-foreground">FROM LAST</span>
-    <SlideUpText text="Animation from last word" from="last" class="text-xl font-medium" />
-  </div>
-  <div>
-    <span class="mb-2 font-mono text-sm text-muted-foreground">FROM CENTER</span>
-    <SlideUpText text="Animation from center outward" from="center" class="text-xl font-medium" />
-  </div>
-</div>
-~~~
+<ExampleShell title="Split By" name="slide-up-text/split-by">
+	{#snippet preview()}
+		<SlideUpTextSplitByExample />
+	{/snippet}
+</ExampleShell>
 
 ## Props
 

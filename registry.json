@@ -75,8 +75,8 @@
           "type": "registry:component"
         }
       ],
-      "dependencies": ["three"],
       "registryDependencies": [],
+      "dependencies": ["three"],
       "category": "background"
     },
     {
@@ -360,8 +360,8 @@
           "type": "registry:component"
         }
       ],
-      "dependencies": ["motion-sv"],
       "registryDependencies": [],
+      "dependencies": ["motion-sv"],
       "category": "display"
     },
     {

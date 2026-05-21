@@ -15,38 +15,6 @@ To use the playful DynaPuff font, add it to your app:
 }
 ```
 
-## Examples
-
-### Color
-
-```svelte
-<div class="flex flex-wrap gap-3 font-semibold not-sm:flex-col">
-  <PopButton color="default">Button</PopButton>
-  <PopButton color="amber">Button</PopButton>
-  <PopButton color="purple">Button</PopButton>
-</div>
-```
-
-### Size
-
-```svelte
-<div class="flex flex-wrap items-center gap-4 font-semibold not-sm:flex-col">
-  <PopButton size="sm" color="violet">Small</PopButton>
-  <PopButton size="default" color="violet">Default</PopButton>
-  <PopButton size="lg" color="violet">Large</PopButton>
-</div>
-```
-
-## Usage
-
-```svelte
-<script>
-  import PopButton from '$registry/spelte/pop-button.svelte';
-</script>
-
-<PopButton color="violet" size="default">Button</PopButton>
-```
-
 ## Props
 
 | Prop | Type | Default | Description |

@@ -1,14 +1,3 @@
-## Usage
-
-```svelte
-<script>
-  import AnimatedCheckbox from '$registry/spelte/animated-checkbox.svelte';
-</script>
-
-<AnimatedCheckbox title="Task to complete" />
-<AnimatedCheckbox title="Already done" defaultChecked />
-```
-
 ## Props
 
 | Prop | Type | Default | Description |

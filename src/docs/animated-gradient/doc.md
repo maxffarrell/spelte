@@ -1,65 +1,20 @@
-## Usage
-
-```svelte
 <script>
-  import AnimatedGradient from '$registry/spelte/animated-gradient.svelte';
+	import ExampleShell from '$lib/components/example-shell.svelte';
+	import AnimatedGradientPresetsExample from '$lib/components/examples/animated-gradient/presets.svelte';
+	import AnimatedGradientCustomConfigurationExample from '$lib/components/examples/animated-gradient/custom-configuration.svelte';
 </script>
-
-<div class="relative min-h-[500px] w-full md:min-h-[350px] flex items-center justify-center">
-  <div class="z-10 flex flex-col items-center gap-1 text-foreground">
-    <p class="text-4xl font-semibold tracking-tighter">Animated</p>
-    <p class="text-4xl font-medium italic font-serif">Gradient</p>
-  </div>
-  <AnimatedGradient style="z-index: 0;" config={{ preset: 'Prism' }} />
-</div>
-```
 
 ## Examples
 
-### Presets
+<ExampleShell title="Presets" fullBleed>
+	{#snippet preview()}
+		<AnimatedGradientPresetsExample />
+	{/snippet}
+</ExampleShell>
 
-```svelte
-<script>
-  import AnimatedGradient from '$registry/spelte/animated-gradient.svelte';
+<ExampleShell title="Custom Configuration" fullBleed>
+	{#snippet preview()}
+		<AnimatedGradientCustomConfigurationExample />
+	{/snippet}
+</ExampleShell>
 
-  const presets = ['Lava', 'Prism', 'Plasma', 'Pulse', 'Vortex', 'Mist'];
-  let activePreset = $state('Lava');
-</script>
-
-<div class="relative min-h-[500px] w-full md:min-h-[350px] flex flex-col">
-  <div class="absolute top-4 left-4 z-10 flex gap-2 flex-wrap">
-    {#each presets as preset}
-      <button
-        class="px-3 py-1 text-sm font-medium tracking-tight cursor-pointer rounded-full transition-colors {activePreset === preset ? 'bg-foreground text-background' : 'bg-transparent text-foreground'}"
-        onclick={() => (activePreset = preset)}
-      >
-        {preset}
-      </button>
-    {/each}
-  </div>
-
-  <div class="z-10 flex flex-col items-center justify-center flex-1 gap-1">
-    <p class="text-4xl font-semibold tracking-tighter text-foreground">
-      {activePreset}
-    </p>
-  </div>
-
-  <AnimatedGradient style="z-index: 0;" config={{ preset: activePreset }} />
-</div>
-```
-
-### Custom Configuration
-
-```svelte
-<AnimatedGradient
-  config={{
-    preset: 'custom',
-    color1: '#1a1a2e',
-    color2: '#16213e',
-    color3: '#0f3460',
-    rotation: 45,
-    speed: 25,
-    swirl: 60,
-  }}
-/>
-```

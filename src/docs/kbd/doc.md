@@ -1,39 +1,15 @@
-## Usage
-
-```svelte
 <script>
-  import Kbd from '$registry/spelte/kbd.svelte';
+	import ExampleShell from '$lib/components/example-shell.svelte';
+	import KbdKeySymbolsExample from '$lib/components/examples/kbd/key-symbols.svelte';
 </script>
-
-<Kbd keys={['cmd', 'K']} />
-<Kbd keys={['ctrl', 'shift', 'P']} />
-<Kbd keys={['alt', 'tab']} />
-```
 
 ## Examples
 
-### Key Symbols
-
-~~~svelte
-<div class="flex flex-wrap gap-4">
-  <Kbd keys={['command']} listenToKeyboard />
-  <Kbd keys={['control']} listenToKeyboard />
-  <Kbd keys={['alt']} listenToKeyboard />
-  <Kbd keys={['up']} listenToKeyboard />
-  <Kbd keys={['down']} listenToKeyboard />
-  <Kbd keys={['left']} listenToKeyboard />
-  <Kbd keys={['right']} listenToKeyboard />
-</div>
-~~~
-
-### Custom Display with Keyboard Listener
-
-~~~svelte
-<div class="flex flex-col items-center gap-4">
-  <p class="text-sm text-muted-foreground">Press M key to activate</p>
-  <Kbd keys={[{ display: 'HOLD', key: 'M' }]} listenToKeyboard />
-</div>
-~~~
+<ExampleShell title="Key Symbols" name="kbd/key-symbols">
+	{#snippet preview()}
+		<KbdKeySymbolsExample />
+	{/snippet}
+</ExampleShell>
 
 ## Props
 

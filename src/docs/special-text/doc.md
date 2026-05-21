@@ -1,33 +1,15 @@
-## Usage
-
-```svelte
 <script>
-  import SpecialText from '$registry/spelte/special-text.svelte';
+	import ExampleShell from '$lib/components/example-shell.svelte';
+	import SpecialTextSpeedExample from '$lib/components/examples/special-text/speed.svelte';
 </script>
-
-<SpecialText text="SPELTE" />
-```
 
 ## Examples
 
-### Speed
-
-~~~svelte
-<div class="flex flex-col gap-4">
-  <div class="flex items-center gap-4">
-    <span class="w-20 font-mono text-sm text-muted-foreground">FAST:</span>
-    <SpecialText text="FAST ANIMATION" speed={10} class="text-lg" />
-  </div>
-  <div class="flex items-center gap-4">
-    <span class="w-20 font-mono text-sm text-muted-foreground">DEFAULT:</span>
-    <SpecialText text="DEFAULT ANIMATION" speed={5} class="text-lg" />
-  </div>
-  <div class="flex items-center gap-4">
-    <span class="w-20 font-mono text-sm text-muted-foreground">SLOW:</span>
-    <SpecialText text="SLOW ANIMATION" speed={2} class="text-lg" />
-  </div>
-</div>
-~~~
+<ExampleShell title="Speed" name="special-text/speed">
+	{#snippet preview()}
+		<SpecialTextSpeedExample />
+	{/snippet}
+</ExampleShell>
 
 ## Props
 

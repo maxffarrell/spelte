@@ -1,29 +1,15 @@
-## Usage
-
-```svelte
 <script>
-  import RandomizedText from '$registry/spelte/randomized-text.svelte';
+	import ExampleShell from '$lib/components/example-shell.svelte';
+	import RandomizedTextSplitByExample from '$lib/components/examples/randomized-text/split-by.svelte';
 </script>
-
-<RandomizedText text="You can just ship things." />
-```
 
 ## Examples
 
-### Split By
-
-~~~svelte
-<div class="flex w-[500px] flex-col items-center justify-start gap-4">
-  <div class="flex flex-col items-start gap-1">
-    <span class="font-mono text-sm text-muted-foreground">BY CHARACTERS</span>
-    <RandomizedText split="chars" class="text-base font-medium tracking-tight" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit." />
-  </div>
-  <div class="flex flex-col items-start gap-1">
-    <span class="font-mono text-sm text-muted-foreground">BY WORDS</span>
-    <RandomizedText split="words" class="text-base font-medium tracking-tight" text="You can just ship things." />
-  </div>
-</div>
-~~~
+<ExampleShell title="Split By" name="randomized-text/split-by">
+	{#snippet preview()}
+		<RandomizedTextSplitByExample />
+	{/snippet}
+</ExampleShell>
 
 ## Props
 

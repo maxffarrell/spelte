@@ -1,27 +1,15 @@
-## Usage
-
-```svelte
 <script>
-  import FallbackAvatar from '$registry/spelte/fallback-avatar.svelte';
+	import ExampleShell from '$lib/components/example-shell.svelte';
+	import FallbackAvatarSizesExample from '$lib/components/examples/fallback-avatar/sizes.svelte';
 </script>
-
-<FallbackAvatar name="username" size={32} />
-```
 
 ## Examples
 
-### Sizes
-
-~~~svelte
-<div class="flex items-end gap-3">
-  {#each [20, 28, 36, 44] as size}
-    <div class="flex flex-col items-center gap-1">
-      <FallbackAvatar class="border" name="spelte" {size} />
-      <span class="text-[11px] text-muted-foreground">{size}px</span>
-    </div>
-  {/each}
-</div>
-~~~
+<ExampleShell title="Sizes" name="fallback-avatar/sizes">
+	{#snippet preview()}
+		<FallbackAvatarSizesExample />
+	{/snippet}
+</ExampleShell>
 
 ## Props
 

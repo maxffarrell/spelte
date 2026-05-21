@@ -1,25 +1,15 @@
-## Usage
-
-```svelte
 <script>
-  import ShimmerText from '$registry/spelte/shimmer-text.svelte';
+	import ExampleShell from '$lib/components/example-shell.svelte';
+	import ShimmerTextColorExample from '$lib/components/examples/shimmer-text/color.svelte';
 </script>
-
-<ShimmerText>Shimmer Effect</ShimmerText>
-```
 
 ## Examples
 
-### Color
-
-~~~svelte
-<div class="flex flex-col gap-4 font-medium">
-  <ShimmerText variant="blue">Thinking longer for a better answer</ShimmerText>
-  <ShimmerText variant="green">Thinking longer for a better answer</ShimmerText>
-  <ShimmerText variant="purple">Thinking longer for a better answer</ShimmerText>
-  <ShimmerText variant="rose">Thinking longer for a better answer</ShimmerText>
-</div>
-~~~
+<ExampleShell title="Color" name="shimmer-text/color">
+	{#snippet preview()}
+		<ShimmerTextColorExample />
+	{/snippet}
+</ExampleShell>
 
 ## Props
 

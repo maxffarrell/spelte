@@ -1,23 +1,3 @@
-## Usage
-
-```svelte
-<script>
-  import Rays from '$registry/spelte/light-rays.svelte';
-</script>
-
-<div class="relative min-h-[500px] w-full md:min-h-[350px] flex items-center justify-center">
-  <Rays
-    backgroundColor="var(--background)"
-    style="z-index: 0;"
-    raysColor={{ mode: 'multi', color1: '#2060DF', color2: '#ffffff' }}
-  />
-  <div class="z-10 flex flex-col items-center h-full gap-2">
-    <p class="text-4xl font-semibold tracking-tighter">Multi Colored</p>
-    <p class="text-4xl font-medium italic font-serif">Light Rays</p>
-  </div>
-</div>
-```
-
 ## Props
 
 | Prop | Type | Default | Description |

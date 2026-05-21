@@ -1,58 +1,22 @@
-## Usage
-
-```svelte
 <script>
-  import ColorSelector from '$registry/spelte/color-selector.svelte';
-
-  let selected = 'blue';
+	import ExampleShell from '$lib/components/example-shell.svelte';
+	import ColorSelectorSizeExample from '$lib/components/examples/color-selector/size.svelte';
+	import ColorSelectorCallbackExample from '$lib/components/examples/color-selector/callback.svelte';
 </script>
-
-<ColorSelector
-  colors={['red', 'blue', 'green']}
-  defaultValue="blue"
-  onColorSelect={(color) => (selected = color)}
-/>
-```
 
 ## Examples
 
-### Size
+<ExampleShell title="Size" name="color-selector/size">
+	{#snippet preview()}
+		<ColorSelectorSizeExample />
+	{/snippet}
+</ExampleShell>
 
-~~~svelte
-<div class="flex flex-col gap-6">
-  <div class="flex flex-col items-start gap-2">
-    <span class="font-mono text-sm text-muted-foreground">SMALL</span>
-    <ColorSelector colors={['red', 'blue', 'green', 'yellow']} defaultValue="red" size="sm" />
-  </div>
-  <div class="flex flex-col items-start gap-2">
-    <span class="font-mono text-sm text-muted-foreground">DEFAULT</span>
-    <ColorSelector colors={['red', 'blue', 'green', 'yellow']} defaultValue="blue" />
-  </div>
-  <div class="flex flex-col items-start gap-2">
-    <span class="font-mono text-sm text-muted-foreground">LARGE</span>
-    <ColorSelector colors={['red', 'blue', 'green', 'yellow']} defaultValue="green" size="lg" />
-  </div>
-</div>
-~~~
-
-### Callback
-
-~~~svelte
-<script>
-  let selectedColor = $state('purple');
-</script>
-
-<div class="flex flex-col items-center gap-4">
-  <ColorSelector
-    colors={['red', 'blue', 'green', 'yellow', 'purple', 'pink', 'orange']}
-    defaultValue={selectedColor}
-    onColorSelect={(color) => (selectedColor = color)}
-  />
-  <p class="text-sm text-muted-foreground">
-    Selected color: <span class="font-semibold">{selectedColor}</span>
-  </p>
-</div>
-~~~
+<ExampleShell title="Callback" name="color-selector/callback">
+	{#snippet preview()}
+		<ColorSelectorCallbackExample />
+	{/snippet}
+</ExampleShell>
 
 ## Props
 

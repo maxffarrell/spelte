@@ -4,7 +4,6 @@
 	import DocsEnhancer from '$lib/components/docs-enhancer.svelte';
 	import DocCopySection from '$lib/components/doc-copy-section.svelte';
 	import ComponentPreview from '$lib/components/component-preview.svelte';
-	import ComponentExamples from '$lib/components/component-examples.svelte';
 	import AnimatedGradientApi from '$lib/components/animated-gradient-api.svelte';
 	import InstallationTabs from '$lib/components/installation-tabs.svelte';
 	import { absoluteUrl, buildOgUrl, pageTitle } from '$lib/metadata';
@@ -140,12 +139,11 @@
 					/>
 				</section>
 
-				<ComponentExamples id={data.id} exampleSourceHtml={data.exampleSourceHtml} />
 			{/if}
 
-			{#if DocComponent}
+			{#if DocComponent && data.rawContent.trim()}
 				<DocComponent />
-			{:else}
+			{:else if !DocComponent}
 				<div class="text-muted-foreground text-sm">
 					Documentation for <strong>{data.item.title}</strong> is coming soon.
 				</div>

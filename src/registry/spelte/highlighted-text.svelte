@@ -1,66 +1,68 @@
 <script lang="ts">
 	import { cn } from '$lib/utils';
-	import { animate, inView } from 'motion-sv';
+	import { motion, useInView, type AnimationOptions, type Variants } from 'motion-sv';
 	import type { Snippet } from 'svelte';
+	import type { HTMLAttributes } from 'svelte/elements';
 
 	type From = 'left' | 'right' | 'top' | 'bottom';
 
-	interface Props {
-		children: Snippet;
+	interface Props extends HTMLAttributes<HTMLSpanElement> {
+		children?: Snippet;
 		class?: string;
 		from?: From;
 		delay?: number;
+		inView?: boolean;
 		inViewProp?: boolean;
 		once?: boolean;
 	}
 
-	let { children, class: className, from = 'bottom', delay = 0, inViewProp = false, once = true }: Props = $props();
+	const transition: AnimationOptions = {
+		type: 'spring',
+		damping: 30,
+		stiffness: 300
+	};
 
-	const fromVariants: Record<From, { hidden: Record<string, string>; visible: Record<string, string> }> = {
+	const fromVariants: Record<From, Variants> = {
 		left: { hidden: { x: '-100%' }, visible: { x: '0%' } },
 		right: { hidden: { x: '100%' }, visible: { x: '0%' } },
 		top: { hidden: { y: '-100%' }, visible: { y: '0%' } },
 		bottom: { hidden: { y: '100%' }, visible: { y: '0%' } }
 	};
 
-	let containerEl = $state<HTMLElement | null>(null);
-	let highlightEl = $state<HTMLElement | null>(null);
+	let {
+		children,
+		class: className,
+		from = 'bottom',
+		delay = 0,
+		inView = false,
+		inViewProp = false,
+		once = true,
+		...props
+	}: Props = $props();
 
-	function runAnimation() {
-		if (!highlightEl) return;
-		const variants = fromVariants[from];
-		Object.assign(highlightEl.style, variants.hidden);
-		animate(highlightEl, variants.visible as Parameters<typeof animate>[1], {
-			type: 'spring',
-			damping: 30,
-			stiffness: 300,
-			delay
-		});
-	}
-
-	$effect(() => {
-		if (!containerEl || !highlightEl) return;
-		const variants = fromVariants[from];
-		Object.assign(highlightEl.style, variants.hidden);
-
-		if (inViewProp) {
-			const cleanup = inView(containerEl, () => {
-				runAnimation();
-				if (once) return () => {};
-			});
-			return cleanup as () => void;
-		} else {
-			runAnimation();
-		}
-	});
+	let element = $state<HTMLSpanElement | null>(null);
+	const triggerInView = $derived(inView || inViewProp);
+	let view = useInView(
+		() => (triggerInView ? element : null)!,
+		() => ({ once }) as any
+	);
+	const variants = $derived(fromVariants[from]);
+	const isVisible = $derived(triggerInView ? view.current : true);
 </script>
 
-<span bind:this={containerEl} class={cn('relative inline-flex overflow-hidden align-baseline', className)}>
-	<span
-		bind:this={highlightEl}
+<span
+	bind:this={element}
+	class={cn('relative inline-flex overflow-hidden align-baseline', className)}
+	{...props}
+>
+	<motion.span
 		class="absolute inset-0 -left-[0.15em] -right-[0.18em] bg-black dark:bg-white z-0"
-	></span>
+		initial="hidden"
+		animate={isVisible ? 'visible' : 'hidden'}
+		{variants}
+		transition={{ ...transition, delay }}
+	/>
 	<span class="relative z-10 mix-blend-difference text-white pl-[0.15em] pr-[0.18em]">
-		{@render children()}
+		{@render children?.()}
 	</span>
 </span>

@@ -370,6 +370,14 @@
 			r = parseInt(parts[0]) / 255;
 			g = parseInt(parts[1]) / 255;
 			b = parseInt(parts[2]) / 255;
+		} else if (hex.startsWith('hsla(') || hex.startsWith('hsl(')) {
+			const isHsla = hex.startsWith('hsla(');
+			const parts = hex.slice(isHsla ? 5 : 4, -1).split(',');
+			const h = parseFloat(parts[0]) / 360;
+			const s = parseFloat(parts[1]) / 100;
+			const l = parseFloat(parts[2]) / 100;
+			a = isHsla ? parseFloat(parts[3]) : 1;
+			[r, g, b] = hslToRgb(h, s, l);
 		} else if (hex.startsWith('#')) {
 			const c = hex.slice(1);
 			if (c.length === 3) {
@@ -385,6 +393,33 @@
 		}
 
 		return [r, g, b, a];
+	}
+
+	function hslToRgb(h: number, s: number, l: number): [number, number, number] {
+		let r: number;
+		let g: number;
+		let b: number;
+
+		if (s === 0) {
+			r = g = b = l;
+		} else {
+			const hueToRgb = (p: number, q: number, t: number) => {
+				if (t < 0) t += 1;
+				if (t > 1) t -= 1;
+				if (t < 1 / 6) return p + (q - p) * 6 * t;
+				if (t < 1 / 2) return q;
+				if (t < 2 / 3) return p + (q - p) * (2 / 3 - t) * 6;
+				return p;
+			};
+
+			const q = l < 0.5 ? l * (1 + s) : l + s - l * s;
+			const p = 2 * l - q;
+			r = hueToRgb(p, q, h + 1 / 3);
+			g = hueToRgb(p, q, h);
+			b = hueToRgb(p, q, h - 1 / 3);
+		}
+
+		return [r, g, b];
 	}
 
 	const fragmentShaderSource = `#version 300 es

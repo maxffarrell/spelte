@@ -1,17 +1,3 @@
-## Usage
-
-```svelte
-<script>
-  import TiltCard from '$registry/spelte/tilt-card.svelte';
-</script>
-
-<TiltCard tiltLimit={15} scale={1.05} perspective={1200}>
-  <div class="w-80 h-48 rounded-2xl bg-neutral-100 dark:bg-neutral-900 p-6">
-    Your content here
-  </div>
-</TiltCard>
-```
-
 ## Props
 
 | Prop | Type | Default | Description |

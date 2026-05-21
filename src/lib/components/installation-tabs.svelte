@@ -69,9 +69,9 @@
 						{#each ['pnpm', 'npm', 'yarn', 'bun'] as p}
 							<button
 								class={cn(
-									'h-auto rounded-sm px-2 py-1 text-xs font-mono',
+									'h-auto rounded-sm border border-transparent px-2 py-1 text-xs font-mono',
 									pm === p
-										? 'bg-background border border-border'
+										? 'bg-background border-border'
 										: 'text-muted-foreground hover:text-foreground'
 								)}
 								onclick={() => {
