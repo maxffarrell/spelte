@@ -32,6 +32,9 @@ importers:
       qrcode:
         specifier: ^1.5.4
         version: 1.5.4
+      spotify-url-info:
+        specifier: ^3.3.0
+        version: 3.3.0
       svelte:
         specifier: ^5.55.8
         version: 5.55.8
@@ -1070,6 +1073,9 @@ packages:
   hey-listen@1.0.8:
     resolution: {integrity: sha512-COpmrF2NOg4TBWUJ5UVyaCU2A88wEMkUPK4hNqyCkqHbxT92BbvfjoSozkAIIm6XhicGlJHhFdullInrdhwU8Q==}
 
+  himalaya@1.1.1:
+    resolution: {integrity: sha512-mJLY5tErGWtsw8hO2fJ2vK4IpG6S1AIgVkduRo4FqFJhgI2H3XLzgemRemk45zcnFyxNNpOfrIDle2KcnJM0lA==}
+
   html-void-elements@3.0.0:
     resolution: {integrity: sha512-bEqo66MRXsUGxWHV5IP0PUiAWwoEjba4VCzg0LjFJBpchPaTfyfCKTG6bc5F8ucKec3q5y6qOdGyYTSBEvhCrg==}
 
@@ -1524,6 +1530,14 @@ packages:
 
   space-separated-tokens@2.0.2:
     resolution: {integrity: sha512-PEGlAwrG8yXGXRjW32fGbg66JAlOAwbObuqVoJpv/mRgoWDQfgH1wDPvtzWyUSNAXBGSk8h755YDbbcEy3SH2Q==}
+
+  spotify-uri@4.1.0:
+    resolution: {integrity: sha512-SFpBt8pQqO7DOFBsdUjv3GxGZAKYP7UqcTflfE7h3YL1lynl/6Motq7NERoJJR8eF9kXQRSpcdMmV5ou84rbng==}
+    engines: {node: '>= 16'}
+
+  spotify-url-info@3.3.0:
+    resolution: {integrity: sha512-Oln8MPghuttL6e2e8NyQg0MilZqEbMYawKZDAMbz1NpSX+on2bEtibKVBPYKlJGU/Lxvo/qXFqydMxa0fKCmwg==}
+    engines: {node: '>= 12'}
 
   string-width@4.2.3:
     resolution: {integrity: sha512-wKyQRQpjJ0sIp62ErSZdGsjMJWsap5oRNihHhu6G7JVO/9jIB6UyevL+tXuOqrng8j/cxKTWyWUwvSTriiZz/g==}
@@ -2540,6 +2554,8 @@ snapshots:
 
   hey-listen@1.0.8: {}
 
+  himalaya@1.1.1: {}
+
   html-void-elements@3.0.0: {}
 
   inline-style-parser@0.2.7: {}
@@ -3223,6 +3239,13 @@ snapshots:
   source-map-js@1.2.1: {}
 
   space-separated-tokens@2.0.2: {}
+
+  spotify-uri@4.1.0: {}
+
+  spotify-url-info@3.3.0:
+    dependencies:
+      himalaya: 1.1.1
+      spotify-uri: 4.1.0
 
   string-width@4.2.3:
     dependencies:

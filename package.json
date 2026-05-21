@@ -1,6 +1,6 @@
 {
   "name": "spelte",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "scripts": {
     "dev": "vite dev",
@@ -20,6 +20,7 @@
     "motion-sv": "^0.1.12",
     "opentype.js": "^2.0.0",
     "qrcode": "^1.5.4",
+    "spotify-url-info": "^3.3.0",
     "svelte": "^5.55.8",
     "tailwind-merge": "^3.6.0"
   },

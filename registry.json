@@ -448,9 +448,13 @@
         {
           "path": "src/registry/spelte/spotify-card.svelte",
           "type": "registry:component"
+        },
+        {
+          "path": "src/routes/api/spotify/+server.ts",
+          "type": "registry:file"
         }
       ],
-      "dependencies": [],
+      "dependencies": ["spotify-url-info"],
       "registryDependencies": [],
       "category": "display"
     },

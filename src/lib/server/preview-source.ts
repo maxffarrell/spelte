@@ -1,6 +1,5 @@
 import { codeToHtml } from 'shiki';
-import { readFile } from 'fs/promises';
-import { join } from 'path';
+import { getDemoSource } from '$lib/server/source-files';
 
 const demoSourceFiles: Record<string, string> = {
 	'animated-checkbox': 'src/lib/components/demos/animated-checkbox-demo.svelte',
@@ -67,7 +66,7 @@ export function getUsageSource(content: string) {
 export async function getPreviewSource(id: string) {
 	const demoSourceFile = demoSourceFiles[id];
 	if (demoSourceFile) {
-		const source = await readFile(join(process.cwd(), demoSourceFile), 'utf-8');
+		const source = getDemoSource(demoSourceFile);
 		return dedent(source);
 	}
 
