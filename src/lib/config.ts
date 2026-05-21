@@ -7,7 +7,7 @@ export const siteConfig = {
   links: {
     x: "https://x.com/intent/follow?screen_name=tomm_ui",
     discord: "https://discord.gg/CxzqwQ2EAa",
-    github: "https://github.com/spelte/spelte",
+    github: "https://github.com/maxffarrell/spelte",
   },
   keywords: [
     "Svelte",
