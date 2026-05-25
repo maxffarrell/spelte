@@ -38,8 +38,6 @@
 	let currentIndex = $state(0);
 	let nextIndex = $state(1);
 	let animate = $state(false);
-	let exitingIndex = $state(0);
-	let transitionActive = $state(false);
 
 	$effect(() => {
 		const id = setTimeout(() => (animate = true), initialDelay);
@@ -49,26 +47,19 @@
 	$effect(() => {
 		if (!animate || groups.length === 0) return;
 		const id = setInterval(() => {
-			const previousIndex = currentIndex;
 			const newIndex = (currentIndex + 1) % groups.length;
-			exitingIndex = previousIndex;
 			currentIndex = newIndex;
 			nextIndex = (newIndex + 1) % groups.length;
-			transitionActive = true;
-			window.setTimeout(() => {
-				transitionActive = false;
-			}, duration + (logosPerGroup - 1) * stagger * 1000);
 		}, interval);
 		return () => clearInterval(id);
 	});
 </script>
 
-
 <div class="max-w-[720px] grid place-items-center w-full">
 	{#each groups as group, groupIndex (groupIndex)}
-		{@const isEntering = groupIndex === currentIndex}
-		{@const isExiting = transitionActive && groupIndex === exitingIndex}
-		{@const isVisible = isEntering || isExiting}
+		{@const isCurrent = groupIndex === currentIndex}
+		{@const isNext = groupIndex === nextIndex && animate}
+		{@const isVisible = isCurrent || isNext}
 		<div
 			class={cn('flex w-full justify-center gap-10', className)}
 			aria-hidden={!isVisible}
@@ -76,7 +67,7 @@
 		>
 			{#each group as logo, logoIndex (logo.src)}
 				{@const d = logoIndex * stagger}
-				{@const state = isExiting ? 'exit' : 'enter'}
+				{@const state = isCurrent ? 'exit' : 'enter'}
 				{@const animName = state === 'enter' ? 'logos-enter' : 'logos-exit'}
 				<div
 					style="
@@ -84,7 +75,7 @@
 						animation-duration: {duration}ms;
 						animation-fill-mode: both;
 						{animate && isVisible ? `animation-name: ${animName}; animation-timing-function: ease;` : ''}
-						opacity: {!animate && isEntering ? 1 : !isVisible ? 0 : undefined};
+						opacity: {!animate ? (state === 'exit' ? 1 : 0) : !isVisible ? 0 : undefined};
 					"
 				>
 					<img
