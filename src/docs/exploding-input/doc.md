@@ -1,3 +1,13 @@
+## Usage
+
+```svelte
+<script>
+	import ExplodingInput from '$registry/spelte/exploding-input.svelte';
+</script>
+
+<ExplodingInput placeholder="Type something" content={['*', '+', '•']} />
+```
+
 ## Props
 
 | Prop | Type | Default | Description |

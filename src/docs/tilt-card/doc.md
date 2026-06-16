@@ -1,3 +1,15 @@
+## Usage
+
+```svelte
+<script>
+	import TiltCard from '$registry/spelte/tilt-card.svelte';
+</script>
+
+<TiltCard class="rounded-lg border p-8">
+	Hover me
+</TiltCard>
+```
+
 ## Props
 
 | Prop | Type | Default | Description |

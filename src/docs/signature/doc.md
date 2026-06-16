@@ -1,5 +1,15 @@
 > Place the [LastoriaBoldRegular.otf](https://spell.sh/LastoriaBoldRegular.otf) font file inside your `static` directory (SvelteKit's public directory).
 
+## Usage
+
+```svelte
+<script>
+	import Signature from '$registry/spelte/signature.svelte';
+</script>
+
+<Signature text="Spelte" />
+```
+
 ## Props
 
 | Prop | Type | Default | Description |

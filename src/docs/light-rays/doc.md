@@ -1,3 +1,15 @@
+## Usage
+
+```svelte
+<script>
+	import LightRays from '$registry/spelte/light-rays.svelte';
+</script>
+
+<div class="relative h-80 overflow-hidden rounded-lg">
+	<LightRays raysColor={{ mode: 'single', color: '#ffffff' }} />
+</div>
+```
+
 ## Props
 
 | Prop | Type | Default | Description |

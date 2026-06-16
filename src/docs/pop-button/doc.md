@@ -15,6 +15,16 @@ To use the playful DynaPuff font, add it to your app:
 }
 ```
 
+## Usage
+
+```svelte
+<script>
+	import PopButton from '$registry/spelte/pop-button.svelte';
+</script>
+
+<PopButton color="blue">Press me</PopButton>
+```
+
 ## Props
 
 | Prop | Type | Default | Description |

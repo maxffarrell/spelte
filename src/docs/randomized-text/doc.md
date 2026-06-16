@@ -11,6 +11,16 @@
 	{/snippet}
 </ExampleShell>
 
+## Usage
+
+```svelte
+<script>
+	import RandomizedText from '$registry/spelte/randomized-text.svelte';
+</script>
+
+<RandomizedText text="Generate momentum" />
+```
+
 ## Props
 
 | Prop | Type | Default | Description |

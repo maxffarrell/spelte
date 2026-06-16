@@ -11,6 +11,16 @@
 	{/snippet}
 </ExampleShell>
 
+## Usage
+
+```svelte
+<script>
+	import WordsStagger from '$registry/spelte/words-stagger.svelte';
+</script>
+
+<WordsStagger text="Animate every word" />
+```
+
 ## Props
 
 | Prop | Type | Default | Description |

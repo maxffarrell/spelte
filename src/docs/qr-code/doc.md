@@ -11,6 +11,16 @@
 	{/snippet}
 </ExampleShell>
 
+## Usage
+
+```svelte
+<script>
+	import QrCode from '$registry/spelte/qr-code.svelte';
+</script>
+
+<QrCode value="https://spelte.dev" />
+```
+
 ## Props
 
 | Prop | Type | Default | Description |

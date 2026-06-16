@@ -1,3 +1,27 @@
+## Usage
+
+```svelte
+<script>
+	import TextMarquee from '$registry/spelte/text-marquee.svelte';
+</script>
+
+{#snippet launch()}
+	<span>Launch</span>
+{/snippet}
+
+{#snippet scale()}
+	<span>Scale</span>
+{/snippet}
+
+{#snippet convert()}
+	<span>Convert</span>
+{/snippet}
+
+{@const items = [launch, scale, convert]}
+
+<TextMarquee {items} />
+```
+
 ## Props
 
 | Prop | Type | Default | Description |

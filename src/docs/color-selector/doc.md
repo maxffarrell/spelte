@@ -18,6 +18,18 @@
 	{/snippet}
 </ExampleShell>
 
+## Usage
+
+```svelte
+<script>
+	import ColorSelector from '$registry/spelte/color-selector.svelte';
+
+	const colors = ['red', 'orange', 'yellow', 'green', 'blue', 'purple'];
+</script>
+
+<ColorSelector {colors} defaultValue="blue" />
+```
+
 ## Props
 
 | Prop | Type | Default | Description |

@@ -11,6 +11,16 @@
 	{/snippet}
 </ExampleShell>
 
+## Usage
+
+```svelte
+<script>
+	import FallbackAvatar from '$registry/spelte/fallback-avatar.svelte';
+</script>
+
+<FallbackAvatar name="Ada Lovelace" size={48} />
+```
+
 ## Props
 
 | Prop | Type | Default | Description |

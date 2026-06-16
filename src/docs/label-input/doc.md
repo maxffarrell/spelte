@@ -18,6 +18,16 @@
 	{/snippet}
 </ExampleShell>
 
+## Usage
+
+```svelte
+<script>
+	import LabelInput from '$registry/spelte/label-input.svelte';
+</script>
+
+<LabelInput label="Email" type="email" />
+```
+
 ## Props
 
 | Prop | Type | Default | Description |

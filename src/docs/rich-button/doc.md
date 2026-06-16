@@ -18,6 +18,16 @@
 	{/snippet}
 </ExampleShell>
 
+## Usage
+
+```svelte
+<script>
+	import RichButton from '$registry/spelte/rich-button.svelte';
+</script>
+
+<RichButton color="purple">Continue</RichButton>
+```
+
 ## Props
 
 | Prop | Type | Default | Description |

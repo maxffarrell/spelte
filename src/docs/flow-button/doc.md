@@ -18,6 +18,16 @@
 	{/snippet}
 </ExampleShell>
 
+## Usage
+
+```svelte
+<script>
+	import FlowButton from '$registry/spelte/flow-button.svelte';
+</script>
+
+<FlowButton>Get started</FlowButton>
+```
+
 ## Props
 
 | Prop | Type | Default | Description |

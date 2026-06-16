@@ -18,6 +18,16 @@
 	{/snippet}
 </ExampleShell>
 
+## Usage
+
+```svelte
+<script>
+	import Badge from '$registry/spelte/badge.svelte';
+</script>
+
+<Badge variant="blue">New</Badge>
+```
+
 ## Props
 
 | Prop | Type | Default | Description |

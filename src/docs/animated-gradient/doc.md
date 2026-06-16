@@ -4,6 +4,18 @@
 	import AnimatedGradientCustomConfigurationExample from '$lib/components/examples/animated-gradient/custom-configuration.svelte';
 </script>
 
+## Usage
+
+```svelte
+<script>
+	import AnimatedGradient from '$registry/spelte/animated-gradient.svelte';
+</script>
+
+<div class="h-80 overflow-hidden rounded-lg">
+	<AnimatedGradient config={{ preset: 'Prism' }} />
+</div>
+```
+
 ## Examples
 
 <ExampleShell title="Presets" fullBleed>

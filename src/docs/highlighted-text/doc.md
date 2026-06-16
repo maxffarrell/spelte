@@ -11,6 +11,16 @@
 	{/snippet}
 </ExampleShell>
 
+## Usage
+
+```svelte
+<script>
+	import HighlightedText from '$registry/spelte/highlighted-text.svelte';
+</script>
+
+<HighlightedText>Important update</HighlightedText>
+```
+
 ## Props
 
 | Prop | Type | Default | Description |

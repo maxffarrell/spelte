@@ -1,3 +1,13 @@
+## Usage
+
+```svelte
+<script>
+	import GradientWaveText from '$registry/spelte/gradient-wave-text.svelte';
+</script>
+
+<GradientWaveText>Launch faster</GradientWaveText>
+```
+
 ## Props
 
 | Prop | Type | Default | Description |

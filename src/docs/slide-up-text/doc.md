@@ -11,6 +11,16 @@
 	{/snippet}
 </ExampleShell>
 
+## Usage
+
+```svelte
+<script>
+	import SlideUpText from '$registry/spelte/slide-up-text.svelte';
+</script>
+
+<SlideUpText text="Ship polished details" />
+```
+
 ## Props
 
 | Prop | Type | Default | Description |

@@ -11,6 +11,16 @@
 	{/snippet}
 </ExampleShell>
 
+## Usage
+
+```svelte
+<script>
+	import ShimmerText from '$registry/spelte/shimmer-text.svelte';
+</script>
+
+<ShimmerText>Shimmering text</ShimmerText>
+```
+
 ## Props
 
 | Prop | Type | Default | Description |

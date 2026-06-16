@@ -18,6 +18,19 @@
 	{/snippet}
 </ExampleShell>
 
+## Usage
+
+```svelte
+<script>
+	import Chart from '$registry/spelte/chart.svelte';
+
+	const data = [1200, 1800, 1600, 2400, 3200, 4100];
+	const labels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'];
+</script>
+
+<Chart {data} {labels} name="Revenue" />
+```
+
 ## Props
 
 | Prop | Type | Default | Description |

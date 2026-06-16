@@ -1,3 +1,37 @@
+<script>
+	import ExampleShell from '$lib/components/example-shell.svelte';
+	import LogosCarouselCountExample from '$lib/components/examples/logos-carousel/count.svelte';
+</script>
+
+## Usage
+
+```svelte
+<script>
+	import LogosCarousel from '$registry/spelte/logos-carousel.svelte';
+
+	const logos = [
+		{ src: '/logos/vercel.svg', alt: 'Vercel logo' },
+		{ src: '/logos/google.svg', alt: 'Google logo' },
+		{ src: '/logos/framer.svg', alt: 'Framer logo' },
+		{ src: '/logos/discord.svg', alt: 'Discord logo' }
+	];
+</script>
+
+<LogosCarousel {logos} count={4} />
+```
+
+## Examples
+
+### Logo Count
+
+Limit the number of logos displayed per row.
+
+<ExampleShell title="Logo Count">
+	{#snippet preview()}
+		<LogosCarouselCountExample />
+	{/snippet}
+</ExampleShell>
+
 ## Props
 
 | Prop | Type | Default | Description |

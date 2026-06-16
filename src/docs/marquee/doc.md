@@ -11,6 +11,20 @@
 	{/snippet}
 </ExampleShell>
 
+## Usage
+
+```svelte
+<script>
+	import Marquee from '$registry/spelte/marquee.svelte';
+</script>
+
+<Marquee>
+	<span class="mx-4">Design systems</span>
+	<span class="mx-4">Landing pages</span>
+	<span class="mx-4">Product launches</span>
+</Marquee>
+```
+
 ## Props
 
 | Prop | Type | Default | Description |

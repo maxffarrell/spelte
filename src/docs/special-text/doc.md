@@ -11,6 +11,16 @@
 	{/snippet}
 </ExampleShell>
 
+## Usage
+
+```svelte
+<script>
+	import SpecialText from '$registry/spelte/special-text.svelte';
+</script>
+
+<SpecialText text="Encrypted" />
+```
+
 ## Props
 
 | Prop | Type | Default | Description |

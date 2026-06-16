@@ -11,6 +11,16 @@
 	{/snippet}
 </ExampleShell>
 
+## Usage
+
+```svelte
+<script>
+	import BlurReveal from '$registry/spelte/blur-reveal.svelte';
+</script>
+
+<BlurReveal text="Build beautiful interfaces" />
+```
+
 ## Props
 
 | Prop | Type | Default | Description |

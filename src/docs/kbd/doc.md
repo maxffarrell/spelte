@@ -11,6 +11,16 @@
 	{/snippet}
 </ExampleShell>
 
+## Usage
+
+```svelte
+<script>
+	import Kbd from '$registry/spelte/kbd.svelte';
+</script>
+
+<Kbd keys={['command', 'k']} />
+```
+
 ## Props
 
 | Prop | Type | Default | Description |

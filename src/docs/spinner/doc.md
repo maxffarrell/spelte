@@ -18,6 +18,16 @@
 	{/snippet}
 </ExampleShell>
 
+## Usage
+
+```svelte
+<script>
+	import Spinner from '$registry/spelte/spinner.svelte';
+</script>
+
+<Spinner size="md" />
+```
+
 ## Props
 
 | Prop | Type | Default | Description |

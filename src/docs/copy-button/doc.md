@@ -11,6 +11,16 @@
 	{/snippet}
 </ExampleShell>
 
+## Usage
+
+```svelte
+<script>
+	import CopyButton from '$registry/spelte/copy-button.svelte';
+</script>
+
+<CopyButton value="pnpm dlx shadcn-svelte@latest init" />
+```
+
 ## Props
 
 | Prop | Type | Default | Description |
