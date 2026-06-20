@@ -125,10 +125,27 @@
 		document.body.appendChild(script);
 	}
 
+	function normalizeTweetEntities(data: Record<string, any>) {
+		const entities = data.entities ?? {};
+
+		return {
+			...data,
+			entities: {
+				...entities,
+				hashtags: entities.hashtags ?? [],
+				urls: entities.urls ?? [],
+				user_mentions: entities.user_mentions ?? [],
+				symbols: entities.symbols ?? []
+			}
+		};
+	}
+
 	function normalizeTweet(data: Record<string, any>, tweetId: string): TweetData | null {
 		if (!data || data.__typename === 'TweetTombstone' || data.tombstone || data.notFound) {
 			return null;
 		}
+
+		data = normalizeTweetEntities(data);
 
 		const text = data.text ?? '';
 		if (!text && !data.user && !data.photos && !data.video) {
