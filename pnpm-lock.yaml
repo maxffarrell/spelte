@@ -34,7 +34,7 @@ importers:
         version: 1.5.4
       spotify-url-info:
         specifier: ^3.3.0
-        version: 3.3.0
+        version: 3.3.3
       svelte:
         specifier: ^5.55.9
         version: 5.55.9
@@ -1555,8 +1555,8 @@ packages:
     resolution: {integrity: sha512-SFpBt8pQqO7DOFBsdUjv3GxGZAKYP7UqcTflfE7h3YL1lynl/6Motq7NERoJJR8eF9kXQRSpcdMmV5ou84rbng==}
     engines: {node: '>= 16'}
 
-  spotify-url-info@3.3.0:
-    resolution: {integrity: sha512-Oln8MPghuttL6e2e8NyQg0MilZqEbMYawKZDAMbz1NpSX+on2bEtibKVBPYKlJGU/Lxvo/qXFqydMxa0fKCmwg==}
+  spotify-url-info@3.3.3:
+    resolution: {integrity: sha512-826jFnjAt+T1e5AMKK48RG8yVGwhzjS/MBXJz9cawV+3ts14MY+0hEtXrltfBRLJU1k9622b8yvFBLBYUdrZDg==}
     engines: {node: '>= 12'}
 
   string-width@4.2.3:
@@ -3277,7 +3277,7 @@ snapshots:
 
   spotify-uri@4.1.0: {}
 
-  spotify-url-info@3.3.0:
+  spotify-url-info@3.3.3:
     dependencies:
       himalaya: 1.1.1
       spotify-uri: 4.1.0
