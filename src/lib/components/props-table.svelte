@@ -1,5 +1,5 @@
 <script lang="ts">
-	import PropDescriptionTooltip from '$lib/components/prop-description-tooltip.svelte';
+	import PropDescriptionTooltip from '#lib/components/prop-description-tooltip.svelte';
 
 	type PropsTableItem = {
 		name: string;

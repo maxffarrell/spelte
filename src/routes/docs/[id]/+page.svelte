@@ -1,14 +1,14 @@
 <script lang="ts">
 	import { ArrowLeft, ArrowRight, ExternalLink } from '@lucide/svelte';
-	import DocsTableOfContents from '$lib/components/toc.svelte';
-	import DocsEnhancer from '$lib/components/docs-enhancer.svelte';
-	import DocCopySection from '$lib/components/doc-copy-section.svelte';
-	import ComponentPreview from '$lib/components/component-preview.svelte';
-	import AnimatedGradientApi from '$lib/components/animated-gradient-api.svelte';
-	import InstallationTabs from '$lib/components/installation-tabs.svelte';
-	import { absoluteUrl, buildOgUrl, pageTitle } from '$lib/metadata';
-	import { Button } from '$lib/components/ui/button/index.js';
-	import * as Breadcrumb from '$lib/components/ui/breadcrumb/index.js';
+	import DocsTableOfContents from '#lib/components/toc.svelte';
+	import DocsEnhancer from '#lib/components/docs-enhancer.svelte';
+	import DocCopySection from '#lib/components/doc-copy-section.svelte';
+	import ComponentPreview from '#lib/components/component-preview.svelte';
+	import AnimatedGradientApi from '#lib/components/animated-gradient-api.svelte';
+	import InstallationTabs from '#lib/components/installation-tabs.svelte';
+	import { absoluteUrl, buildOgUrl, pageTitle } from '#lib/metadata.js';
+	import { Button } from '#lib/components/ui/button/index.js';
+	import * as Breadcrumb from '#lib/components/ui/breadcrumb/index.js';
 	import type { PageData } from './$types';
 
 	let { data }: { data: PageData } = $props();

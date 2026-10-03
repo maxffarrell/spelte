@@ -1,5 +1,5 @@
 <script lang="ts">
-	import PropsTable from '$lib/components/props-table.svelte';
+	import PropsTable from '#lib/components/props-table.svelte';
 
 	const props = [
 		{

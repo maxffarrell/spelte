@@ -1,6 +1,6 @@
 <script>
-	import ExampleShell from '$lib/components/example-shell.svelte';
-	import LogosCarouselCountExample from '$lib/components/examples/logos-carousel/count.svelte';
+	import ExampleShell from '#lib/components/example-shell.svelte';
+	import LogosCarouselCountExample from '#lib/components/examples/logos-carousel/count.svelte';
 </script>
 
 ## Usage

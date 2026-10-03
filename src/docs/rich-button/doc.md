@@ -1,7 +1,7 @@
 <script>
-	import ExampleShell from '$lib/components/example-shell.svelte';
-	import RichButtonColorExample from '$lib/components/examples/rich-button/color.svelte';
-	import RichButtonSizeExample from '$lib/components/examples/rich-button/size.svelte';
+	import ExampleShell from '#lib/components/example-shell.svelte';
+	import RichButtonColorExample from '#lib/components/examples/rich-button/color.svelte';
+	import RichButtonSizeExample from '#lib/components/examples/rich-button/size.svelte';
 </script>
 
 ## Examples

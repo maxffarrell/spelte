@@ -1,7 +1,7 @@
 <script>
-	import ExampleShell from '$lib/components/example-shell.svelte';
-	import SpinnerSizeExample from '$lib/components/examples/spinner/size.svelte';
-	import SpinnerSpeedExample from '$lib/components/examples/spinner/speed.svelte';
+	import ExampleShell from '#lib/components/example-shell.svelte';
+	import SpinnerSizeExample from '#lib/components/examples/spinner/size.svelte';
+	import SpinnerSpeedExample from '#lib/components/examples/spinner/speed.svelte';
 </script>
 
 ## Examples

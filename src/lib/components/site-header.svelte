@@ -1,10 +1,10 @@
 <script lang="ts">
-    import SpelteLogo from "$lib/components/spelte-logo.svelte";
-    import ThemeToggle from "$lib/components/theme-toggle.svelte";
-    import MobileNav from "$lib/components/mobile-nav.svelte";
-    import CommandMenu from "$lib/components/command-menu.svelte";
-    import GithubStars from "$lib/components/github-stars.svelte";
-    import type { DocSchema } from "$lib/types";
+    import SpelteLogo from "#lib/components/spelte-logo.svelte";
+    import ThemeToggle from "#lib/components/theme-toggle.svelte";
+    import MobileNav from "#lib/components/mobile-nav.svelte";
+    import CommandMenu from "#lib/components/command-menu.svelte";
+    import GithubStars from "#lib/components/github-stars.svelte";
+    import type { DocSchema } from "#lib/types.js";
 
     let { docSchema }: { docSchema?: DocSchema } = $props();
 </script>

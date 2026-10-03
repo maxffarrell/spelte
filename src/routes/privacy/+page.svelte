@@ -1,7 +1,7 @@
 <script lang="ts">
-	import SiteHeader from '$lib/components/site-header.svelte';
-	import { siteConfig } from '$lib/config';
-	import { buildOgUrl, pageTitle } from '$lib/metadata';
+	import SiteHeader from '#lib/components/site-header.svelte';
+	import { siteConfig } from '#lib/config.js';
+	import { buildOgUrl, pageTitle } from '#lib/metadata.js';
 
 	const title = pageTitle('Privacy Policy');
 	const description = 'Privacy Policy for Spelte.';

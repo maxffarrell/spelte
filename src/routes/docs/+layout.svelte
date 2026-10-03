@@ -1,7 +1,7 @@
 <script lang="ts">
-	import SiteHeader from '$lib/components/site-header.svelte';
-	import AppSidebar from '$lib/components/app-sidebar.svelte';
-	import { SidebarProvider, SidebarInset } from '$lib/components/ui/sidebar/index.js';
+	import SiteHeader from '#lib/components/site-header.svelte';
+	import AppSidebar from '#lib/components/app-sidebar.svelte';
+	import { SidebarProvider, SidebarInset } from '#lib/components/ui/sidebar/index.js';
 	import type { Snippet } from 'svelte';
 	import type { LayoutData } from './$types';
 

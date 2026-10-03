@@ -1,7 +1,7 @@
 <script>
-	import ExampleShell from '$lib/components/example-shell.svelte';
-	import FlowButtonSizeExample from '$lib/components/examples/flow-button/size.svelte';
-	import FlowButtonColorExample from '$lib/components/examples/flow-button/color.svelte';
+	import ExampleShell from '#lib/components/example-shell.svelte';
+	import FlowButtonSizeExample from '#lib/components/examples/flow-button/size.svelte';
+	import FlowButtonColorExample from '#lib/components/examples/flow-button/color.svelte';
 </script>
 
 ## Examples

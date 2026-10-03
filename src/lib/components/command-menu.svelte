@@ -1,10 +1,10 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
-	import { config } from '$lib/stores';
+	import { config } from '#lib/stores.js';
 	import { CornerDownLeft, Search } from '@lucide/svelte';
-	import * as Command from '$lib/components/ui/command/index.js';
-	import { Button } from '$lib/components/ui/button/index.js';
-	import type { DocSchema } from '$lib/types';
+	import * as Command from '#lib/components/ui/command/index.js';
+	import { Button } from '#lib/components/ui/button/index.js';
+	import type { DocSchema } from '#lib/types.js';
 	import { onMount } from 'svelte';
 
 	let { docSchema }: { docSchema: DocSchema } = $props();

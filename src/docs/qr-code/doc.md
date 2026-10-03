@@ -1,6 +1,6 @@
 <script>
-	import ExampleShell from '$lib/components/example-shell.svelte';
-	import QrCodeColorsExample from '$lib/components/examples/qr-code/colors.svelte';
+	import ExampleShell from '#lib/components/example-shell.svelte';
+	import QrCodeColorsExample from '#lib/components/examples/qr-code/colors.svelte';
 </script>
 
 ## Examples

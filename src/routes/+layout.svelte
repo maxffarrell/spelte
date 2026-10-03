@@ -1,7 +1,7 @@
 <script lang="ts">
 	import '../app.css';
-	import { buildOgUrl } from '$lib/metadata';
-	import { siteConfig } from '$lib/config';
+	import { buildOgUrl } from '#lib/metadata.js';
+	import { siteConfig } from '#lib/config.js';
 	import type { Snippet } from 'svelte';
 
 	let { children }: { children: Snippet } = $props();

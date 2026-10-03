@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { config } from '$lib/stores';
-	import { cn } from '$lib/utils';
-	import CodeBlock from '$lib/components/code-block.svelte';
-	import * as Tabs from '$lib/components/ui/tabs/index.js';
+	import { config } from '#lib/stores.js';
+	import { cn } from '#lib/utils.js';
+	import CodeBlock from '#lib/components/code-block.svelte';
+	import * as Tabs from '#lib/components/ui/tabs/index.js';
 	import type { Snippet } from 'svelte';
 
 	let {

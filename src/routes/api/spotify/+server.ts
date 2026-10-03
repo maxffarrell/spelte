@@ -1,4 +1,4 @@
-import { json } from "@sveltejs/kit";
+
 import type { Preview, SpotifyUrlInfoModule } from "spotify-url-info";
 import type { RequestHandler } from "./$types";
 
@@ -40,7 +40,7 @@ export const GET: RequestHandler = async ({ url, fetch }) => {
 	const spotifyUrl = url.searchParams.get("url");
 
 	if (!spotifyUrl) {
-		return json({ error: "URL is required" } satisfies SpotifyErrorResponse, { status: 400 });
+		return Response.json({ error: "URL is required" } satisfies SpotifyErrorResponse, { status: 400 });
 	}
 
 	try {
@@ -52,13 +52,13 @@ export const GET: RequestHandler = async ({ url, fetch }) => {
 		const { getPreview } = createSpotifyUrlInfo(fetch);
 		const preview = await getPreview(normalizedUrl, previewRequestOptions);
 
-		return json(toPreviewResponse(preview) satisfies SpotifyPreviewResponse);
+		return Response.json(toPreviewResponse(preview) satisfies SpotifyPreviewResponse);
 	} catch (error) {
 		if (error instanceof TypeError) {
-			return json({ error: error.message } satisfies SpotifyErrorResponse, { status: 400 });
+			return Response.json({ error: error.message } satisfies SpotifyErrorResponse, { status: 400 });
 		}
 
-		return json({ error: "Failed to fetch Spotify data" } satisfies SpotifyErrorResponse, {
+		return Response.json({ error: "Failed to fetch Spotify data" } satisfies SpotifyErrorResponse, {
 			status: 500,
 		});
 	}

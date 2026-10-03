@@ -1,4 +1,4 @@
-import { getDocSchema } from '$lib/doc';
+import { getDocSchema } from '#lib/doc.js';
 
 export function load() {
 	const docSchema = getDocSchema();

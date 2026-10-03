@@ -1,6 +1,6 @@
 <script>
-	import ExampleShell from '$lib/components/example-shell.svelte';
-	import ShimmerTextColorExample from '$lib/components/examples/shimmer-text/color.svelte';
+	import ExampleShell from '#lib/components/example-shell.svelte';
+	import ShimmerTextColorExample from '#lib/components/examples/shimmer-text/color.svelte';
 </script>
 
 ## Examples

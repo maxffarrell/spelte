@@ -1,6 +1,6 @@
 <script>
-	import ExampleShell from '$lib/components/example-shell.svelte';
-	import WordsStaggerSpeedExample from '$lib/components/examples/words-stagger/speed.svelte';
+	import ExampleShell from '#lib/components/example-shell.svelte';
+	import WordsStaggerSpeedExample from '#lib/components/examples/words-stagger/speed.svelte';
 </script>
 
 ## Examples

@@ -1,5 +1,5 @@
 <script>
-	import SpelteLogo from '$lib/components/spelte-logo.svelte';
+	import SpelteLogo from '#lib/components/spelte-logo.svelte';
 	import TiltCard from '$registry/spelte/tilt-card.svelte';
 </script>
 
