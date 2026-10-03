@@ -1,5 +1,5 @@
 import { codeToHtml } from 'shiki';
-import { getDemoSource } from '$lib/server/source-files';
+import { getDemoSource } from '#lib/server/source-files.js';
 
 const demoSourceFiles: Record<string, string> = {
 	'animated-checkbox': 'src/lib/components/demos/animated-checkbox-demo.svelte',

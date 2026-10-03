@@ -1,5 +1,5 @@
 import registryData from '../../registry.json';
-import type { Registry, RegistryItem } from '$lib/types';
+import type { Registry, RegistryItem } from '#lib/types.js';
 
 export function getRegistry(): Registry {
 	return registryData as Registry;

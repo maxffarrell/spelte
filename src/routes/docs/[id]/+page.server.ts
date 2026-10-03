@@ -1,9 +1,9 @@
 import { error } from '@sveltejs/kit';
-import { allDocItems, getDoc, getDocSchema } from '$lib/doc';
-import { getRegistryItem } from '$lib/registry';
-import { getPreviewSource, getUsageSource, highlightSvelte } from '$lib/server/preview-source';
-import { getDocSource, getRegistrySource } from '$lib/server/source-files';
-import { getTableOfContents } from '$lib/toc';
+import { allDocItems, getDoc, getDocSchema } from '#lib/doc.js';
+import { getRegistryItem } from '#lib/registry.js';
+import { getPreviewSource, getUsageSource, highlightSvelte } from '#lib/server/preview-source.js';
+import { getDocSource, getRegistrySource } from '#lib/server/source-files.js';
+import { getTableOfContents } from '#lib/toc.js';
 import type { EntryGenerator, PageServerLoad } from './$types';
 
 export const entries: EntryGenerator = () => {

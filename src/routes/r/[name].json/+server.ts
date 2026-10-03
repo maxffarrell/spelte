@@ -1,5 +1,5 @@
-import { json, error } from '@sveltejs/kit';
-import { getRegistry, getRegistryItem } from '$lib/registry';
+import { error } from '@sveltejs/kit';
+import { getRegistry, getRegistryItem } from '#lib/registry.js';
 import type { EntryGenerator } from './$types';
 
 export const entries: EntryGenerator = () => [
@@ -9,7 +9,7 @@ export const entries: EntryGenerator = () => [
 
 export function GET({ params }) {
 	if (params.name === 'registry') {
-		return json(getRegistry());
+		return Response.json(getRegistry());
 	}
 
 	const item = getRegistryItem(params.name);
@@ -17,5 +17,5 @@ export function GET({ params }) {
 		error(404, 'Registry item not found');
 	}
 
-	return json(item);
+	return Response.json(item);
 }

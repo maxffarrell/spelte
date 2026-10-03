@@ -1,8 +1,8 @@
-import { error, text } from '@sveltejs/kit';
-import { allDocItems, getDoc } from '$lib/doc';
-import { absoluteUrl } from '$lib/metadata';
-import { getRegistryItem } from '$lib/registry';
-import { getDocSource, getExamplePaths } from '$lib/server/source-files';
+import { error } from '@sveltejs/kit';
+import { allDocItems, getDoc } from '#lib/doc.js';
+import { absoluteUrl } from '#lib/metadata.js';
+import { getRegistryItem } from '#lib/registry.js';
+import { getDocSource, getExamplePaths } from '#lib/server/source-files.js';
 import type { EntryGenerator, RequestHandler } from './$types';
 
 export const prerender = true;
@@ -115,5 +115,5 @@ export const GET: RequestHandler = async ({ params }) => {
 		error(404, 'Not found');
 	}
 
-	return text(buildGeneratedMarkdown(params.id, item.title, item.description, content));
+	return new Response(buildGeneratedMarkdown(params.id, item.title, item.description, content));
 };

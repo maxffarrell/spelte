@@ -1,6 +1,6 @@
 <script>
-	import ExampleShell from '$lib/components/example-shell.svelte';
-	import RandomizedTextSplitByExample from '$lib/components/examples/randomized-text/split-by.svelte';
+	import ExampleShell from '#lib/components/example-shell.svelte';
+	import RandomizedTextSplitByExample from '#lib/components/examples/randomized-text/split-by.svelte';
 </script>
 
 ## Examples

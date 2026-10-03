@@ -1,6 +1,6 @@
 <script>
-	import ExampleShell from '$lib/components/example-shell.svelte';
-	import SpecialTextSpeedExample from '$lib/components/examples/special-text/speed.svelte';
+	import ExampleShell from '#lib/components/example-shell.svelte';
+	import SpecialTextSpeedExample from '#lib/components/examples/special-text/speed.svelte';
 </script>
 
 ## Examples

@@ -1,7 +1,7 @@
 <script>
-	import ExampleShell from '$lib/components/example-shell.svelte';
-	import ColorSelectorSizeExample from '$lib/components/examples/color-selector/size.svelte';
-	import ColorSelectorCallbackExample from '$lib/components/examples/color-selector/callback.svelte';
+	import ExampleShell from '#lib/components/example-shell.svelte';
+	import ColorSelectorSizeExample from '#lib/components/examples/color-selector/size.svelte';
+	import ColorSelectorCallbackExample from '#lib/components/examples/color-selector/callback.svelte';
 </script>
 
 ## Examples

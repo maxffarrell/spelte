@@ -1,6 +1,6 @@
 <script>
-	import ExampleShell from '$lib/components/example-shell.svelte';
-	import BlurRevealSpeedExample from '$lib/components/examples/blur-reveal/speed.svelte';
+	import ExampleShell from '#lib/components/example-shell.svelte';
+	import BlurRevealSpeedExample from '#lib/components/examples/blur-reveal/speed.svelte';
 </script>
 
 ## Examples

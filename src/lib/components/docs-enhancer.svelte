@@ -3,7 +3,7 @@
 	import { mount } from 'svelte';
 	import { onMount } from 'svelte';
 	import { tick } from 'svelte';
-	import PropDescriptionTooltip from '$lib/components/prop-description-tooltip.svelte';
+	import PropDescriptionTooltip from '#lib/components/prop-description-tooltip.svelte';
 
 	function enhancePropsTables() {
 		for (const table of document.querySelectorAll('article table')) {
@@ -92,7 +92,9 @@
 		}
 	}
 
-	afterNavigate(async () => {
+	afterNavigate(async ({ shallow }) => {
+		if (shallow) return;
+
 		await tick();
 		enhancePropsTables();
 	});

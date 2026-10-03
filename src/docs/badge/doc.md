@@ -1,7 +1,7 @@
 <script>
-	import ExampleShell from '$lib/components/example-shell.svelte';
-	import BadgeColorExample from '$lib/components/examples/badge/color.svelte';
-	import BadgeSizeExample from '$lib/components/examples/badge/size.svelte';
+	import ExampleShell from '#lib/components/example-shell.svelte';
+	import BadgeColorExample from '#lib/components/examples/badge/color.svelte';
+	import BadgeSizeExample from '#lib/components/examples/badge/size.svelte';
 </script>
 
 ## Examples

@@ -1,6 +1,6 @@
-import { basicDoc } from '$lib/basic-doc';
-import { getRegistry } from '$lib/registry';
-import type { DocItem, DocSchema, RegistryItem } from '$lib/types';
+import { basicDoc } from '#lib/basic-doc.js';
+import { getRegistry } from '#lib/registry.js';
+import type { DocItem, DocSchema, RegistryItem } from '#lib/types.js';
 
 const COMPONENTS_CATEGORIES = ['components', 'other', 'display'] as const;
 const COMPONENTS_ORDER = [

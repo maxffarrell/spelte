@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { cn } from '$lib/utils';
+    import { cn } from '#lib/utils.js';
     import { Check, ChevronDown, Copy } from '@lucide/svelte';
     import { DropdownMenu as DropdownMenuPrimitive, Popover as PopoverPrimitive } from 'bits-ui';
 

@@ -1,6 +1,6 @@
 <script>
-	import ExampleShell from '$lib/components/example-shell.svelte';
-	import CopyButtonSizeExample from '$lib/components/examples/copy-button/size.svelte';
+	import ExampleShell from '#lib/components/example-shell.svelte';
+	import CopyButtonSizeExample from '#lib/components/examples/copy-button/size.svelte';
 </script>
 
 ## Examples

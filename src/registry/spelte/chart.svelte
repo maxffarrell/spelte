@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { cn } from '$lib/utils';
+	import { cn } from '#lib/utils.js';
 
 	const VIEWBOX_W = 640, VIEWBOX_H = 220, PAD_X = 0, PAD_Y_TOP = 24, PAD_Y_BOTTOM = 12;
 	const LINE_WIDTH = 2, CORNER_RADIUS = 2.5;

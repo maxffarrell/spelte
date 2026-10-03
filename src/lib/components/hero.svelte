@@ -4,10 +4,10 @@
 	import RichButton from '$registry/spelte/rich-button.svelte';
 	import LightRays from '$registry/spelte/light-rays.svelte';
 	import AnimatedGradient from '$registry/spelte/animated-gradient.svelte';
-	import ExplodingInputDemo from '$lib/components/demos/exploding-input-demo.svelte';
-	import SpotifyCardDemo from '$lib/components/demos/spotify-card-demo.svelte';
-	import PopButtonDemo from '$lib/components/demos/pop-button-demo.svelte';
-	import SignatureDemo from '$lib/components/demos/signature-demo.svelte';
+	import ExplodingInputDemo from '#lib/components/demos/exploding-input-demo.svelte';
+	import SpotifyCardDemo from '#lib/components/demos/spotify-card-demo.svelte';
+	import PopButtonDemo from '#lib/components/demos/pop-button-demo.svelte';
+	import SignatureDemo from '#lib/components/demos/signature-demo.svelte';
 	import { BookOpen } from '@lucide/svelte';
 </script>
 

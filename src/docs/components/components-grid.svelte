@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { getDocSchema } from '$lib/doc';
-	import type { DocItem } from '$lib/types';
+	import { getDocSchema } from '#lib/doc.js';
+	import type { DocItem } from '#lib/types.js';
 
 	const schema = getDocSchema();
 	const components: DocItem[] = schema

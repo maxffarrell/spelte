@@ -1,6 +1,6 @@
 <script lang="ts">
-    import SpelteLogo from "$lib/components/spelte-logo.svelte";
-    import { siteConfig } from "$lib/config";
+    import SpelteLogo from "#lib/components/spelte-logo.svelte";
+    import { siteConfig } from "#lib/config.js";
 
     const footerLinks = {
         Product: [

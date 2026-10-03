@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { cn } from '$lib/utils';
+	import { cn } from '#lib/utils.js';
 	import { animate, type AnimationPlaybackControls } from 'motion-sv';
 	import type { Snippet } from 'svelte';
 

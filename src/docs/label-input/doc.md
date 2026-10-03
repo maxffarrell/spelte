@@ -1,7 +1,7 @@
 <script>
-	import ExampleShell from '$lib/components/example-shell.svelte';
-	import LabelInputPasswordInputExample from '$lib/components/examples/label-input/password-input.svelte';
-	import LabelInputRingColorExample from '$lib/components/examples/label-input/ring-color.svelte';
+	import ExampleShell from '#lib/components/example-shell.svelte';
+	import LabelInputPasswordInputExample from '#lib/components/examples/label-input/password-input.svelte';
+	import LabelInputRingColorExample from '#lib/components/examples/label-input/ring-color.svelte';
 </script>
 
 ## Examples

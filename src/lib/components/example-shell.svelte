@@ -1,6 +1,6 @@
 <script lang="ts">
-	import * as Tabs from '$lib/components/ui/tabs/index.js';
-	import CodeBlock from '$lib/components/code-block.svelte';
+	import * as Tabs from '#lib/components/ui/tabs/index.js';
+	import CodeBlock from '#lib/components/code-block.svelte';
 	import type { Snippet } from 'svelte';
 
 	let {

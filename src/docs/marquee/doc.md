@@ -1,6 +1,6 @@
 <script>
-	import ExampleShell from '$lib/components/example-shell.svelte';
-	import MarqueePauseOnHoverExample from '$lib/components/examples/marquee/pause-on-hover.svelte';
+	import ExampleShell from '#lib/components/example-shell.svelte';
+	import MarqueePauseOnHoverExample from '#lib/components/examples/marquee/pause-on-hover.svelte';
 </script>
 
 ## Examples

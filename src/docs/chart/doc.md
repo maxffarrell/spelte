@@ -1,7 +1,7 @@
 <script>
-	import ExampleShell from '$lib/components/example-shell.svelte';
-	import ChartWithLabelsExample from '$lib/components/examples/chart/with-labels.svelte';
-	import ChartCustomColorExample from '$lib/components/examples/chart/custom-color.svelte';
+	import ExampleShell from '#lib/components/example-shell.svelte';
+	import ChartWithLabelsExample from '#lib/components/examples/chart/with-labels.svelte';
+	import ChartCustomColorExample from '#lib/components/examples/chart/custom-color.svelte';
 </script>
 
 ## Examples

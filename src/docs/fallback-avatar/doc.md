@@ -1,6 +1,6 @@
 <script>
-	import ExampleShell from '$lib/components/example-shell.svelte';
-	import FallbackAvatarSizesExample from '$lib/components/examples/fallback-avatar/sizes.svelte';
+	import ExampleShell from '#lib/components/example-shell.svelte';
+	import FallbackAvatarSizesExample from '#lib/components/examples/fallback-avatar/sizes.svelte';
 </script>
 
 ## Examples

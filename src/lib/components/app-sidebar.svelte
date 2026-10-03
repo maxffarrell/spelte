@@ -1,12 +1,12 @@
 <script lang="ts">
-	import { page } from '$app/stores';
-	import * as Sidebar from '$lib/components/ui/sidebar/index.js';
-	import type { DocSchema } from '$lib/types';
+	import { page } from '$app/state';
+	import * as Sidebar from '#lib/components/ui/sidebar/index.js';
+	import type { DocSchema } from '#lib/types.js';
 
 	let { docSchema }: { docSchema: DocSchema } = $props();
 
 	const sidebar = Sidebar.useSidebar();
-	const currentPath = $derived($page.url.pathname.replace(/\/$/, ''));
+	const currentPath = $derived(page.url.pathname.replace(/\/$/, ''));
 </script>
 
 <Sidebar.Root class="mt-14">
@@ -25,7 +25,7 @@
 							<Sidebar.MenuItem>
 								<Sidebar.MenuButton
 									class="data-[active=true]:shadow-[0_0_0_1px_rgba(0,0,0,.08),_0px_2px_2px_rgba(0,0,0,.04)] data-[active=true]:not-dark:bg-white transition-all"
-									{isActive}
+									isActive={isActive}
 									onclick={() => {
 										if (sidebar.isMobile) sidebar.toggle();
 									}}

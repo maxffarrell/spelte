@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { browser } from '$app/environment';
-	import { cn } from '$lib/utils';
+	import { browser } from '$app/env';
+	import { cn } from '#lib/utils.js';
 	import { motion, type AnimationOptions, type Transition } from 'motion-sv';
 	import opentype from 'opentype.js';
 	import type { SVGAttributes } from 'svelte/elements';
@@ -133,13 +133,13 @@
 						.toPathData(3)
 						.trim();
 
-					if (pathData) {
-						nextPaths.push({
-							id: `path-${nextPaths.length}`,
-							d: pathData,
-							delay: delay + nextPaths.length * 0.2
-						});
-					}
+				if (pathData) {
+					nextPaths.push({
+						id: `path-${nextPaths.length}`,
+						d: pathData,
+						delay: delay + nextPaths.length * 0.2
+					});
+				}
 				}
 			);
 
@@ -195,8 +195,8 @@
 
 <div class="pointer-events-none">
 	<motion.svg
-		{width}
-		{height}
+		width={width}
+		height={height}
 		viewBox={`0 0 ${width} ${height}`}
 		fill="none"
 		class={cn('overflow-visible', className)}

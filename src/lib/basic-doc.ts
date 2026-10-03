@@ -1,4 +1,4 @@
-import type { DocSchema } from "$lib/types";
+import type { DocSchema } from "#lib/types.js";
 
 export const basicDoc: DocSchema = [
   {

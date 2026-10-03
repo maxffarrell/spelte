@@ -1,6 +1,6 @@
 <script>
-	import ExampleShell from '$lib/components/example-shell.svelte';
-	import HighlightedTextDirectionExample from '$lib/components/examples/highlighted-text/direction.svelte';
+	import ExampleShell from '#lib/components/example-shell.svelte';
+	import HighlightedTextDirectionExample from '#lib/components/examples/highlighted-text/direction.svelte';
 </script>
 
 ## Examples

@@ -1,6 +1,6 @@
 <script>
-	import ExampleShell from '$lib/components/example-shell.svelte';
-	import KbdKeySymbolsExample from '$lib/components/examples/kbd/key-symbols.svelte';
+	import ExampleShell from '#lib/components/example-shell.svelte';
+	import KbdKeySymbolsExample from '#lib/components/examples/kbd/key-symbols.svelte';
 </script>
 
 ## Examples

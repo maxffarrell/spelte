@@ -1,6 +1,6 @@
 <script lang="ts">
-	import SiteHeader from '$lib/components/site-header.svelte';
-	import SiteFooter from '$lib/components/site-footer.svelte';
+	import SiteHeader from '#lib/components/site-header.svelte';
+	import SiteFooter from '#lib/components/site-footer.svelte';
 </script>
 
 <div class="flex min-h-dvh flex-col pt-14">

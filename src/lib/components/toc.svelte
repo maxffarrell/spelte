@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { siteConfig } from '$lib/config';
-	import { cn } from '$lib/utils';
+	import { siteConfig } from '#lib/config.js';
+	import { cn } from '#lib/utils.js';
 	import { onMount } from 'svelte';
 	import { SquarePen } from '@lucide/svelte';
-	import { Separator } from '$lib/components/ui/separator/index.js';
+	import { Separator } from '#lib/components/ui/separator/index.js';
 
 	let {
 		toc,

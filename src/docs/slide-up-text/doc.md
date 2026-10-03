@@ -1,6 +1,6 @@
 <script>
-	import ExampleShell from '$lib/components/example-shell.svelte';
-	import SlideUpTextSplitByExample from '$lib/components/examples/slide-up-text/split-by.svelte';
+	import ExampleShell from '#lib/components/example-shell.svelte';
+	import SlideUpTextSplitByExample from '#lib/components/examples/slide-up-text/split-by.svelte';
 </script>
 
 ## Examples

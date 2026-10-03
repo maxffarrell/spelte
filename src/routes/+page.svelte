@@ -1,7 +1,7 @@
 <script lang="ts">
-	import SiteHeader from '$lib/components/site-header.svelte';
-	import SiteFooter from '$lib/components/site-footer.svelte';
-	import Hero from '$lib/components/hero.svelte';
+	import SiteHeader from '#lib/components/site-header.svelte';
+	import SiteFooter from '#lib/components/site-footer.svelte';
+	import Hero from '#lib/components/hero.svelte';
 	import type { PageData } from './$types';
 
 	let { data }: { data: PageData } = $props();

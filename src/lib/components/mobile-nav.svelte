@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { page } from '$app/stores';
-	import { cn } from '$lib/utils';
-	import { Button } from '$lib/components/ui/button/index.js';
-	import * as Popover from '$lib/components/ui/popover/index.js';
-	import type { DocSchema } from '$lib/types';
+	import { page } from '$app/state';
+	import { cn } from '#lib/utils.js';
+	import { Button } from '#lib/components/ui/button/index.js';
+	import * as Popover from '#lib/components/ui/popover/index.js';
+	import type { DocSchema } from '#lib/types.js';
 
 	let {
 		docSchema,
@@ -64,23 +64,14 @@
 						<a
 							href="/docs/introduction"
 							onclick={close}
-							class={cn(
-								'text-2xl font-medium transition-colors',
-								$page.url.pathname === '/docs/introduction' && 'text-primary'
-							)}
-						>
-							Docs
-						</a>
+							class={cn('text-2xl font-medium transition-colors', page.url.pathname === '/docs/introduction' && 'text-primary')}
+						>Docs</a>
+
 						<a
 							href="/docs/components"
 							onclick={close}
-							class={cn(
-								'text-2xl font-medium transition-colors',
-								$page.url.pathname === '/docs/components' && 'text-primary'
-							)}
-						>
-							Components
-						</a>
+							class={cn('text-2xl font-medium transition-colors', page.url.pathname === '/docs/components' && 'text-primary')}
+						>Components</a>
 					</div>
 				</div>
 				{#each docSchema as section}
@@ -91,13 +82,8 @@
 								<a
 									href={`/docs/${item.id}`}
 									onclick={close}
-									class={cn(
-										'text-2xl font-medium transition-colors',
-										$page.url.pathname === `/docs/${item.id}` && 'text-primary'
-									)}
-								>
-									{item.title}
-								</a>
+									class={cn('text-2xl font-medium transition-colors', page.url.pathname === `/docs/${item.id}` && 'text-primary')}
+								>{item.title}</a>
 							{/each}
 						</div>
 					</div>

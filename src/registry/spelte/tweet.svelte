@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { tick } from 'svelte';
 	import { Check, Link2 } from '@lucide/svelte';
-	import { cn } from '$lib/utils';
+	import { cn } from '#lib/utils.js';
 
 	type TweetEntity = {
 		type: 'text' | 'url' | 'hashtag' | 'mention' | 'symbol';
