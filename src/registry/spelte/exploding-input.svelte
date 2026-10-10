@@ -70,7 +70,7 @@
 		const cs = window.getComputedStyle(input);
 		const paddingLeft = parseInt(cs.paddingLeft, 10) || 0;
 		const paddingRight = parseInt(cs.paddingRight, 10) || 0;
-		let x = 0;
+		let x: number;
 		if (input.value.length > 0) {
 			const tw = getTextWidth(input.value, input);
 			const startX = inputRect.left - containerRect.left;

@@ -114,14 +114,12 @@
 		>
 			<div class="flex-1 flex items-center justify-center">
 				<PerspectiveBook>
-					{#snippet children()}
-						<div class="flex flex-col gap-4">
-							<h1 class="font-semibold leading-5">
-								Your complete platform for the Design.
-							</h1>
-							<BookOpen class="size-5" />
-						</div>
-					{/snippet}
+					<div class="flex flex-col gap-4">
+						<h1 class="font-semibold leading-5">
+							Your complete platform for the Design.
+						</h1>
+						<BookOpen class="size-5" />
+					</div>
 				</PerspectiveBook>
 			</div>
 			<a

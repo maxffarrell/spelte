@@ -163,11 +163,11 @@
 	}
 
 	$effect(() => {
-		text;
-		fontSize;
-		baseline;
-		horizontalPadding;
-		delay;
+		void text;
+		void fontSize;
+		void baseline;
+		void horizontalPadding;
+		void delay;
 
 		buildPaths();
 	});

@@ -24,13 +24,12 @@ export const load: PageServerLoad = async ({ params }) => {
 	const nextDoc = currentIndex < allItems.length - 1 ? allItems[currentIndex + 1] : null;
 
 	let toc: { title: string; url: string; depth: number }[] = [];
-	let rawContent = '';
+	const rawContent = getDocSource(id);
 	let registrySource = '';
 	let registrySourceHtml = '';
-	let previewSource = '';
-	let previewSourceHtml = '';
+	let previewSource: string;
+	let previewSourceHtml: string;
 
-	rawContent = getDocSource(id);
 	if (rawContent) {
 		toc = getTableOfContents(rawContent);
 	}

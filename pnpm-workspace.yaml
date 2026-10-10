@@ -6,3 +6,10 @@ minimumReleaseAgeExclude:
   - cookie@0.7.0
   - svelte@5.55.7
   - devalue@5.8.1
+  - '@lucide/svelte@1.54.0'
+  - '@types/node@26.6.5'
+  - eslint-plugin-svelte@3.23.1
+
+# Patch the selector parser used by Tailwind typography (GHSA-rj75-hqrm-r3gf).
+overrides:
+  "@tailwindcss/typography>postcss-selector-parser": ^7.1.6

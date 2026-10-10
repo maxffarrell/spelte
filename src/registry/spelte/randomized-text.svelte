@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { animate, inView, type DOMKeyframesDefinition } from 'motion-sv';
+	import { animate, inView } from 'motion-sv';
 
 	type SplitType = 'words' | 'chars';
 
@@ -51,7 +51,7 @@
 	function runAnimation() {
 		spanEls.forEach((el, i) => {
 			if (!el) return;
-			// @ts-ignore — motion overload resolution fails in TS6; runtime behavior is correct
+			// @ts-expect-error — motion overload resolution fails in TS6; runtime behavior is correct
 			animate(el as Element, { opacity: [0, 1] }, {
 				duration: 1.2,
 				delay: randomizedDelays[i],
