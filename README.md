@@ -83,3 +83,18 @@ Built with:
 ## License
 
 Licensed under the [MIT license](https://github.com/maxffarrell/spelte/blob/main/LICENSE).
+
+## Development
+
+Use the pnpm version pinned in `package.json`, then run:
+
+```sh
+pnpm install --frozen-lockfile
+pnpm check
+pnpm lint
+pnpm build
+```
+
+TypeScript stays on `~6.0.3` because SvelteKit 3.0.1 and svelte-check 4.7.6 require the TypeScript 6 JavaScript API. TypeScript 7.0.2 crashes SvelteKit config synchronization. Revisit this pin when the Svelte tooling supports TypeScript 7.
+
+For production route and registry checks, start `pnpm preview --host 127.0.0.1 --port 4173` after building, then run `pnpm test:smoke` in another terminal. An alternate preview URL can be passed as an argument.

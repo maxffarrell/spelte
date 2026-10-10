@@ -18,17 +18,6 @@
 
 	type PageItem = { value: string; label: string; url: string; isComponent: boolean };
 
-	const allItems = $derived(
-		docSchema.flatMap((group) =>
-			group.items.map((item) => ({
-				value: item.id,
-				label: item.title,
-				url: `/docs/${item.id}`,
-				isComponent: group.title !== 'Getting Started',
-			}))
-		)
-	);
-
 	let highlighted = $state<PageItem | null>(null);
 
 	const copyPayload = $derived(() => {

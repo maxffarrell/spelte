@@ -4,7 +4,7 @@ const docSources = import.meta.glob('/src/docs/*/doc.md', {
 	eager: true
 });
 
-const registrySources = import.meta.glob('/src/registry/spelte/*.svelte', {
+const registrySources = import.meta.glob(['/src/registry/spelte/*.svelte', '/src/routes/api/spotify/+server.ts'], {
 	query: '?raw',
 	import: 'default',
 	eager: true

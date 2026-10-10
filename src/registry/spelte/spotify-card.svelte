@@ -91,7 +91,7 @@
 	});
 
 	$effect(() => {
-		data?.audio;
+		void data?.audio;
 		untrack(() => stopAudio());
 	});
 
@@ -133,8 +133,9 @@
 				if (controller.signal.aborted || currentRequest !== requestVersion) return;
 				hasError = true;
 			} finally {
-				if (controller.signal.aborted || currentRequest !== requestVersion) return;
-				isLoading = false;
+				if (!controller.signal.aborted && currentRequest === requestVersion) {
+					isLoading = false;
+				}
 			}
 		})();
 

@@ -8,8 +8,7 @@
 		source = '',
 		fullBleed = false,
 		codeOnly = false,
-		preview,
-		children
+		preview
 	}: {
 		title: string;
 		name?: string;

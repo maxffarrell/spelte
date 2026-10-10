@@ -451,7 +451,8 @@
         },
         {
           "path": "src/routes/api/spotify/+server.ts",
-          "type": "registry:file"
+          "type": "registry:file",
+          "target": "src/routes/api/spotify/+server.ts"
         }
       ],
       "dependencies": ["spotify-url-info"],

@@ -78,7 +78,7 @@
 				<rect x={x + qrInfo.innerPadding * 2} y={y + qrInfo.innerPadding * 2} width={qrInfo.innerBlackSize} height={qrInfo.innerBlackSize} fill={fgColor} rx="3" ry="3" />
 			</g>
 		{/each}
-		{#each qrInfo.circles as { cx, cy }, i}
+		{#each qrInfo.circles as { cx, cy }}
 			<circle {cx} {cy} r={qrInfo.circleRadius} fill={fgColor} />
 		{/each}
 	</svg>

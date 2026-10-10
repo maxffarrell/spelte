@@ -1,6 +1,5 @@
 <script lang="ts">
 	import AnimatedGradient from '$registry/spelte/animated-gradient.svelte';
-	const colors = ['red', 'blue', 'green', 'yellow', 'purple'];
 	const animatedGradientPresets = ['Lava', 'Prism', 'Plasma', 'Pulse', 'Vortex', 'Mist'] as const;
 	let activeAnimatedGradientPreset = $state<(typeof animatedGradientPresets)[number]>('Lava');
 </script>
