@@ -11,7 +11,8 @@
     "lint": "eslint .",
     "registry:build": "pnpm dlx shadcn-svelte@latest build",
     "deploy": "wrangler deploy",
-    "test:smoke": "node scripts/smoke.mjs"
+    "test:smoke": "node scripts/smoke.mjs",
+    "preinstall": "node scripts/check-node.mjs"
   },
   "dependencies": {
     "class-variance-authority": "^0.7.1",
@@ -58,5 +59,8 @@
   "imports": {
     "#lib": "./src/lib/index.js",
     "#lib/*": "./src/lib/*"
+  },
+  "engines": {
+    "node": "^26.12.1"
   }
 }
