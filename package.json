@@ -55,7 +55,7 @@
     "wrangler": "^4.149.0"
   },
   "type": "module",
-  "packageManager": "pnpm@12.10.1",
+  "packageManager": "pnpm@12.16.1",
   "imports": {
     "#lib": "./src/lib/index.js",
     "#lib/*": "./src/lib/*"
