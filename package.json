@@ -9,7 +9,7 @@
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
     "lint": "eslint .",
-    "registry:build": "pnpm dlx shadcn-svelte@latest registry build",
+    "registry:build": "pnpm dlx shadcn-svelte@latest build",
     "deploy": "wrangler deploy",
     "test:smoke": "node scripts/smoke.mjs",
     "preinstall": "node scripts/check-node.mjs"
