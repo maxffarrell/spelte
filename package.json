@@ -9,7 +9,7 @@
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
     "lint": "eslint .",
-    "registry:build": "pnpm dlx shadcn-svelte@latest build",
+    "registry:build": "pnpm dlx shadcn-svelte@latest registry build",
     "deploy": "wrangler deploy",
     "test:smoke": "node scripts/smoke.mjs",
     "preinstall": "node scripts/check-node.mjs"
@@ -29,7 +29,7 @@
     "@eslint/js": "^10.0.1",
     "@internationalized/date": "^3.12.4",
     "@lucide/svelte": "^1.54.0",
-    "@sveltejs/adapter-cloudflare": "^8.0.0",
+    "@sveltejs/adapter-cloudflare": "^9.0.0",
     "@sveltejs/kit": "^3.0.1",
     "@sveltejs/vite-plugin-svelte": "^7.3.1",
     "@tailwindcss/typography": "^0.5.20",
@@ -52,7 +52,7 @@
     "typescript": "~6.0.3",
     "typescript-eslint": "^8.71.1",
     "vite": "^8.3.4",
-    "wrangler": "^4.149.0"
+    "wrangler": "^4.162.0"
   },
   "type": "module",
   "packageManager": "pnpm@12.10.1",
